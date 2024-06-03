@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:48:28 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/03 16:36:26 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/03 20:49:42 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 # define PHONEBOOK_HPP
 
 #include <iostream>
+#include <iomanip>
 #include "contact.hpp"
-//#include <cstdlib>
+
+# define SIZE 8
 
 class PhoneBook
 {
@@ -24,10 +26,11 @@ class PhoneBook
 		~PhoneBook();
 		// ADD
 		// SEARCH
+		void	displayEntries();
 		// DISPLAY
-		void Display();
+		void 	displayInfo();
 	private:
-		Contact	entry[8];
+		Contact	entry[SIZE];
 };
 
 #endif

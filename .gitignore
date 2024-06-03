@@ -1,1 +1,5 @@
-CPP/ex01/reference
+.vscode
+*.o
+ex00/Megaphone
+ex01/Phonebook
+en.subject.pdf
