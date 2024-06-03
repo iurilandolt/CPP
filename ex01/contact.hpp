@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:32:39 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/03 13:49:58 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/03 16:38:14 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CONTACT_HPP
 
 #include <iostream>
-#include <cstdlib>
+//#include <cstdlib>
 
 class Contact
 {
@@ -22,10 +22,12 @@ class Contact
 		Contact();
 		~Contact();
 	private:
-		std::string name;
-		std::string surname;
-		std::string handle;
-		std::string number;
+		int			index;
+		std::string	name;
+		std::string	surname;
+		std::string	handle;
+		std::string	number;
+		std::string	secret;
 };
 
 #endif
