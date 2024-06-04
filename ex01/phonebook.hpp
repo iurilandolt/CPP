@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:48:28 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/05 00:23:05 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/05 00:35:09 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ class PhoneBook
 		PhoneBook();
 		~PhoneBook();
 	private:
-		int findSlot();
 		Contact	entry[SIZE];
 
 };
