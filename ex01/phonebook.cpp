@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:48:32 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/04 20:59:42 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/05 00:22:28 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,8 @@ int	PhoneBook::findSlot() {
 }
 
 void	PhoneBook::addEntry() {
-	//check slot
 	int	i;
 
 	i = findSlot();
-	this->entry[i].index = i; // this assignment should be done only in updateEntry  below
-
-	// set name
-	this->entry[i].updateEntry();
-	// set surname
-	// set hande
-	// set secret
+	this->entry[i].updateEntry(i);
 }

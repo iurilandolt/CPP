@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:32:30 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/04 21:02:31 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/05 00:12:24 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,14 @@ void	Contact::displayEntry() {
 		std::cout << "|" << std::setw(10) << this->handle.substr(0, 10) << std::endl;
 }
 
+void	Contact::clipInput(std::string &input) {
+	int pos;
+	input.erase(0, input.find_first_not_of(" \t"));
+	pos = input.find_first_of(" \t");
+	if (pos != std::string::npos)
+		input.erase(pos);
+}
+
 std::string	Contact::setValue(std::string field)
 {
 	std::string value;
@@ -55,35 +63,32 @@ std::string	Contact::setValue(std::string field)
 
 	value = "";
 	while (value == "") {
-		std::cout << "Enter "; std::cout << field << std::endl;
+		std::cout << "Enter "; std::cout << field << std::endl <<  ">";
 		std::getline (std::cin,value);
 		if (std::cin.eof()) {
 			std::cout << std::endl;
 			return ("");
 		}
 	}
+	this->clipInput(value);
 	return (value);
 }
 
-void	Contact::updateEntry() {
-
+void	Contact::updateEntry(int index) {
 	std::string name;
 	std::string surname;
 	std::string handle;
 
-	name = this->setValue("Name >");
-	name.erase(remove_if(name.begin(), name.end(), isspace), name.end());
+	name = this->setValue("Name");
 	if (name.empty())
 		return ;
-	surname = this->setValue("Surname >");
-	surname.erase(remove_if(surname.begin(), surname.end(), isspace), surname.end());
+	surname = this->setValue("Surname");
 	if (surname.empty())
 		return ;
-	handle = this->setValue("Nickname >");
-	handle.erase(remove_if(handle.begin(), handle.end(), isspace), handle.end());
+	handle = this->setValue("Nickname");
 	if (handle.empty())
 		return ;
-	//get index from func argument and set it here instead of addEntry
+	this->index = index;
 	this->name = name;
 	this->surname = surname;
 	this->handle = handle;

@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 14:34:26 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/04 21:00:27 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/05 00:18:06 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 
 int	main() {
-
 	std::string	data;
 	PhoneBook	list;
 
 	data = "";
 	while (data.compare("EXIT")) {
+		list.displayInfo();
 		std::cout << "> ";
-		std::getline (std::cin,data);
+		std::getline(std::cin,data);
 		if (std::cin.eof()) {
 			std::cout << std::endl;
 	 		return (1);
