@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:32:30 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/05 00:12:24 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/05 00:28:47 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ std::string	Contact::setValue(std::string field)
 	return (value);
 }
 
-void	Contact::updateEntry(int index) {
+void	Contact::updateEntry(int &index) {
 	std::string name;
 	std::string surname;
 	std::string handle;
@@ -88,7 +88,7 @@ void	Contact::updateEntry(int index) {
 	handle = this->setValue("Nickname");
 	if (handle.empty())
 		return ;
-	this->index = index;
+	this->index = index++;
 	this->name = name;
 	this->surname = surname;
 	this->handle = handle;

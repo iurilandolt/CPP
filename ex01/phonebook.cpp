@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:48:32 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/05 00:22:28 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/05 00:31:55 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	PhoneBook::displayEntries() {
 	for (int i = 0; i < SIZE; i++)
 		if (this->entry[i].index > -1)
 			this->entry[i].displayEntry();
+	std::cout << "-------------------------------------------" << std::endl;
 }
 
 int	PhoneBook::findSlot() {
@@ -48,8 +49,9 @@ int	PhoneBook::findSlot() {
 }
 
 void	PhoneBook::addEntry() {
-	int	i;
+	static int	i = 0;
 
-	i = findSlot();
+	if (i == SIZE)
+		i = 0;
 	this->entry[i].updateEntry(i);
 }
