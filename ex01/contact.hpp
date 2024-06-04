@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:32:39 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/04 13:04:22 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/04 20:53:17 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 # define CONTACT_HPP
 
 #include <iostream>
+#include <istream>
 #include <iomanip>
+//#include <string>
 
 class Contact
 {

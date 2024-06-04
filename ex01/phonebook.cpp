@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:48:32 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/04 16:35:49 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/04 20:59:42 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ PhoneBook::~PhoneBook() {
 }
 
 void	PhoneBook::displayInfo() {
-	std::cout << " ADD     - Add a new contact             " << std::endl;
-	std::cout << " SEARCH  - Search for a specific contact " << std::endl;
-	std::cout << " EXIT    - Exit the program              " << std::endl;
+	std::cout << " ADD     - Add a new contact            " << std::endl;
+	std::cout << " SEARCH  - Search for a specific contact" << std::endl;
+	std::cout << " EXIT    - Exit the program             " << std::endl;
 }
 
 void	PhoneBook::displayEntries() {
 
-	std::cout << "-------------- PHONEBOOK ---------------" << std::endl;
+	std::cout << "-------------<< PHONEBOOK >>---------------" << std::endl;
 	std::cout << std::setw(10) << "Index     ";
 	std::cout << "|" << std::setw(10) << "First Name";
 	std::cout << "|" << std::setw(10) << "Last Name ";
@@ -52,7 +52,7 @@ void	PhoneBook::addEntry() {
 	int	i;
 
 	i = findSlot();
-	this->entry[i].index = i;
+	this->entry[i].index = i; // this assignment should be done only in updateEntry  below
 
 	// set name
 	this->entry[i].updateEntry();

@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:48:28 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/04 16:35:44 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/04 20:41:06 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PHONEBOOK_HPP
 
 #include <iostream>
+#include <istream>
 #include <iomanip>
 #include "contact.hpp"
 

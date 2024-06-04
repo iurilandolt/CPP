@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:32:30 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/04 16:37:10 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/04 21:02:31 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ Contact::~Contact() {
 	std::cout << "Contact Destructor called" << std::endl;
 }
 
-void Contact::displayEntry() {
+void	Contact::displayEntry() {
 	std::cout << std::setw(10) << this->index;
 	if (this->name.length() > 10) {
 		std::cout << "|" << std::setw(9) << this->name.substr(0, 9);
@@ -48,7 +48,7 @@ void Contact::displayEntry() {
 		std::cout << "|" << std::setw(10) << this->handle.substr(0, 10) << std::endl;
 }
 
-std::string Contact::setValue(std::string field)
+std::string	Contact::setValue(std::string field)
 {
 	std::string value;
 	std::string alter;
@@ -56,7 +56,7 @@ std::string Contact::setValue(std::string field)
 	value = "";
 	while (value == "") {
 		std::cout << "Enter "; std::cout << field << std::endl;
-		std::cin >> value;
+		std::getline (std::cin,value);
 		if (std::cin.eof()) {
 			std::cout << std::endl;
 			return ("");
@@ -72,14 +72,18 @@ void	Contact::updateEntry() {
 	std::string handle;
 
 	name = this->setValue("Name >");
-	if (name == "")
+	name.erase(remove_if(name.begin(), name.end(), isspace), name.end());
+	if (name.empty())
 		return ;
 	surname = this->setValue("Surname >");
-	if (surname == "")
+	surname.erase(remove_if(surname.begin(), surname.end(), isspace), surname.end());
+	if (surname.empty())
 		return ;
 	handle = this->setValue("Nickname >");
-	if (handle == "")
+	handle.erase(remove_if(handle.begin(), handle.end(), isspace), handle.end());
+	if (handle.empty())
 		return ;
+	//get index from func argument and set it here instead of addEntry
 	this->name = name;
 	this->surname = surname;
 	this->handle = handle;
