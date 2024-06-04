@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 14:34:26 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/03 20:49:38 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/04 12:34:05 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ int	main() {
 			std::cout << std::endl;
 	 		return (1);
 		}
-		if (!data.compare("ADD"))
+		if (!data.compare("ADD")) {
 			std::cout << "ADD function called" << std::endl;
+			list.addEntry();
+		}
 		else if (!data.compare("SEARCH"))
 			list.displayEntries();
 		else if (data.compare("EXIT"))

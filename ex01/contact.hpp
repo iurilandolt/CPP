@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:32:39 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/03 20:48:25 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/04 13:04:22 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,15 @@ class Contact
 {
 	public:
 		int		index;
-		void	displayEntry(int i);
+		void	displayEntry();
+		void	updateEntry();
+		//void	setSurName(std::string surname);
+		//void	sethandle(std::string handle);
+		//void	setSecret(std::string secret);
 		Contact();
 		~Contact();
 	private:
+		std::string setValue(std::string field);
 		std::string	name;
 		std::string	surname;
 		std::string	handle;
