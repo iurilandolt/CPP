@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:48:28 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/05 00:35:09 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/05 14:46:49 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ class PhoneBook
 		void	addEntry();
 		// SEARCH
 		void	displayEntries();
+		void	searchEntry();
 		// DISPLAY
 		void 	displayInfo();
 		PhoneBook();
