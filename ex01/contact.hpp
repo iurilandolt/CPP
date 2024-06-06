@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:32:39 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/05 14:57:17 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:16:08 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ class Contact
 		void	clipInput(std::string &input);
 		std::string setValue(std::string field);
 		std::string setNumber();
+		std::string	setNote();
 		std::string	name;
 		std::string	surname;
 		std::string	handle;

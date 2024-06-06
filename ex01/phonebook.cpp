@@ -6,21 +6,22 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:48:32 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/05 14:57:54 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:59:51 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phonebook.hpp"
 
 PhoneBook::PhoneBook() {
-	std::cout << "PhoneBook Constructor called" << std::endl;
+	//std::cout << "PhoneBook Constructor called" << std::endl;
 }
 
 PhoneBook::~PhoneBook() {
-	std::cout << "PhoneBook Destructor called" << std::endl;
+	//std::cout << "PhoneBook Destructor called" << std::endl;
 }
 
 void	PhoneBook::displayInfo() {
+	std::cout << "-------------<< PHONEBOOK >>---------------" << std::endl;
 	std::cout << " ADD     - Add a new contact            " << std::endl;
 	std::cout << " SEARCH  - Display and search contacts  " << std::endl;
 	std::cout << " EXIT    - Exit PhoneBook               " << std::endl;
@@ -32,7 +33,7 @@ void	PhoneBook::displayEntries() {
 		return ;
 	}
 	else {
-		std::cout << "-------------<< PHONEBOOK >>---------------" << std::endl;
+		std::cout << "-------------------------------------------" << std::endl;
 		std::cout << std::setw(10) << "Index     ";
 		std::cout << "|" << std::setw(10) << "First Name";
 		std::cout << "|" << std::setw(10) << "Last Name ";
@@ -40,7 +41,7 @@ void	PhoneBook::displayEntries() {
 		for (int i = 0; i < SIZE; i++)
 			if (this->entry[i].index > -1)
 				this->entry[i].displayEntry();
-		std::cout << "-------------------------------------------" << std::endl;
+
 	}
 }
 

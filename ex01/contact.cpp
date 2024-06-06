@@ -6,24 +6,24 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:32:30 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/05 14:57:46 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/06 15:09:53 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "contact.hpp"
 
 Contact::Contact() {
-	std::cout << "Contact Constructor called" << std::endl;
+	//std::cout << "Contact Constructor called" << std::endl;
 	this->index = -1;
-	this->name = "";
-	this->surname = "";
-	this->handle = "";
-	this->number = "";
-	this->secret = "";
+	this->name.clear();
+	this->surname.clear();
+	this->handle.clear();
+	this->number.clear();
+	this->secret.clear();
 }
 
 Contact::~Contact() {
-	std::cout << "Contact Destructor called" << std::endl;
+	//std::cout << "Contact Destructor called" << std::endl;
 }
 
 void	Contact::displayEntry() {
@@ -46,13 +46,22 @@ void	Contact::displayEntry() {
 	}
 	else
 		std::cout << "|" << std::setw(10) << this->handle.substr(0, 10) << std::endl;
+
 }
 
 void	Contact::displayDetail() {
-	std::cout << "First Name: " << this->name << std::endl;
-	std::cout << "Last Name: " << this->surname << std::endl;
-	std::cout << "Nickname: " << this->handle << std::endl;
-	std::cout << "Phone Number: " << this->number << std::endl;
+	std::cout << "-------------------------------------------" << std::endl;
+	std::cout << std::setw(15) << "First Name: " << this->name << std::endl;
+	std::cout << std::setw(15) << "Last Name: " << this->surname << std::endl;
+	std::cout << std::setw(15) << "Nickname: " << this->handle << std::endl;
+	std::cout << std::setw(15) << "Phone Number: " << this->number << std::endl;
+	std::cout << std::setw(15) << "Secret: ";
+	for (int i = 0; i < this->secret.length(); i += 29) {
+		if (i != 0)
+			std::cout << std::setw(15) << "";
+		std::cout << this->secret.substr(i, 29) << std::endl;
+	}
+
 }
 
 void	Contact::clipInput(std::string &input) {
@@ -68,7 +77,7 @@ std::string	Contact::setValue(std::string field)
 	std::string value;
 
 	value = "";
-	while (value == "") {
+	while (value == "" || value.length() > 29) {
 		std::cout << "Enter "; std::cout << field << std::endl <<  ">";
 		std::getline (std::cin,value);
 		if (std::cin.eof()) {
@@ -85,7 +94,7 @@ std::string Contact::setNumber() {
 	int nbr;
 
 	number = "";
-	while (number == "") {
+	while (number == "" || number.length() > 13) {
 		std::cout << "Enter Phone Number" << std::endl <<  ">";
 		std::getline (std::cin,number);
 		if (std::cin.eof()) {
@@ -106,6 +115,24 @@ std::string Contact::setNumber() {
 		}
 	}
 	return (number);
+}
+
+std::string	Contact::setNote()
+{
+	std::string value;
+
+	value = "";
+	while (value == "" || value.length() > 120) {
+		std::cout << "Enter Secret" << std::endl <<  ">";
+		std::getline (std::cin,value);
+		if (std::cin.eof()) {
+			std::cout << std::endl;
+			return (value.clear(), value);
+		}
+	}
+	if (value.length() > 120)
+		value = value.substr(0, 120);
+	return (value);
 }
 
 void	Contact::updateEntry(int &index) {
@@ -132,4 +159,8 @@ void	Contact::updateEntry(int &index) {
 	this->surname = surname;
 	this->handle = handle;
 	this->number = number;
+
+	this->secret = this->setNote();
+	if (this->secret.empty())
+		return ;
 }
