@@ -6,13 +6,13 @@
 #    By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/03 13:25:59 by rlandolt          #+#    #+#              #
-#    Updated: 2024/06/03 16:05:10 by rlandolt         ###   ########.fr        #
+#    Updated: 2024/06/11 12:10:50 by rlandolt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Phonebook
 
-SRC = main.cpp phonebook.cpp contact.cpp
+SRC = main.cpp PhoneBook.cpp Contact.cpp
 
 CXX = c++
 

@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:32:39 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/06 14:16:08 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/11 11:42:08 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include <iostream>
 #include <istream>
 #include <iomanip>
-//#include <string>
 
 class Contact
 {
