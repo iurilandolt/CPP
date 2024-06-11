@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:32:30 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/11 20:46:34 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/11 23:26:49 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,8 @@ std::string	Contact::setValue(std::string field)
 {
 	std::string value;
 
-	value = "";
-	while (value == "" || value.length() > 29) {
+	value.clear();
+	while (value.empty() || value.length() > 29) {
 		std::cout << "Enter "; std::cout << field << std::endl <<  ">";
 		std::getline (std::cin,value);
 		if (std::cin.eof()) {
@@ -116,28 +116,28 @@ std::string	Contact::setValue(std::string field)
 }
 
 std::string Contact::setNumber() {
-	std::string number;
+	std::string	number;
 	int nbr;
 
-	number = "";
-	while (number == "" || number.length() > 15) {
+	number.clear();
+	while (number.empty() || number.length() > 15) {
 		std::cout << "Enter Phone Number" << std::endl <<  ">";
 		std::getline (std::cin,number);
 		if (std::cin.eof()) {
 			std::cout << std::endl;
 			return (number.clear(), number);
 		}
-		try {
-			this->trimInput(number);
-			nbr = std::stol(number);
-		}
-		catch (const std::invalid_argument&) {
-			std::cout << "Could not convert to a valid number" << std::endl;
-			return (number.clear(), number);
-		}
-		catch (const std::out_of_range&) {
-			std::cout << "Please enter a smaller number" << std::endl;
-			return (number.clear(), number);
+		if (!number.empty()) {
+			try {
+				this->trimInput(number);
+				nbr = std::stol(number);
+			}
+			catch (const std::invalid_argument&) {
+				return (number.clear(), number);
+			}
+			catch (const std::out_of_range&) {
+				return (number.clear(), number);
+			}
 		}
 	}
 	this->trimNumber(number);
@@ -146,10 +146,10 @@ std::string Contact::setNumber() {
 
 std::string	Contact::setNote()
 {
-	std::string value;
+	std::string	value;
 
-	value = "";
-	while (value == "" || value.length() > 120) {
+	value.clear();
+	while (value.empty() || value.length() > 120) {
 		std::cout << "Enter Secret" << std::endl <<  ">";
 		std::getline (std::cin,value);
 		if (std::cin.eof()) {
@@ -159,35 +159,34 @@ std::string	Contact::setNote()
 	}
 	if (value.length() > 120)
 		value = value.substr(0, 120);
+	if (this->isInvalid(value))
+		value = " ";
 	return (value);
 }
 
-void	Contact::updateEntry(int &index) {
-	std::string name;
-	std::string surname;
-	std::string handle;
-	std::string number;
+int	Contact::updateEntry(int &index) {
+	std::string	name;
+	std::string	surname;
+	std::string	handle;
+	std::string	number;
 
 	name = this->setValue("Name");
 	if (name.empty())
-		return ;
+		return (0);
 	surname = this->setValue("Surname");
 	if (surname.empty())
-		return ;
+		return (0);
 	handle = this->setValue("Nickname");
 	if (handle.empty())
-		return ;
+		return (0);
 	number = this->setNumber();
 	if (number.empty())
-		return ;
-
+		return (0);
 	this->index = index++;
 	this->name = name;
 	this->surname = surname;
 	this->handle = handle;
 	this->number = number;
-
 	this->secret = this->setNote();
-	if (this->secret.empty())
-		return ;
+	return (1);
 }

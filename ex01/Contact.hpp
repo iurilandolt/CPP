@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:32:39 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/11 20:40:17 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/11 23:18:27 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class Contact
 		int		index;
 		void	displayEntry();
 		void	displayDetail();
-		void	updateEntry(int &index);
+		int		updateEntry(int &index);
 		Contact();
 		~Contact();
 	private:

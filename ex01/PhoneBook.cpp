@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:48:32 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/11 20:29:39 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/11 23:19:46 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void	PhoneBook::addEntry() {
 
 	if (i == SIZE)
 		i = 0;
-	this->entry[i].updateEntry(i);
+	if (!this->entry[i].updateEntry(i))
+		std::cout << "Invalid input" << std::endl;
 }
 
 void	PhoneBook::searchEntry() {
