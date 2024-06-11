@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:48:28 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/11 12:10:31 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/11 12:55:07 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <iomanip>
 #include "Contact.hpp"
 
-# define SIZE 3
+# define SIZE 8
 
 class PhoneBook
 {

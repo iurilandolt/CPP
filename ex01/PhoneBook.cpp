@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:48:32 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/11 12:09:57 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/11 12:45:10 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	PhoneBook::displayEntries() {
 		for (int i = 0; i < SIZE; i++)
 			if (this->entry[i].index > -1)
 				this->entry[i].displayEntry();
-
 	}
 }
 
