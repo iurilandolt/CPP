@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:32:30 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/11 12:09:50 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/11 17:26:35 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,18 @@ void	Contact::displayDetail() {
 
 }
 
-void	Contact::clipInput(std::string &input) {
+void	Contact::trimInput(std::string &input) {
 	int pos;
 	input.erase(0, input.find_first_not_of(" \t"));
 	pos = input.find_first_of(" \t");
+	if (pos != std::string::npos)
+		input.erase(pos);
+}
+
+void	Contact::trimNumber(std::string &input) {
+	int pos;
+
+	pos = input.find_first_not_of("1234567890+-");
 	if (pos != std::string::npos)
 		input.erase(pos);
 }
@@ -85,7 +93,7 @@ std::string	Contact::setValue(std::string field)
 			return (value.clear(), value);
 		}
 	}
-	this->clipInput(value);
+	this->trimInput(value);
 	return (value);
 }
 
@@ -94,15 +102,15 @@ std::string Contact::setNumber() {
 	int nbr;
 
 	number = "";
-	while (number == "" || number.length() > 13) {
+	while (number == "" || number.length() > 15) {
 		std::cout << "Enter Phone Number" << std::endl <<  ">";
 		std::getline (std::cin,number);
 		if (std::cin.eof()) {
 			std::cout << std::endl;
 			return (number.clear(), number);
 		}
-		this->clipInput(number);
 		try {
+			this->trimInput(number);
 			nbr = std::stol(number);
 		}
 		catch (const std::invalid_argument&) {
@@ -114,6 +122,7 @@ std::string Contact::setNumber() {
 			return (number.clear(), number);
 		}
 	}
+	this->trimNumber(number);
 	return (number);
 }
 
