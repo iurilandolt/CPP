@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:32:30 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/11 17:26:35 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/11 20:46:34 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,22 @@ void	Contact::trimNumber(std::string &input) {
 		input.erase(pos);
 }
 
+int	Contact::isAlphaNumeric(std::string input) {
+	for (int i = 0; i < input.length(); i++) {
+		if (!std::isalnum(input[i]))
+			return (0);
+	}
+	return (1);
+}
+
+int	Contact::isInvalid(std::string input) {
+	for (int i = 0; i < input.length(); i++) {
+		if (std::iscntrl(input[i]))
+			return (1);
+	}
+	return (0);
+}
+
 std::string	Contact::setValue(std::string field)
 {
 	std::string value;
@@ -94,6 +110,8 @@ std::string	Contact::setValue(std::string field)
 		}
 	}
 	this->trimInput(value);
+	if (this->isInvalid(value))
+		value.clear();
 	return (value);
 }
 

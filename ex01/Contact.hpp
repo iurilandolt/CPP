@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:32:39 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/11 16:51:12 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/11 20:40:17 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ class Contact
 		Contact();
 		~Contact();
 	private:
+		int	isAlphaNumeric(std::string input);
+		int	isInvalid(std::string input);
 		void	trimInput(std::string &input);
 		void	trimNumber(std::string &input);
 		std::string setValue(std::string field);
