@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:32:30 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/11 23:26:49 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/12 11:58:42 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	Contact::displayDetail() {
 			std::cout << std::setw(15) << "";
 		std::cout << this->secret.substr(i, 29) << std::endl;
 	}
-
 }
 
 void	Contact::trimInput(std::string &input) {
@@ -98,7 +97,7 @@ int	Contact::isInvalid(std::string input) {
 
 std::string	Contact::setValue(std::string field)
 {
-	std::string value;
+	std::string	value;
 
 	value.clear();
 	while (value.empty() || value.length() > 29) {
