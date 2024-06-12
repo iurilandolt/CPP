@@ -1,5 +1,5 @@
 .vscode
 *.o
-ex00/Megaphone
-ex01/Phonebook
+/00/ex00/Megaphone
+/00/ex01/Phonebook
 en.subject.pdf
