@@ -6,13 +6,18 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:24:18 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/12 14:52:02 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/13 15:45:33 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-int	main(int argc, char **argv) {
-
+int	main(void) {
+	Zombie reginald("Reginald");
+	Zombie *antoine;
+	antoine = newZombie("Antoine");
+	antoine->announce();
+	delete antoine;
+	randomChump("Gerald");
 	return (0);
 }

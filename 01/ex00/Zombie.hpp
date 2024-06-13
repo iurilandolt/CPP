@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:25:23 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/12 15:11:07 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/13 15:43:49 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ class Zombie {
 		void	announce();
 	private:
 		std::string _name;
-	protected:
-		Zombie	*newZombie(std::string name);
-		void	randomChump(std::string name);
 };
+
+Zombie	*newZombie(std::string name);
+void	randomChump(std::string name);
 
 #endif
