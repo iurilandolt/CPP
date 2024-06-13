@@ -1,17 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   newZombie.cpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/12 15:06:47 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/13 17:08:11 by rlandolt         ###   ########.fr       */
+/*   Created: 2024/06/13 17:01:56 by rlandolt          #+#    #+#             */
+/*   Updated: 2024/06/13 17:07:57 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-Zombie *newZombie(std::string name) {
-	return (new Zombie(name));
+int	main(void) {
+	Zombie	*horde = zombieHorde(5, "Zombie");
+
+	for (int i = 0; i < 5; i++) {
+		horde[i].announce();
+	}
+	delete[] horde;
+	return (0);
 }
