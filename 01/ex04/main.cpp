@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 12:52:07 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/14 13:56:29 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/14 16:41:33 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,24 @@
 
 int	file_emtpy(std::ifstream &filename) {
 	return (filename.peek() == std::ifstream::traits_type::eof() ? 1 : 0);
+}
+
+int	target_found(std::string &content, const std::string &target) {
+	return (content.find(target) != std::string::npos ? 1 : 0);
+}
+
+int	search(std::ifstream &filename, const std::string &target) {
+	std::string content;
+
+	while (std::getline(filename, content)) {
+		if (target_found(content, target)) {
+			filename.clear();
+			filename.seekg(0, std::ios::beg);
+			return (1);
+		}
+	}
+	filename.close();
+	return (0);
 }
 
 void ft_sed(std::string &content, const std::string &target, const std::string &value) {
@@ -35,7 +53,8 @@ int	main(int argc, char **argv) {
 	std::ifstream infile(argv[1]);
 	if (!infile.is_open() || !infile.good() || file_emtpy(infile))
 		return (std::cerr << "Error: could not open file" << std::endl, 1);
-
+	if (!search(infile, argv[2]))
+		return (std::cerr << "Error: target string not found" << std::endl, 1);
 	std::string name(argv[1]);
 	std::ofstream outfile((name + ".replace"));
 	if (!outfile.is_open())
