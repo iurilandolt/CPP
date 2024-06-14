@@ -1,6 +1,11 @@
 .vscode
 *.o
+/*/objects
 /00/ex00/Megaphone
 /00/ex01/Phonebook
 /01/ex00/brainz
-en.subject.pdf
+/01/ex01/moarbrainz
+/01/ex02/thisisbrain
+/01/ex03/violence
+/01/ex03/seditor
+
