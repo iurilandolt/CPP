@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:18:17 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/14 20:09:47 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/15 23:58:24 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ class Harl
 		~Harl();
 		void complain(std::string level);
 	private:
-		void debug();
-		void info();
-		void warning();
-		void error();
+		void debug(void);
+		void info(void);
+		void warning(void);
+		void error(void);
 		typedef void (Harl::*fptr)(void);
-		void trimInput(std::string &input);
+		Harl::fptr _fptr[4];
 };
 
 #endif

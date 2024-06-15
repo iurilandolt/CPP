@@ -6,15 +6,26 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 19:26:36 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/14 20:08:15 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/16 00:07:44 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
 
 
+int main() {
+	Harl harl;
 
+	harl.complain("debug");
+	harl.complain("info");
+	harl.complain("warning");
+	harl.complain("error");
+	harl.complain(" ???? ");
 
+	return 0;
+}
+
+/*
 int	main() {
 	Harl		harl;
 	std::string value;
@@ -29,7 +40,9 @@ int	main() {
 			std::cout << std::endl;
 	 		return (1);
 		}
-		harl.complain(value);
+		if (value.compare("exit"))
+			harl.complain(value);
 	}
 	return (0);
 }
+*/
