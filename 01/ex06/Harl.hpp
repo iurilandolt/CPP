@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:18:17 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/16 00:52:54 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/15 23:58:24 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define HARL_HPP
 
 #include <iostream>
+
 
 class Harl
 {
