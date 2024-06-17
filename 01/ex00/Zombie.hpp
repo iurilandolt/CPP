@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: iurilandolt <iurilandolt@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:25:23 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/13 15:43:49 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/17 15:17:02 by iurilandolt      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define ZOMBIE_HPP
 
 #include <iostream>
-#include <new>
 
 class Zombie {
 	public:

@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: iurilandolt <iurilandolt@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 12:52:07 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/14 16:41:33 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/17 15:21:16 by iurilandolt      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <fstream>
+
+// add bash script test instead of extra files
+// add line breaks to everyline
 
 int	file_emtpy(std::ifstream &filename) {
 	return (filename.peek() == std::ifstream::traits_type::eof() ? 1 : 0);
@@ -53,8 +56,8 @@ int	main(int argc, char **argv) {
 	std::ifstream infile(argv[1]);
 	if (!infile.is_open() || !infile.good() || file_emtpy(infile))
 		return (std::cerr << "Error: could not open file" << std::endl, 1);
-	if (!search(infile, argv[2]))
-		return (std::cerr << "Error: target string not found" << std::endl, 1);
+	//if (!search(infile, argv[2]))
+	//	return (std::cerr << "Error: target string not found" << std::endl, 1);
 	std::string name(argv[1]);
 	std::ofstream outfile((name + ".replace"));
 	if (!outfile.is_open())
@@ -62,6 +65,7 @@ int	main(int argc, char **argv) {
 	while (std::getline(infile, content)) {
 		ft_sed(content, argv[2], argv[3]);
 		outfile << content;
+		outfile << std::endl;
 	}
 	outfile << std::endl;
 	infile.close();

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iurilandolt <iurilandolt@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 12:31:55 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/17 12:31:56 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/17 13:21:30 by iurilandolt      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@
 
 class Fixed {
     public:
-
+        Fixed();
+        ~Fixed();
+        Fixed(const Fixed &src);
+        Fixed & operator=(const Fixed &src);
     private:
         int              _value;
         static const int _fBits;

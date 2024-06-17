@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   Harl.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: iurilandolt <iurilandolt@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:18:39 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/16 00:09:04 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/17 15:22:49 by iurilandolt      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
+
+//levels must be uppercase
 
 Harl::Harl(){
 	std::cout << "Harl constructor called" << std::endl;
@@ -25,23 +27,23 @@ Harl::~Harl() {
 }
 
 void Harl::debug(void) {
-	std::cout << "Debug: 7XL-double-cheese-triple-pickle-special- ketchup burger." << std::endl;
+	std::cout << "DEBUG: 7XL-double-cheese-triple-pickle-special- ketchup burger." << std::endl;
 }
 
 void Harl::info(void) {
-	std::cout << "Info : You didn't put enough bacon in my burger! If you did." << std::endl;
+	std::cout << "INFO : You didn't put enough bacon in my burger! If you did." << std::endl;
 }
 
 void Harl::warning(void) {
-	std::cout << "Warning: I think I deserve to have some extra bacon for free." << std::endl;
+	std::cout << "WARNING: I think I deserve to have some extra bacon for free." << std::endl;
 }
 
 void Harl::error(void) {
-	std::cout << "Error: This is unacceptable! I want to speak to the manager now." << std::endl;
+	std::cout << "ERROR: This is unacceptable! I want to speak to the manager now." << std::endl;
 }
 
 void Harl::complain(std::string level) {
-	std::string levels[4] = {"debug", "info", "warning", "error"};
+	std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
 	for (int i = 0; i < 4; i++) {
 		if (levels[i].compare(level) == 0) {

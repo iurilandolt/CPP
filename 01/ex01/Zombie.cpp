@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: iurilandolt <iurilandolt@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:27:43 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/14 12:37:20 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/17 15:17:27 by iurilandolt      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
-#include <stdlib.h>
+// #include <stdlib.h>
 
 Zombie::Zombie() {
 	std::cout << "Default Zombie constructor called" << std::endl;
