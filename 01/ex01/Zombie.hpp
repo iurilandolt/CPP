@@ -22,7 +22,6 @@ class Zombie {
 		void	announce();
 		void	setName(std::string name);
 	private:
-		std::string	itoa(int i);
 		std::string _name;
 };
 
