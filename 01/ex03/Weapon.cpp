@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Weapon.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: iurilandolt <iurilandolt@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 17:45:26 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/13 18:34:50 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/18 00:52:03 by iurilandolt      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ void Weapon::setType(std::string type) {
 	this->_type = type;
 }
 
-const std::string& Weapon::getType() {
+const std::string& Weapon::getType() const {
 	return (this->_type);
 }

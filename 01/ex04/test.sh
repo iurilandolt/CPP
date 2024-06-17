@@ -6,7 +6,7 @@
 #    By: iurilandolt <iurilandolt@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/17 16:09:31 by iurilandolt       #+#    #+#              #
-#    Updated: 2024/06/18 00:41:01 by iurilandolt      ###   ########.fr        #
+#    Updated: 2024/06/18 00:48:28 by iurilandolt      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,10 @@ if [ "$#" -ne 2 ]; then
     exit 1
 fi
 
-make
+if [ ! -f seditor ]; then
+    echo "seditor executable not found. Please compile the code."
+    exit 1
+fi
 
 mkdir -p test
 
@@ -75,4 +78,14 @@ done
 for file in test/test test/empty test/noread; do
     echo "Testing sed with $file"
     sed "s/$1/$2/g" "$file" > "${file}.sedreplace"
+done
+
+for file in test/test test/empty test/noread; do
+    echo "Comparing Seditor with sed for $file"
+    diff "${file}.sedreplace" "${file}.replace"
+    if [ "$?" -ne 0 ]; then
+        echo "Test failed."
+    else
+        echo "Test passed."
+    fi
 done
