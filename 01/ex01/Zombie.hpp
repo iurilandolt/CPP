@@ -14,14 +14,13 @@
 # define ZOMBIE_HPP
 
 #include <iostream>
-//#include <new>
 
 class Zombie {
 	public:
 		Zombie();
 		~Zombie();
 		void	announce();
-		void	setName(std::string name, int i);
+		void	setName(std::string name);
 	private:
 		std::string	itoa(int i);
 		std::string _name;

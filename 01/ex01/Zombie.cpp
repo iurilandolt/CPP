@@ -19,40 +19,22 @@ Zombie::Zombie() {
 }
 
 Zombie::~Zombie() {
-	std::cout << "Zombie destructor called for: " << this->_name <<std::endl;
+	std::cout << "Zombie destructor called" << this->_name <<std::endl;
 }
 
 void	Zombie::announce() {
 	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
-std::string	Zombie::itoa(int i) {
-	std::string str;
-	int		neg;
-
-	neg = 0;
-	if (i < 0) {
-		neg = 1;
-		i = -i;
-	}
-	while (i > 0) {
-		str = (char)(i % 10 + '0') + str;
-		i /= 10;
-	}
-	if (neg)
-		str = "-" + str;
-	return (str);
-}
-
-void	Zombie::setName(std::string name, int i) {
-	this->_name = name + "-" + this->itoa(i + 1);
+void	Zombie::setName(std::string name) {
+	this->_name = name;
 }
 
 Zombie	*zombieHorde(int size, std::string name) {
 	Zombie	*horde = new Zombie[size];
 
 	for (int i = 0; i < size; i++) {
-		horde[i].setName(name, i);
+		horde[i].setName(name);
 	}
 	return (horde);
 }

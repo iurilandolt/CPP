@@ -12,6 +12,12 @@
 
 #include "Zombie.hpp"
 
+/*
+Elaborate on:
+what is a class?
+what is the difference between an object and a struct?
+*/
+
 int	main(void) {
 	Zombie reginald("Reginald");
 	Zombie *antoine;

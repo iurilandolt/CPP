@@ -65,9 +65,10 @@ int	main(int argc, char **argv) {
 	while (std::getline(infile, content)) {
 		ft_sed(content, argv[2], argv[3]);
 		outfile << content;
-		outfile << std::endl;
+		if (!infile.eof())
+			outfile << std::endl;
 	}
-	outfile << std::endl;
+	//outfile << std::endl;
 	infile.close();
 	outfile.close();
 	return (0);
