@@ -6,11 +6,17 @@
 #    By: iurilandolt <iurilandolt@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/17 16:09:31 by iurilandolt       #+#    #+#              #
-#    Updated: 2024/06/17 16:10:02 by iurilandolt      ###   ########.fr        #
+#    Updated: 2024/06/17 23:56:21 by iurilandolt      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #!/bin/bash
+
+if [ "$1" == "clean" ]; then
+    rm -rf test
+    echo "Cleaned up the test directory."
+    exit 0
+fi
 
 if [ "$#" -ne 2 ]; then
     echo "Usage: ./test.sh [find] [replace by]"
@@ -19,7 +25,11 @@ fi
 
 make
 
-touch test
+# Create the test directory if it doesn't exist
+mkdir -p test
+
+# Create the test files in the test directory
+touch test/test
 echo "
 Alice was beginning to get very tired of sitting by her sister on the bank, 
 and of having nothing to do: once or twice she had peeped into the book her sister was reading,
@@ -31,7 +41,7 @@ whether the pleasure of making a daisy-chain would be worth the trouble of getti
 when suddenly a White Rabbit with pink eyes ran close by her.
 There was nothing so very remarkable in that;
 nor did Alice think it so very much out of the way to hear the Rabbit say to itself,
-\`Oh dear! Oh dear! I shall be late!'
+Oh dear! Oh dear! I shall be late!
 (when she thought it over afterwards, it occurred to her that she ought to have wondered at this,
 but at the time it all seemed quite natural);
 but when the Rabbit actually took a watch out of its waistcoat-pocket,
@@ -52,18 +62,20 @@ ok.
 
 
 nice. 
-" > test
+" > test/test
 
-touch empty
-touch noread
-chmod -r noread
+touch test/empty
+touch test/noread
+echo "Don't read this." > test/noread
+chmod -r test/noread
 
-for file in test empty noread; do
+# Run the tests on the files in the test directory
+for file in test/test test/empty test/noread; do
     echo "Testing Seditor with $file"
     ./seditor "$file" "$1" "$2"
 done
 
-for file in test empty noread; do
+for file in test/test test/empty test/noread; do
     echo "Testing sed with $file"
     sed "s/$1/$2/g" "$file" > "${file}.sedreplace"
 done

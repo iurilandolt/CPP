@@ -3,30 +3,36 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rlandolt <rlandolt@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: iurilandolt <iurilandolt@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/03 12:59:36 by rlandolt          #+#    #+#              #
-#    Updated: 2024/06/14 13:42:55 by rlandolt         ###   ########.fr        #
+#    Updated: 2024/06/17 23:47:19 by iurilandolt      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = seditor
 
-SRC = main.cpp
+SRC = main.cpp Seditor.cpp
 
 CXX = c++
 
-CXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-OBJ = $(SRC:.cpp=.o)
+OBJ_DIR = objects
+OBJ = $(SRC:%.cpp=$(OBJ_DIR)/%.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CXX) $(CFLAGS) -o $(NAME) $(OBJ)
+	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJ)
+
+$(OBJ_DIR)/%.o: %.cpp
+	@mkdir -p $(OBJ_DIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJ)
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
 	rm -f $(NAME)
