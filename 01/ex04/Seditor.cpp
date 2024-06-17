@@ -6,13 +6,13 @@
 /*   By: iurilandolt <iurilandolt@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 23:06:09 by iurilandolt       #+#    #+#             */
-/*   Updated: 2024/06/18 00:03:53 by iurilandolt      ###   ########.fr       */
+/*   Updated: 2024/06/18 00:39:37 by iurilandolt      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Seditor.hpp"
 
-Seditor::Seditor(std::string &filename, const std::string &target, const std::string &value) {
+Seditor::Seditor(const std::string &filename, const std::string &target, const std::string &value) {
     replace(filename, target, value);
 }
 
@@ -23,7 +23,7 @@ int	Seditor::isEmpty(std::ifstream &filename) {
     return (filename.peek() == std::ifstream::traits_type::eof() ? 1 : 0);
 }
 
-int	Seditor::targetFound(std::string &content, const std::string &target) {
+int	Seditor::targetFound(const std::string &content, const std::string &target) {
     return (content.find(target) != std::string::npos ? 1 : 0);
 }
 
@@ -37,8 +37,8 @@ int	Seditor::search(std::ifstream &filename, const std::string &target) {
             return (1);
         }
     }
-    std::cerr << "Seditor: target string not found" << std::endl;
-    filename.close();
+    filename.clear();
+    filename.seekg(0, std::ios::beg);
     return (0);
 }
 
@@ -66,15 +66,17 @@ int Seditor::checkStream(std::ifstream &infile, const std::string &target) {
         std::cerr << "Seditor: file is empty" << std::endl;
         return (1);
     }
-    if (!search(infile, target))
-        return (0); // currently not used to mimic the original behavior of sed
+    if (!search(infile, target)) {
+        std::cerr << "Seditor: target string not found" << std::endl;
+        return (1);
+    }
     return (0);
 }
 
-void Seditor::replace(std::string &filename, const std::string &target, const std::string &value) {
+void Seditor::replace(const std::string &filename, const std::string &target, const std::string &value) {
     std::string   content;
     std::ifstream infile(filename);
-    std::ofstream outfile((filename + ".replace")); // would not create file before using checkStream
+    std::ofstream outfile((filename + ".replace")); 
     
     if (!outfile.is_open()) {
         std::cerr << "Seditor: could not create output file" << std::endl;

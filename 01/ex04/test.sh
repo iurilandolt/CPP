@@ -6,7 +6,7 @@
 #    By: iurilandolt <iurilandolt@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/17 16:09:31 by iurilandolt       #+#    #+#              #
-#    Updated: 2024/06/17 23:56:21 by iurilandolt      ###   ########.fr        #
+#    Updated: 2024/06/18 00:41:01 by iurilandolt      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,8 @@ fi
 
 make
 
-# Create the test directory if it doesn't exist
 mkdir -p test
 
-# Create the test files in the test directory
 touch test/test
 echo "
 Alice was beginning to get very tired of sitting by her sister on the bank, 
@@ -69,7 +67,6 @@ touch test/noread
 echo "Don't read this." > test/noread
 chmod -r test/noread
 
-# Run the tests on the files in the test directory
 for file in test/test test/empty test/noread; do
     echo "Testing Seditor with $file"
     ./seditor "$file" "$1" "$2"
@@ -79,5 +76,3 @@ for file in test/test test/empty test/noread; do
     echo "Testing sed with $file"
     sed "s/$1/$2/g" "$file" > "${file}.sedreplace"
 done
-
-echo "Done"
