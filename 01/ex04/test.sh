@@ -12,13 +12,13 @@
 
 #!/bin/bash
 
-# Check if the correct number of arguments are provided
-if [ "$#" -ne 3 ]; then
-    echo "Usage: ./test_script.sh FILE [str to replace] [replace by]"
+if [ "$#" -ne 2 ]; then
+    echo "Usage: ./test.sh [find] [replace by]"
     exit 1
 fi
 
-# Create the test file with the provided text
+make
+
 touch test
 echo "
 Alice was beginning to get very tired of sitting by her sister on the bank, 
@@ -54,18 +54,18 @@ ok.
 nice. 
 " > test
 
-# Create an empty file
 touch empty
-
-# Create a file without read permissions
 touch noread
 chmod -r noread
 
-# Call your program and sed on each file
 for file in test empty noread; do
-    echo "Testing file $file"
-    ./seditor "$file" "$2" "$3"
-    sed "s/$2/$3/g" "$file" > "${file}.sedreplace"
+    echo "Testing Seditor with $file"
+    ./seditor "$file" "$1" "$2"
+done
+
+for file in test empty noread; do
+    echo "Testing sed with $file"
+    sed "s/$1/$2/g" "$file" > "${file}.sedreplace"
 done
 
 echo "Done"

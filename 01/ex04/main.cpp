@@ -13,9 +13,6 @@
 #include <iostream>
 #include <fstream>
 
-// add bash script test instead of extra files
-// add line breaks to everyline
-
 int	file_emtpy(std::ifstream &filename) {
 	return (filename.peek() == std::ifstream::traits_type::eof() ? 1 : 0);
 }
@@ -55,20 +52,19 @@ int	main(int argc, char **argv) {
 	std::string content;
 	std::ifstream infile(argv[1]);
 	if (!infile.is_open() || !infile.good() || file_emtpy(infile))
-		return (std::cerr << "Error: could not open file" << std::endl, 1);
-	//if (!search(infile, argv[2]))
-	//	return (std::cerr << "Error: target string not found" << std::endl, 1);
+		return (std::cerr << "Seditor: could not open file: corrupted or empty." << std::endl, 1);
+	if (!search(infile, argv[2]))
+		return (std::cerr << "Seditor: target string not found" << std::endl, 1);
 	std::string name(argv[1]);
 	std::ofstream outfile((name + ".replace"));
 	if (!outfile.is_open())
-		return (std::cerr << "Error: could not create file" << std::endl, 1);
+		return (std::cerr << "Seditor: could not create file" << std::endl, 1);
 	while (std::getline(infile, content)) {
 		ft_sed(content, argv[2], argv[3]);
 		outfile << content;
 		if (!infile.eof())
 			outfile << std::endl;
 	}
-	//outfile << std::endl;
 	infile.close();
 	outfile.close();
 	return (0);
