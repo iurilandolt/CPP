@@ -6,13 +6,13 @@
 #    By: iurilandolt <iurilandolt@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/17 16:09:31 by iurilandolt       #+#    #+#              #
-#    Updated: 2024/06/18 00:48:28 by iurilandolt      ###   ########.fr        #
+#    Updated: 2024/06/18 01:38:00 by iurilandolt      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #!/bin/bash
 
-if [ "$1" == "clean" ]; then
+if [ "$#" -eq 1 -a "$1" == "-c" ]; then
     rm -rf test
     echo "Cleaned up the test directory."
     exit 0

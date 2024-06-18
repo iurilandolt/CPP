@@ -6,7 +6,7 @@
 /*   By: iurilandolt <iurilandolt@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 23:06:09 by iurilandolt       #+#    #+#             */
-/*   Updated: 2024/06/18 00:39:37 by iurilandolt      ###   ########.fr       */
+/*   Updated: 2024/06/18 01:41:43 by iurilandolt      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	Seditor::targetFound(const std::string &content, const std::string &target) 
     return (content.find(target) != std::string::npos ? 1 : 0);
 }
 
+
 int	Seditor::search(std::ifstream &filename, const std::string &target) {
     std::string content;
 
@@ -37,8 +38,7 @@ int	Seditor::search(std::ifstream &filename, const std::string &target) {
             return (1);
         }
     }
-    filename.clear();
-    filename.seekg(0, std::ios::beg);
+    filename.close();
     return (0);
 }
 
@@ -54,22 +54,19 @@ void Seditor::swapString(std::string &content, const std::string &target, const 
 }
 
 int Seditor::checkStream(std::ifstream &infile, const std::string &target) {
-    if (!infile.is_open()) {
-        std::cerr << "Seditor: could not open file" << std::endl;
-            return (1);
-    }
-    if (!infile.good()) {
-        std::cerr << "Seditor: file is corrupted" << std::endl;
+    (void)target;
+    if (!infile.is_open() || !infile.good() || infile.bad() || infile.fail()) {
+        std::cerr << "Seditor: could not open file : " << std::strerror(errno) << std::endl;
         return (1);
     }
     if (isEmpty(infile)) {
-        std::cerr << "Seditor: file is empty" << std::endl;
+        std::cout << "Seditor: file is empty" << std::endl; // change to cerr
         return (1);
     }
-    if (!search(infile, target)) {
-        std::cerr << "Seditor: target string not found" << std::endl;
-        return (1);
-    }
+    //if (!search(infile, target)) {
+    //    std::cerr << "Seditor: target string not found" << std::endl;
+    //    return (1);
+    //}
     return (0);
 }
 
