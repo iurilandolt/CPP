@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fixed.cpp                                          :+:      :+:    :+:   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iurilandolt <iurilandolt@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 12:31:58 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/18 13:51:48 by iurilandolt      ###   ########.fr       */
+/*   Updated: 2024/06/18 14:21:55 by iurilandolt      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,16 @@ const int Fixed::_fBits = 8;
 Fixed::Fixed() {
     std::cout << "Default constructor called" << std::endl;
     this->_value = 0;
+}
+
+Fixed::Fixed(const int value) {
+    std::cout << "Int constructor called" << std::endl;
+    this->_value = value << Fixed::_fBits;
+}
+
+Fixed::Fixed(const float value) {
+    std::cout << "Float constructor called" << std::endl;
+    this->_value = roundf(value * (1 << Fixed::_fBits));
 }
 
 Fixed::~Fixed() {
@@ -30,9 +40,14 @@ Fixed::Fixed(const Fixed &src) {
 
 Fixed & Fixed::operator=(const Fixed &src) {
     std::cout << "Assignment operator called" << std::endl;
-    if (this != &src) {
-        this->_value = src._value;
-    }
+    if (this != &src)
+        this->_value = src.getRawBits();
+    return (*this);
+}
+
+Fixed & Fixed::operator<<(const Fixed &src) {
+    std::cout << "Shift operator called" << std::endl;
+    this->_value = src.getRawBits();
     return (*this);
 }
 
@@ -44,4 +59,12 @@ void Fixed::setRawBits(int const raw) {
 int Fixed::getRawBits(void) const {
     std::cout << "getRawBits member function called" << std::endl;
     return (this->_value);
+}
+
+float Fixed::toFloat(void) const {
+    return ((float)this->_value / (1 << Fixed::_fBits));
+}
+
+int Fixed::toInt(void) const {
+    return (this->_value >> Fixed::_fBits);
 }
