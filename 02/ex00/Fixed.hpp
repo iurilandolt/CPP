@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:29:20 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/19 15:29:21 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/19 15:47:39 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class Fixed {
         void    setRawBits(int const raw);
     private:
         int              _value;
-        static const int _fBits;
+        static const int _fBits; // fractional bits
 };
 
 #endif
