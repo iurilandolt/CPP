@@ -6,13 +6,13 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:29:27 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/19 15:29:28 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/19 19:35:51 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-int main(void) {
+int main (void) {
     Fixed a;
     Fixed b(a);
     Fixed c;

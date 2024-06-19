@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:29:45 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/19 17:15:37 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/19 19:39:31 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,16 @@ Fixed::Fixed(const float value) {
 Fixed::~Fixed() {
 }
 
-// instanciate a new object with the same value as src
 Fixed::Fixed(const Fixed &src) {
-    this->_value = src._value;
+    *this = src;
 }
 
-// assign the values of the rhs object to the lhs object
 Fixed & Fixed::operator=(const Fixed &src) {
     if (this != &src)
         this->_value = src.getRawBits();
     return (*this);
 }
 
-// non member function, define cout behavior for Fixed object
 std::ostream & operator<<(std::ostream &os, const Fixed &obj) {
     os << obj.toFloat();
     return (os);

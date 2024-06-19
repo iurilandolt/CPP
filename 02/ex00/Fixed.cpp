@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:25:52 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/19 18:01:01 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/19 19:39:22 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ Fixed::~Fixed() {
 
 Fixed::Fixed(const Fixed &src) {
     std::cout << "Copy constructor called" << std::endl;
-    this->_value = src._value;
+    *this = src;
 }
 
 // assign the values of the rhs object to the lhs object

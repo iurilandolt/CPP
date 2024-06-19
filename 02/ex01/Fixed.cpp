@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:29:45 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/19 18:10:47 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/19 18:24:28 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ Fixed::~Fixed() {
 
 Fixed::Fixed(const Fixed &src) {
     std::cout << "Copy constructor called" << std::endl;
-    this->_value = src._value;
+    *this = src;
 }
 
 Fixed & Fixed::operator=(const Fixed &src) {

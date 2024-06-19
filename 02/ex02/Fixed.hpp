@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:29:52 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/19 17:09:55 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/19 18:37:13 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ class Fixed {
         Fixed   operator*(const Fixed &src) const;
         Fixed   operator/(const Fixed &src) const;
 
-        Fixed   &operator++();
-        Fixed   operator++(int);
+        Fixed   &operator++(); // prefix
+        Fixed   operator++(int); // postfix
         Fixed   &operator--();
         Fixed   operator--(int);
 
