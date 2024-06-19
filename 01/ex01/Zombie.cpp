@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iurilandolt <iurilandolt@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/12 12:27:43 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/17 15:17:27 by iurilandolt      ###   ########.fr       */
+/*   Created: 2024/06/19 15:26:48 by rlandolt          #+#    #+#             */
+/*   Updated: 2024/06/19 15:26:50 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

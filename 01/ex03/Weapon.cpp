@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Weapon.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iurilandolt <iurilandolt@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/13 17:45:26 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/18 00:52:03 by iurilandolt      ###   ########.fr       */
+/*   Created: 2024/06/19 15:27:22 by rlandolt          #+#    #+#             */
+/*   Updated: 2024/06/19 15:27:24 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

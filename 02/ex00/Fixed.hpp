@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fixed.hpp                                          :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iurilandolt <iurilandolt@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/17 12:31:55 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/18 13:45:15 by iurilandolt      ###   ########.fr       */
+/*   Created: 2024/06/19 15:29:20 by rlandolt          #+#    #+#             */
+/*   Updated: 2024/06/19 15:29:21 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ class Fixed {
         Fixed();
         ~Fixed();
         Fixed(const Fixed &src);
-        Fixed &operator=(const Fixed &src);
-        int getRawBits(void) const;
-        void setRawBits(int const raw);
+        Fixed   &operator=(const Fixed &src);
+        int     getRawBits(void) const;
+        void    setRawBits(int const raw);
     private:
         int              _value;
         static const int _fBits;

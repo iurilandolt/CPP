@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: iurilandolt <iurilandolt@student.42.fr>    +#+  +:+       +#+         #
+#    By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/06/03 12:59:36 by rlandolt          #+#    #+#              #
-#    Updated: 2024/06/17 23:47:19 by iurilandolt      ###   ########.fr        #
+#    Created: 2024/06/19 15:27:48 by rlandolt          #+#    #+#              #
+#    Updated: 2024/06/19 15:27:50 by rlandolt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

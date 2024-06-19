@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    test.sh                                            :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: iurilandolt <iurilandolt@student.42.fr>    +#+  +:+       +#+         #
+#    By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/06/17 16:09:31 by iurilandolt       #+#    #+#              #
-#    Updated: 2024/06/18 01:43:26 by iurilandolt      ###   ########.fr        #
+#    Created: 2024/06/19 15:28:44 by rlandolt          #+#    #+#              #
+#    Updated: 2024/06/19 15:28:47 by rlandolt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iurilandolt <iurilandolt@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/17 12:31:55 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/18 14:20:03 by iurilandolt      ###   ########.fr       */
+/*   Created: 2024/06/19 15:29:52 by rlandolt          #+#    #+#             */
+/*   Updated: 2024/06/19 15:29:54 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

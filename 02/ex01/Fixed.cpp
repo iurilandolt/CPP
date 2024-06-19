@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iurilandolt <iurilandolt@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/17 12:31:58 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/18 14:21:55 by iurilandolt      ###   ########.fr       */
+/*   Created: 2024/06/19 15:29:45 by rlandolt          #+#    #+#             */
+/*   Updated: 2024/06/19 15:29:47 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
