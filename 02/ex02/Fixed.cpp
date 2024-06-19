@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:29:45 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/19 19:39:31 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/19 22:56:28 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,42 +52,44 @@ int Fixed::getRawBits(void) const {
     return (this->_value);
 }
 
-/*
-    to convert a floating point to a fixed point we multiply the float number
-    with the base raised to the power of n (n the size of the fractional part)
-    to do the opposite we devide
-*/
-
 float Fixed::toFloat(void) const {
     return ((float)this->_value / (1 << _fBits));
 }
+
 int Fixed::toInt(void) const {
     return (this->_value >> _fBits);
 }
 
 bool Fixed::operator>(const Fixed &src) const {
-    return (this->_value > src.getRawBits());
+    return (this->_value > src._value);
 }
 
 bool Fixed::operator<(const Fixed &src) const {
-    return (this->_value < src.getRawBits());
+    return (this->_value < src._value);
 }
 
 bool Fixed::operator>=(const Fixed &src) const {
-    return (this->_value >= src.getRawBits());
+    return (this->_value >= src._value);
 }
 
 bool Fixed::operator<=(const Fixed &src) const {
-    return (this->_value <= src.getRawBits());
+    return (this->_value <= src._value);
 }
 
 bool Fixed::operator==(const Fixed &src) const {
-    return (this->_value == src.getRawBits());
+    return (this->_value == src._value);
 }
 
 bool Fixed::operator!=(const Fixed &src) const {
-    return (this->_value != src.getRawBits());
+    return (this->_value != src._value);
 }
+
+/*
+`_value` is an integer that's 256 times larger than the actual number it represents. 
+So, when performing arithmetic operations like addition, subtraction, multiplication, or division, 
+we need to convert `_value` to the actual number using `toFloat()`. 
+If we'd used `_value` directly, the result would be 256 times too large.
+*/
 
 Fixed Fixed::operator+(const Fixed &src) const {
     return (Fixed(this->toFloat() + src.toFloat()));
@@ -104,6 +106,11 @@ Fixed Fixed::operator*(const Fixed &src) const {
 Fixed Fixed::operator/(const Fixed &src) const {
     return (Fixed(this->toFloat() / src.toFloat()));
 }
+
+/*
+The smallest change we can represent in our fixed-point number is 1/2^_fBits, 
+or 1/256 if _fbits = 8, which is approximately 0.0039.
+*/
 
 Fixed & Fixed::operator++() {
     this->_value++;
