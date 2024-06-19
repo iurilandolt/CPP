@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:29:59 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/19 16:36:18 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/19 18:11:15 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,22 @@ The output of the program shows the messages printed by the constructors, assign
 The `Fixed` objects are destructed at the end of the `main` function, which calls their destructors.
 */
 
-int main(void)
-{
-	Fixed a;
-	Fixed const b(10);
-	Fixed const c(42.42f);
-	Fixed const d(b);
+int main( void ) {
+Fixed a;
+Fixed const b( 10 ); 
+Fixed const c( 42.42f ); 
+Fixed const d( b );
 
-	a = Fixed(1234.4321f);
+a = Fixed( 1234.4321f );
 
-	std::cout << "a is " << a << std::endl;
-	std::cout << "b is " << b << std::endl;
-	std::cout << "c is " << c << std::endl;
-	std::cout << "d is " << d << std::endl;
+std::cout << "a is " << a << std::endl;
+std::cout << "b is " << b << std::endl;
+std::cout << "c is " << c << std::endl;
+std::cout << "d is " << d << std::endl;
+std::cout << "a is " << a.toInt() << " as integer" << std::endl;
+std::cout << "b is " << b.toInt() << " as integer" << std::endl;
+std::cout << "c is " << c.toInt() << " as integer" << std::endl;
+std::cout << "d is " << d.toInt() << " as integer" << std::endl;
 
-	std::cout << "a is " << a.toInt() << " as integer" << std::endl;
-	std::cout << "b is " << b.toInt() << " as integer" << std::endl;
-	std::cout << "c is " << c.toInt() << " as integer" << std::endl;
-	std::cout << "d is " << d.toInt() << " as integer" << std::endl;
-
-	return 0;
+return 0; 
 }

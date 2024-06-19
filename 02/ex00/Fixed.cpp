@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:25:52 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/19 15:25:57 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/19 18:01:01 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ Fixed::Fixed(const Fixed &src) {
     this->_value = src._value;
 }
 
+// assign the values of the rhs object to the lhs object
+// if the objects are the same, return the lhs object
+// its common practice in assignment operator overloading to return a reference to the object
+// to allow for chaining of assignment operations and consistency with the built-in assignment operators
 Fixed & Fixed::operator=(const Fixed &src) {
     std::cout << "Assignment operator called" << std::endl;
     if (this != &src) {
