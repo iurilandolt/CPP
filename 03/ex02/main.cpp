@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 23:02:11 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/20 22:57:23 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/21 00:07:19 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,5 @@ int main() {
     frag_01.beRepaired(5);
     frag_01.highFivesGuys();
     frag_01.printStats();
-    frag_01.takeDamage(100);
     return (0);
 }
