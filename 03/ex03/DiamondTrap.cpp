@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 14:53:47 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/20 15:55:55 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/20 17:20:27 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ DiamondTrap::DiamondTrap() : ScavTrap(""), FragTrap("") {
 
 DiamondTrap::DiamondTrap(std::string name) : ScavTrap(name), FragTrap(name) {
     this->_name = name;
+    this->_hitPoints = FragTrap::_hitPoints;
+    this->_energyPoints = ScavTrap::_energyPoints;
+    this->_attackDamage = FragTrap::_attackDamage;
+    std::cout << "DiamondTrap " << this->_name << " is built! Abomination!" << this->_energyPoints << std::endl;
+    // print values
 }
 
 DiamondTrap::~DiamondTrap() {
@@ -34,4 +39,12 @@ DiamondTrap &DiamondTrap::operator=(const DiamondTrap &src) {
     this->_energyPoints = src._energyPoints;
     this->_attackDamage = src._attackDamage;
     return (*this);
+}
+
+void DiamondTrap::attack(std::string const &target) {
+    ScavTrap::attack(target);
+}
+
+void DiamondTrap::whoAmI() {
+    std::cout << "I am " << this->_name << " and my ClapTrap name is " << ClapTrap::_name << std::endl;
 }

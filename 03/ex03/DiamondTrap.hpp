@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 14:53:36 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/20 14:54:52 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/20 16:53:09 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ class DiamondTrap : public ScavTrap, public FragTrap
         ~DiamondTrap();
         DiamondTrap(const DiamondTrap &src);
         DiamondTrap &operator=(const DiamondTrap &src);
+        void attack(std::string const &target);
         void whoAmI();
 };
 

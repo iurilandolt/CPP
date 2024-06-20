@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClaṕTrap.cpp                                       :+:      :+:    :+:   */
+/*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 23:01:50 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/19 23:13:01 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/20 17:11:31 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,19 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &src) {
 void ClapTrap::attack(std::string const &target) {
     std::cout << "ClapTrap " << _name << " attacks " << target 
         << ", causing " << _attackDamage << " points of damage!" << std::endl;
+    // check if it has enought energy
+    // check if it has enought hp
+    // -1 energy
 }
 
 void ClapTrap::takeDamage(unsigned int amount) {
     std::cout << "ClapTrap " << _name << " takes " << amount << " points of damage!" << std::endl;
+    // _hitPoints -= amount;
+
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {
     std::cout << "ClapTrap " << _name << " is repaired for " << amount << " points!" << std::endl;
+    // _hitPoints += amount;
+    // -1 energy
 }
