@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 23:02:11 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/19 23:41:04 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/20 22:57:23 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,12 @@
 int main() {
     FragTrap frag_01("Jonas");
     
-    frag_01.attack("some random dude");
-    frag_01.takeDamage(10);
+    frag_01.printStats();
+    frag_01.attack("a Bullymong");
+    frag_01.takeDamage(50);
     frag_01.beRepaired(5);
     frag_01.highFivesGuys();
+    frag_01.printStats();
+    frag_01.takeDamage(100);
     return (0);
 }

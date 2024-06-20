@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 23:21:44 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/20 11:57:32 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/20 22:40:43 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ ScavTrap::~ScavTrap() {
     std::cout << "ScavTrap " << this->_name << " is destroyed!" << std::endl;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &src) {
+ScavTrap::ScavTrap(const ScavTrap &src) : ClapTrap(src) {
     *this = src;
 }
 
@@ -40,9 +40,26 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &src) {
 }
 
 void ScavTrap::attack(std::string const &target) {
-    std::cout << "ScavTrap " << this->_name << " attack " << target << ", causing " << this->_attackDamage << " points of damage!" << std::endl;
+    if (_hitPoints <= 0) {
+        std::cout << "ScavTrap " << _name << " is dead and can't attack!" << std::endl;
+        return;
+    }
+    if (_energyPoints < 1) {
+        std::cout << "ScavTrap " << _name << " is out of energy!" << std::endl;
+        return;
+    }
+    std::cout << "ScavTrap " << _name << " attacks " << target << ", causing " 
+        << _attackDamage << " points of damage!" << std::endl;
+    _energyPoints--;
 }
 
 void ScavTrap::guardGate() {
     std::cout << "ScavTrap " << this->_name << " is in Gate keeper mode." << std::endl;
+}
+
+void ScavTrap::printStats() const {
+    std::cout << "ScavTrap " << _name << " stats:" << std::endl;
+    std::cout << "HP: " << _hitPoints << std::endl;
+    std::cout << "Energy: " << _energyPoints << std::endl;
+    std::cout << "Attack Damage: " << _attackDamage << std::endl;
 }

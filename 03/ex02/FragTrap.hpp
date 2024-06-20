@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:11:39 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/20 11:13:23 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/20 22:47:02 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ class FragTrap : public ClapTrap
         FragTrap(const FragTrap &src);
         FragTrap &operator=(const FragTrap &src);
         void highFivesGuys(void);
+
+        void printStats() const;
 };
 
 #endif

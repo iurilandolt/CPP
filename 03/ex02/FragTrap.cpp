@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:11:17 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/20 11:14:02 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/20 22:52:16 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ FragTrap::~FragTrap() {
     std::cout << "FragTrap " << this->_name << " is destroyed!" << std::endl;
 }
 
-FragTrap::FragTrap(const FragTrap &src) {
+FragTrap::FragTrap(const FragTrap &src) : ClapTrap(src) {
     *this = src;
 }
 
@@ -36,5 +36,16 @@ FragTrap &FragTrap::operator=(const FragTrap &src) {
 }
 
 void FragTrap::highFivesGuys(void) {
+    if (_hitPoints <= 0) {
+        std::cout << "FragTrap " << this->_name << " is dead and can't high five!" << std::endl;
+        return;
+    }
     std::cout << "FragTrap " << this->_name << " wants to high five everyone!" << std::endl;
+}
+
+void FragTrap::printStats() const {
+    std::cout << "FragTrap " << _name << " stats:" << std::endl;
+    std::cout << "HP: " << _hitPoints << std::endl;
+    std::cout << "Energy: " << _energyPoints << std::endl;
+    std::cout << "Attack Damage: " << _attackDamage << std::endl;
 }

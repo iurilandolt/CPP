@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 23:01:50 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/20 11:41:32 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/20 22:27:09 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,50 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &src) {
 }
 
 void ClapTrap::attack(std::string const &target) {
-    std::cout << "ClapTrap " << _name << " attacks " << target 
-        << ", causing " << _attackDamage << " points of damage!" << std::endl;
+    if (_hitPoints <= 0) {
+        std::cout << "ClapTrap " << _name << " is dead and can't attack!" << std::endl;
+        return;
+    }
+    if (_energyPoints < 1) {
+        std::cout << "ClapTrap " << _name << " is out of energy!" << std::endl;
+        return;
+    }
+    std::cout << "ClapTrap " << _name << " attacks " << target << ", causing " 
+        << _attackDamage << " points of damage!" << std::endl;
+    _energyPoints--;
 }
 
 void ClapTrap::takeDamage(unsigned int amount) {
+    if (_hitPoints <= 0) {
+        std::cout << "ClapTrap " << _name << " is already dead!" << std::endl;
+        return;
+    }
+    if (amount > _hitPoints) {
+        std::cout << "ClapTrap " << _name << " takes " << _hitPoints << " points of damage!" << std::endl;
+        std::cout << "ClapTrap " << _name << " died!" << std::endl;
+        _hitPoints = 0;
+        return;
+    }
     std::cout << "ClapTrap " << _name << " takes " << amount << " points of damage!" << std::endl;
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {
-    std::cout << "ClapTrap " << _name << " is repaired for " << amount << " points!" << std::endl;
+    if (_hitPoints <= 0) {
+        std::cout << "ClapTrap " << _name << " is dead and can't be repaired!" << std::endl;
+        return;
+    }
+    if (_energyPoints < 1) {
+        std::cout << "ClapTrap " << _name << " is out of energy!" << std::endl;
+        return;
+    }
+    std::cout << "ClapTrap " << _name << " is being repaired for " << amount << " points!" << std::endl;
+    _hitPoints += amount;
+    _energyPoints--;
+}
+
+void ClapTrap::printStats() const {
+    std::cout << "ClapTrap " << _name << " stats:" << std::endl;
+    std::cout << "HP: " << _hitPoints << std::endl;
+    std::cout << "Energy: " << _energyPoints << std::endl;
+    std::cout << "Attack Damage: " << _attackDamage << std::endl;
 }
