@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:11:39 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/20 11:13:23 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/20 15:52:46 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include "ClapTrap.hpp"
 
-class FragTrap : public ClapTrap
+class FragTrap : public virtual ClapTrap
 {
     public:
         FragTrap(std::string name);
