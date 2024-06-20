@@ -32,10 +32,11 @@ Fixed::Fixed(const Fixed &src) {
 // if the objects are the same, return the lhs object
 // its common practice in assignment operator overloading to return a reference to the object
 // to allow for chaining of assignment operations and consistency with the built-in assignment operators
+
 Fixed & Fixed::operator=(const Fixed &src) {
     std::cout << "Assignment operator called" << std::endl;
     if (this != &src) {
-        this->_value = src._value;
+        this->_value = src.getRawBits();
     }
     return (*this);
 }
