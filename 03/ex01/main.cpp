@@ -19,10 +19,7 @@ int main() {
     scav_01.attack("Bob");
     scav_01.takeDamage(10);
     scav_01.beRepaired(5);
-    scav_01.guardGate();
-
-    ScavTrap scav_02(scav_01);
-    
+    scav_01.guardGate();    
 
     return (0);
 }

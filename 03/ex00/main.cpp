@@ -13,9 +13,9 @@
 #include "ClapTrap.hpp"
 
 int main() {
-    ClapTrap claptrap("X0B42");
-    claptrap.attack("a bandit");
-    claptrap.takeDamage(5);
-    claptrap.beRepaired(3);
+    ClapTrap clap("X0B42");
+    clap.attack("a bandit");
+    clap.takeDamage(5);
+    clap.beRepaired(3);
     return (0);
 }

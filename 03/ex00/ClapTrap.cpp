@@ -12,6 +12,10 @@
 
 #include "ClapTrap.hpp"
 
+ClapTrap::ClapTrap() {
+    std::cout << "ClapTrap Default constructor called" << std::endl;
+}
+
 ClapTrap::ClapTrap(std::string name) {
     this->_name = name;
     this->_hitPoints = 10;

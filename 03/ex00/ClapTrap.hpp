@@ -23,6 +23,7 @@ class ClapTrap
         unsigned int _energyPoints;
         unsigned int _attackDamage;
     public:
+        ClapTrap();
         ClapTrap(std::string name);
         ~ClapTrap();
         ClapTrap(const ClapTrap &src);

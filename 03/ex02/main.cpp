@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/19 23:21:57 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/20 11:55:49 by rlandolt         ###   ########.fr       */
+/*   Created: 2024/06/19 23:02:11 by rlandolt          #+#    #+#             */
+/*   Updated: 2024/06/19 23:41:04 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_HPP
-# define SCAVTRAP_HPP
+#include "FragTrap.hpp"
 
-#include "ClapTrap.hpp"
-
-class ScavTrap : public ClapTrap
-{
-   public:
-        ScavTrap();
-        ScavTrap(std::string name);
-        ~ScavTrap();
-        ScavTrap(const ScavTrap &src);
-        ScavTrap &operator=(const ScavTrap &src);
-        void attack(std::string const &target);
-        void guardGate();
-};
-
-#endif
+int main() {
+    FragTrap frag_01("Jonas");
+    
+    frag_01.attack("some random dude");
+    frag_01.takeDamage(10);
+    frag_01.beRepaired(5);
+    frag_01.highFivesGuys();
+    return (0);
+}
