@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:29:20 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/19 17:57:24 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/20 10:36:05 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ and how many for the fractional part. This gives you a fixed range and precision
 
 For example, if you decide to use 24 bits for the integer part and 8 bits for the fractional part in a 32-bit fixed-point number,
 you can represent numbers from -8388608 to 8388607 with a precision of 1/256. 
+2^24 for the integer part and 2^8 for the fractional part.
 
 The trade-off is that while you get a consistent precision,
 the range of numbers you can represent is more limited compared to floating-point numbers.

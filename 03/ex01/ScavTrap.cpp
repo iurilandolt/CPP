@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 23:21:44 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/19 23:34:36 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/20 11:57:32 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,18 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name) {
 
 ScavTrap::~ScavTrap() {
     std::cout << "ScavTrap " << this->_name << " is destroyed!" << std::endl;
+}
+
+ScavTrap::ScavTrap(const ScavTrap &src) {
+    *this = src;
+}
+
+ScavTrap &ScavTrap::operator=(const ScavTrap &src) {
+    this->_name = src._name;
+    this->_hitPoints = src._hitPoints;
+    this->_energyPoints = src._energyPoints;
+    this->_attackDamage = src._attackDamage;
+    return (*this);
 }
 
 void ScavTrap::attack(std::string const &target) {

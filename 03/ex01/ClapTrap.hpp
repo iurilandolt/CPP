@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 23:02:00 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/19 23:32:11 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/20 11:41:16 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class ClapTrap
         ClapTrap(const ClapTrap &src);
         ClapTrap &operator=(const ClapTrap &src);
 
-        void attack(std::string const &target);
+        virtual void attack(std::string const &target);
         void takeDamage(unsigned int amount);
         void beRepaired(unsigned int amount);
 };
