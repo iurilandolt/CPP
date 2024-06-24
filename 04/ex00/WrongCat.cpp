@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:27:47 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/24 14:32:48 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/24 14:54:54 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,6 @@ WrongCat::WrongCat() : WrongAnimal("WrongCat") {
 
 WrongCat::~WrongCat() {
     std::cout << "WrongCat destructor called" << std::endl;
-}
-
-WrongCat::WrongCat(const std::string type) : WrongAnimal(type) {
-    std::cout << "WrongCat type constructor called" << std::endl;
 }
 
 WrongCat::WrongCat(const WrongCat &src) {
