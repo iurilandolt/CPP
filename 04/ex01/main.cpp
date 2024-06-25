@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:25:06 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/25 11:40:25 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/25 13:42:01 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ int main() {
     std::cout << std::endl;
     std::cout << "Remove from heap:" << std::endl;
     for (int i = 0; i < 6; i++) {
-        //delete animals[i];
-        animals[i]->~Animal();
+        delete animals[i];
+        //animals[i]->~Animal();
     }
     
     std::cout << std::endl;

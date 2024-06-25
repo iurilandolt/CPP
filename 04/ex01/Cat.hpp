@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:21:06 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/24 16:46:55 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/25 13:20:54 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ class Cat : public Animal {
         Brain *brain;
     public:
         Cat();
-        ~Cat();
+        virtual ~Cat();
         Cat(const Cat &src);
         Cat &operator=(const Cat &src);
         void makeSound() const;

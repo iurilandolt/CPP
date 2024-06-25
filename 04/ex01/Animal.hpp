@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:05:44 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/24 14:56:26 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/25 13:45:07 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define ANIMAL_HPP
 
 #include <iostream>
+
 #include "Brain.hpp"
 
 class Animal {

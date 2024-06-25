@@ -6,13 +6,13 @@
 #    By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/19 23:02:25 by rlandolt          #+#    #+#              #
-#    Updated: 2024/06/24 16:04:58 by rlandolt         ###   ########.fr        #
+#    Updated: 2024/06/25 13:52:54 by rlandolt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = animal
 
-SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp Brain.cpp
+SRC = main.cpp AAnimal.cpp Dog.cpp Cat.cpp Brain.cpp
 
 CXX = c++
 

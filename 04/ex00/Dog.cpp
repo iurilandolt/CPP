@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:19:41 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/24 14:53:36 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/25 13:27:42 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ Dog::~Dog() {
     std::cout << "Dog destructor called" << std::endl;
 }
 
-Dog::Dog(const Dog &src) {
+Dog::Dog(const Dog &src) : Animal(src) {
     std::cout << "Dog copy constructor called" << std::endl;
     *this = src;
 }
