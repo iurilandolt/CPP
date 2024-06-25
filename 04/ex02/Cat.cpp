@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:21:51 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/25 13:53:26 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/25 18:54:08 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ Cat &Cat::operator=(const Cat &src) {
     std::cout << "Cat assignation operator called" << std::endl;
     if (this != &src) {
         this->_type = src._type;
-        this->brain = src.brain;
+        *(this->brain) = *(src.brain);
     }
     return (*this);
 }
