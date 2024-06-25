@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:25:06 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/25 19:21:09 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/25 19:38:33 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,6 @@ int main() {
     delete catCopy;
 
     std::cout << std::endl;
-    AAnimal test;
+    //AAnimal test;
     return (0);
 }
