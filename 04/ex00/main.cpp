@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:36:08 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/24 14:36:49 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/25 11:02:05 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 #include "Cat.hpp"
 #include "WrongCat.hpp"
 
+/* in the previous module we learned about henritance and overriding functions with the virtual keyword
+in this module we will learn about polymorphism, polymoirphism allows us to use a pointer or a referece from a 
+base class object and access the derived class object's functions and variables.
+in tthe case bellow we have a pointer to an Animal object, but we can assign it to a Dog or Cat object 
+and use that animal pointer to call member functions from the derived class objects.
+*/
 
 int main() {
     const Animal* meta = new Animal(); 

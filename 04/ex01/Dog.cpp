@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:19:41 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/24 17:05:03 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/06/25 10:53:16 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ Dog &Dog::operator=(const Dog &src) {
     std::cout << "Dog assignation operator called" << std::endl;
     if (this != &src)
         this->_type = src._type;
+        this->brain = src.brain;
     return (*this);
 }
 
