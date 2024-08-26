@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 23:01:50 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/20 22:19:36 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/08/26 12:28:18 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void ClapTrap::takeDamage(unsigned int amount) {
         _hitPoints = 0;
         return;
     }
+    _hitPoints -= amount;
     std::cout << "ClapTrap " << _name << " takes " << amount << " points of damage!" << std::endl;
 }
 
