@@ -6,7 +6,15 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 21:23:00 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/25 21:23:01 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/08/26 14:33:42 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Ice.hpp"
+#include "Cure.hpp"
+
+int main()
+{
+	
+	return 0;
+}

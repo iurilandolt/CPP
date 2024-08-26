@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 21:31:41 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/25 21:33:32 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/08/26 14:27:08 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ Ice::Ice() : AMateria("ice") {
 Ice::~Ice() {
 }
 
-Ice::Ice(Ice const &src) {
+Ice::Ice(Ice const &src) : AMateria("ice") {
     *this = src;
 }
 
