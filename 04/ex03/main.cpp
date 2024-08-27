@@ -6,15 +6,15 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 21:23:00 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/08/26 14:33:42 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/08/27 12:54:06 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Ice.hpp"
-#include "Cure.hpp"
+
+#include <iostream>
 
 int main()
 {
-	
+	std::cout << "Hello World!" << std::endl;
 	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 21:26:31 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/08/26 14:39:16 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/08/27 12:22:53 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,8 @@ AMateria &AMateria::operator=(AMateria const &src) {
 
 std::string const &AMateria::getType() const {
     return (_type);
+}
+
+void AMateria::use(ICharacter &target) {
+	(void)target;
 }

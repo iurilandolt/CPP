@@ -6,17 +6,17 @@
 #    By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/25 21:22:30 by rlandolt          #+#    #+#              #
-#    Updated: 2024/08/26 14:25:54 by rlandolt         ###   ########.fr        #
+#    Updated: 2024/08/27 12:36:23 by rlandolt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = interface
 
-SRC = main.cpp Ice.cpp Cure.cpp AMateria.cpp
+SRC = main.cpp Ice.cpp Cure.cpp AMateria.cpp Character.cpp
 
 CXX = c++
 
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98
 
 OBJ_DIR = objects
 OBJ = $(SRC:%.cpp=$(OBJ_DIR)/%.o)

@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 21:35:34 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/08/26 14:28:36 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/08/27 12:39:06 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,8 @@ Cure &Cure::operator=(Cure const &src) {
 
 AMateria *Cure::clone() const {
     return (new Cure(*this));
+}
+
+void Cure::use(ICharacter &target) {
+	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
 }

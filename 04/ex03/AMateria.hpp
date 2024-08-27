@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 21:23:35 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/08/26 14:24:25 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/08/27 13:01:53 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define AMATERIA_HPP
 
 #include <iostream>
+#include "Character.hpp"
 
-class AMateria
-{
+class AMateria {
     protected:
         std::string _type;
     public:
@@ -28,7 +28,7 @@ class AMateria
 
         std::string const &getType() const;
         virtual AMateria* clone() const = 0;
-        //virtual void use(ICharacter &target);
+        virtual void use(ICharacter &target);
 };
 
 #endif
