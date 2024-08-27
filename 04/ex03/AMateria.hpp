@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 21:23:35 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/08/27 13:01:53 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/08/27 13:14:42 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 # define AMATERIA_HPP
 
 #include <iostream>
-#include "Character.hpp"
+#include "ICharacter.hpp"
+
+class ICharacter;
 
 class AMateria {
     protected:

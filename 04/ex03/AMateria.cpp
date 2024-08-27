@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 21:26:31 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/08/27 12:22:53 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/08/27 13:17:09 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ AMateria::AMateria(AMateria const &src) {
 
 AMateria &AMateria::operator=(AMateria const &src) {
     if (this != &src)
-        _type = src._type;// while assgining a Materia to another, copying the type doesnt make sense, but we have to do it to pass the test
-    return (*this);
+    	return (*this);
+	return (NULL);
+		//_type = src._type;// while assgining a Materia to another, copying the type doesnt make sense, but we have to do it to pass the test
 }
 
 std::string const &AMateria::getType() const {

@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 14:38:14 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/08/27 12:54:42 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/08/27 13:12:58 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define ICHARACTER_HPP
 
 #include "AMateria.hpp"
+
+class AMateria;
 
 class ICharacter {
 	public:
