@@ -6,9 +6,12 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 10:17:44 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/08/27 12:21:20 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/08/28 10:54:28 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef CHARACTER_HPP
+# define CHARACTER_HPP
 
 #include "ICharacter.hpp"
 
@@ -27,3 +30,5 @@ class Character : public ICharacter {
 		std::string _name;
 		AMateria *_inventory[4];
 };
+
+#endif

@@ -1,41 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.cpp                                       :+:      :+:    :+:   */
+/*   IMateriaSource.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/25 21:26:31 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/08/28 11:02:07 by rlandolt         ###   ########.fr       */
+/*   Created: 2024/08/28 10:51:46 by rlandolt          #+#    #+#             */
+/*   Updated: 2024/08/28 11:35:01 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AMateria.hpp"
 
-AMateria::AMateria() : _type("default") {
-}
+#ifndef IMATERIASOURCE_HPP
+# define IMATERIASOURCE_HPP
 
-AMateria::AMateria(std::string const &type) : _type(type) {
-}
+#include "Ice.hpp"
+#include "Cure.hpp"
 
-AMateria::~AMateria() {
-}
+class IMateriaSource {
+	public:
+		virtual ~IMateriaSource() {}
+		virtual void learnMateria(AMateria *m) = 0;
+		virtual AMateria *createMateria(std::string const &type) = 0;
+};
 
-AMateria::AMateria(AMateria const &src) {
-    *this = src;
-}
-
-AMateria &AMateria::operator=(AMateria const &src) {
-   // if (this != &src)
-	(void)src;
-	return (*this);
-
-}
-
-std::string const &AMateria::getType() const {
-    return (_type);
-}
-
-void AMateria::use(ICharacter &target) {
-	(void)target;
-}
+#endif
