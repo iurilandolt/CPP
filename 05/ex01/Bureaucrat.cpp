@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 11:49:13 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/08/28 13:49:40 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/08/30 14:32:19 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,10 @@ void Bureaucrat::decrementGrade() {
 	if (_grade == 150)
 		throw GradeTooLowException();
 	_grade++;
+}
+
+void Bureaucrat::signForm(Form &form) const {
+	std::cout << _name << " signs " << form.getName() << std::endl;
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw() {
