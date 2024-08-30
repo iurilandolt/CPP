@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 14:10:27 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/08/30 14:27:58 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/08/30 15:14:14 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,10 @@ bool Form::isSigned() const {
 }
 
 void Form::beSigned(Bureaucrat const &bureaucrat) {
-	if (bureaucrat.getGrade() > _req_to_sign)
-		throw GradeTooLowException();
-	_signed = true;
-	bureaucrat.signForm(*this);
+    if (bureaucrat.getGrade() > _req_to_sign) {
+        throw GradeTooLowException();
+    }
+    _signed = true;
 }
 
 const char* Form::GradeTooHighException::what() const throw() {
