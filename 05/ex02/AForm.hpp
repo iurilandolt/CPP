@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 11:53:50 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/01 13:31:40 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/01 14:48:34 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ class AForm {
 	public:
 		AForm();
 		AForm(std::string const &name, int sign_grade, int exec_grade);
-		~AForm();
+		virtual ~AForm();
 		AForm(AForm const &src);
 		AForm &operator=(AForm const &src);
 
@@ -40,11 +40,11 @@ class AForm {
 		int getSignGrade() const;
 		int getExecGrade() const;
 		bool isSigned() const;
-
 		void beSigned(Bureaucrat const &bureaucrat);
+		virtual void execute(Bureaucrat const &executor) const;
+		FormType _type;
 	private:
 		std::string const _name;
-		FormType const _type;
 		int const _req_to_sign;
 		int const _req_to_exec;
 		bool _signed;
@@ -59,8 +59,12 @@ class AForm {
 			public:
 				const char *what() const throw();
 		};
+		class FormNotSignedException : public std::exception
+		{
+			public:
+				const char *what() const throw();
+		};
 	};
-	// might need to be virtual if derived class implementation has more member variables
 	std::ostream &operator<<(std::ostream &os, AForm const &obj); 
 
 

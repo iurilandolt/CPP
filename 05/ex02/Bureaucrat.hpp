@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 11:51:12 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/01 13:30:58 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/01 13:46:20 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ class Bureaucrat {
 		void incrementGrade();
 		void decrementGrade();
 		void signForm(AForm &form);
-
-		
+		void executeForm(AForm const &form);
 	private:
 		std::string const _name;
 		int _grade;

@@ -12,13 +12,13 @@
 
 #include "AForm.hpp"
 
-AForm::AForm() : _name("default"), _type(BASE), _req_to_sign(-1), _req_to_exec(-1), _signed(false)
+AForm::AForm() : _type(BASE), _name("default"), _req_to_sign(-1), _req_to_exec(-1), _signed(false)
 {
 	std::cout << "AForm created" << std::endl;
 }
 
 AForm::AForm(std::string const &name, int sign_grade, int exec_grade) : 
-	_name(name), _type(BASE), _req_to_sign(sign_grade), _req_to_exec(exec_grade), _signed(false)
+	_type(BASE), _name(name), _req_to_sign(sign_grade), _req_to_exec(exec_grade), _signed(false)
 {
 	if (sign_grade < 1 || exec_grade < 1)
 		throw GradeTooHighException();
@@ -32,7 +32,7 @@ AForm::~AForm()
 	std::cout << "AForm " << _name << " destroyed" << std::endl;
 }
 
-AForm::AForm(AForm const &src) : _name(src._name), _type(src._type), 
+AForm::AForm(AForm const &src) : _type(src._type), _name(src._name),
 	_req_to_sign(src._req_to_sign), _req_to_exec(src._req_to_exec), _signed(src._signed)
 {
 	std::cout << "AForm " << _name << " created by copy" << std::endl;
@@ -51,7 +51,17 @@ std::string const &AForm::getName() const
 
 std::string AForm::getType() const
 {
-	return "whatever"; // Return the fixed string "whatever"
+	switch (_type)
+	{
+		case PRESIDENTIAL:
+			return "Presidential";
+		case SHRUBBERY:
+			return "Shrubbery";
+		case ROBOT:
+			return "Robot";
+		default:
+			return "Base";
+	}
 }
 
 int AForm::getSignGrade() const
@@ -78,6 +88,19 @@ void AForm::beSigned(Bureaucrat const &bureaucrat)
 	_signed = true;
 }
 
+void AForm::execute(Bureaucrat const &executor) const
+{
+	if (!_signed)
+	{
+		throw FormNotSignedException();
+	}
+	if (executor.getGrade() > _req_to_exec)
+	{
+		throw GradeTooLowException();
+	}
+	std::cout << "AForm " << _name << " is a " << getType() << " form and cannot be executed." << std::endl;
+}
+
 const char *AForm::GradeTooHighException::what() const throw()
 {
 	return "Grade is too high";
@@ -86,6 +109,11 @@ const char *AForm::GradeTooHighException::what() const throw()
 const char *AForm::GradeTooLowException::what() const throw()
 {
 	return "Grade is too low";
+}
+
+const char *AForm::FormNotSignedException::what() const throw()
+{
+	return "Form is not signed";
 }
 
 std::ostream &operator<<(std::ostream &os, AForm const &obj)
