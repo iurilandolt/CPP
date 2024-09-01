@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 11:51:12 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/01 12:40:38 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/01 13:30:58 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 #include <iostream>
 #include <exception>
-#include "Form.hpp"
+#include "AForm.hpp"
 
-class Form;
+class AForm;
 class Bureaucrat {
 	public:
 		Bureaucrat();
@@ -29,17 +29,19 @@ class Bureaucrat {
 		int getGrade() const;
 		void incrementGrade();
 		void decrementGrade();
-		void signForm(Form &form);		
+		void signForm(AForm &form);
+
+		
 	private:
 		std::string const _name;
 		int _grade;
 		class GradeTooHighException : public std::exception {
 			public:
-				const char* what() const throw();
+				virtual const char* what() const throw();
 		};
 		class GradeTooLowException : public std::exception {
 			public:
-				const char* what() const throw();
+				virtual const char* what() const throw();
 		};
 };
 
