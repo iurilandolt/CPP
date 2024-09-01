@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:07:41 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/08/28 13:48:08 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/01 11:47:15 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,20 @@
 
 int main() {
 	try {
-		Bureaucrat b1("b1", 1);
-		Bureaucrat b2("b2", 150);
-		Bureaucrat b3("b3", 151);
-		Bureaucrat b4("b4", 0);
-	} 
+		Bureaucrat b1("b1", 151);
+	}
 	catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 
-	Bureaucrat b1("b5", 140);
 	try {
-		b1.decrementGrade();
+		Bureaucrat b2("b2", 150);
+		b2.incrementGrade(); 
+		b2.decrementGrade();
+		std::cout << b2 << std::endl;
 	} 
 	catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
-	std::cout << b1 << std::endl;
 	return 0;
 }
