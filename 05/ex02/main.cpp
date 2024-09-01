@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 11:53:16 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/01 14:50:35 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/01 15:07:21 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int main()
 	AForm *f1;
 	try {
 		Bureaucrat b1("Bureaucrat1", 2);
-		f1 = new ShrubberyCreationForm();
+		f1 = new ShrubberyCreationForm("test");
 		std::cout << b1 << std::endl;
 		std::cout << *f1 << std::endl;
 		b1.signForm(*f1);
