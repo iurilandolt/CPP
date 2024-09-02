@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 11:54:41 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/01 15:17:38 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/02 13:17:56 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,22 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {
 
 // Copy constructor and operator= overload cant access private members to copy them
 ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &src) : AForm(src) {
-	_type = SHRUBBERY;
+	*this = src;
 }
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(ShrubberyCreationForm const &src) {
-	(void)src;
+	this->_target = src._target;
+	this->_type = src._type;
 	return *this;
 }
 
 void ShrubberyCreationForm::execute(Bureaucrat const &executor) const {
+	if (!isSigned()) {
+		throw FormNotSignedException();
+	}
+	if (executor.getGrade() > getExecGrade()) {
+		throw GradeTooLowException();
+	}
 	std::cout << "ShrubberyCreationForm is being executed by " << executor.getName() << std::endl;
 	std::string filename = _target + "_shrubbery";
 	std::ofstream file(filename.c_str()); // add argument std::ios::app to append to file instead of overwriting

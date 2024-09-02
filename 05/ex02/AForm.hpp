@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 11:53:50 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/01 14:48:34 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/02 13:13:30 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ enum FormType
 	BASE,
 	PRESIDENTIAL,
 	SHRUBBERY,
-	ROBOT
+	ROBOTOMY,
 };
 
 class AForm {
@@ -48,7 +48,7 @@ class AForm {
 		int const _req_to_sign;
 		int const _req_to_exec;
 		bool _signed;
-
+	protected:
 		class GradeTooHighException : public std::exception
 		{
 			public:
