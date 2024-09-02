@@ -6,7 +6,7 @@
 #    By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/01 11:51:14 by rlandolt          #+#    #+#              #
-#    Updated: 2024/09/02 13:35:45 by rlandolt         ###   ########.fr        #
+#    Updated: 2024/09/02 14:08:55 by rlandolt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME = form_v2
 
 SRC = main.cpp AForm.cpp Bureaucrat.cpp \
 	ShrubberyCreationForm.cpp RobotomyRequestForm.cpp \
+	PresidentialPardonForm.cpp
 
 CXX = c++
 

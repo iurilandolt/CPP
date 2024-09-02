@@ -6,16 +6,18 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 11:53:16 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/02 13:35:31 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/02 14:13:02 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int main()
 {
+	std::cout << ">> ShrubberyCreationForm <<" << std::endl;
 	AForm *f1; // 145 137
 	try {
 		Bureaucrat b1("Bureaucrat_a", 146);
@@ -46,6 +48,7 @@ int main()
 	if (f2)
 		delete f2;
 	std::cout << std::endl;
+	std::cout << ">> RobotomyRequestForm <<" << std::endl;
 	AForm *f3; // 72 45
 	try {
 		Bureaucrat b3("Bureaucrat_c", 72);
@@ -75,5 +78,36 @@ int main()
 	}
 	if (f4)
 		delete f4;
+	std::cout << std::endl;
+	std::cout << ">> PresidentialPardonForm <<" << std::endl;
+	AForm *f5; // 25 5
+	try {
+		Bureaucrat b5("Bureaucrat_e", 25);
+		f5 = new PresidentialPardonForm("Form_e");
+		std::cout << b5 << std::endl;
+		std::cout << *f5 << std::endl;
+		b5.signForm(*f5);
+		b5.executeForm(*f5);
+	}
+	catch (std::exception &e) {
+		std::cerr << e.what() << std::endl;
+	}
+	if (f5)
+		delete f5;
+	std::cout << std::endl;
+	AForm *f6;
+	try {
+		Bureaucrat b6("Bureaucrat_f", 5);
+		f6 = new PresidentialPardonForm("Form_f");
+		std::cout << b6 << std::endl;
+		std::cout << *f6 << std::endl;
+		b6.signForm(*f6);
+		b6.executeForm(*f6);
+	}
+	catch (std::exception &e) {
+		std::cerr << e.what() << std::endl;
+	}
+	if (f6)
+		delete f6;
 	return 0;
 }
