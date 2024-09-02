@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 11:57:20 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/02 12:42:20 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/02 13:44:43 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ RobotomyRequestForm::~RobotomyRequestForm() {
 }
 
 void RobotomyRequestForm::execute(Bureaucrat const &executor) const {
+	clearForExecution(executor);
 	std::cout << "* drilling noises *" << std::endl;
+	std::srand(std::time(0)) ;
 	if (rand() % 2)
 		std::cout << _target << " has been robotomized successfully" << std::endl;
 	else

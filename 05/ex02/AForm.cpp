@@ -79,6 +79,16 @@ void AForm::beSigned(Bureaucrat const &bureaucrat) {
 	_signed = true;
 }
 
+void AForm::clearForExecution(Bureaucrat const &executor) const
+{
+	if (!_signed) {
+		throw FormNotSignedException();
+	}
+	if (executor.getGrade() > _req_to_exec) {
+		throw GradeTooLowException();
+	}
+}
+
 void AForm::execute(Bureaucrat const &executor) const {
 	if (!_signed)
 	{

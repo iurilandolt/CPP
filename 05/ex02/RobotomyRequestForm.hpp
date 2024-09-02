@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 11:57:14 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/02 12:42:17 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/02 13:43:52 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include "AForm.hpp"
 #include <cstdlib>
+#include <ctime>
 
 class RobotomyRequestForm : public AForm {
 	public:

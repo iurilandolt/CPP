@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 11:53:50 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/02 13:13:30 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/02 13:28:39 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,9 @@ class AForm {
 		int getExecGrade() const;
 		bool isSigned() const;
 		void beSigned(Bureaucrat const &bureaucrat);
+		void clearForExecution(Bureaucrat const &executor) const;
 		virtual void execute(Bureaucrat const &executor) const;
-		FormType _type;
+		FormType _type; // this should maybe be private and const
 	private:
 		std::string const _name;
 		int const _req_to_sign;
