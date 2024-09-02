@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 11:53:16 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/02 14:13:02 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/02 14:41:55 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,11 @@ int main()
 		std::cout << *f1 << std::endl;
 		b1.signForm(*f1);
 		b1.executeForm(*f1);
+		delete f1;
 	}
 	catch (std::exception &e) {
 		std::cerr << e.what() << std::endl;
 	}
-	if (f1)
-		delete f1;
 	std::cout << std::endl;
 	AForm *f2;
 	try {
@@ -41,12 +40,11 @@ int main()
 		std::cout << *f2 << std::endl;
 		b2.signForm(*f2);
 		b2.executeForm(*f2);
+		delete f2;
 	}
 	catch (std::exception &e) {
 		std::cerr << e.what() << std::endl;
-	}
-	if (f2)
-		delete f2;
+	}	
 	std::cout << std::endl;
 	std::cout << ">> RobotomyRequestForm <<" << std::endl;
 	AForm *f3; // 72 45
@@ -57,12 +55,11 @@ int main()
 		std::cout << *f3 << std::endl;
 		b3.signForm(*f3);
 		b3.executeForm(*f3);
+		delete f3;
 	}
 	catch (std::exception &e) {
 		std::cerr << e.what() << std::endl;
 	}
-	if (f3)
-		delete f3;
 	std::cout << std::endl;
 	AForm *f4;
 	try {
@@ -72,12 +69,11 @@ int main()
 		std::cout << *f4 << std::endl;
 		b4.signForm(*f4);
 		b4.executeForm(*f4);
+		delete f4;
 	}
 	catch (std::exception &e) {
 		std::cerr << e.what() << std::endl;
 	}
-	if (f4)
-		delete f4;
 	std::cout << std::endl;
 	std::cout << ">> PresidentialPardonForm <<" << std::endl;
 	AForm *f5; // 25 5
@@ -88,12 +84,11 @@ int main()
 		std::cout << *f5 << std::endl;
 		b5.signForm(*f5);
 		b5.executeForm(*f5);
+		delete f5;
 	}
 	catch (std::exception &e) {
 		std::cerr << e.what() << std::endl;
 	}
-	if (f5)
-		delete f5;
 	std::cout << std::endl;
 	AForm *f6;
 	try {
@@ -103,11 +98,10 @@ int main()
 		std::cout << *f6 << std::endl;
 		b6.signForm(*f6);
 		b6.executeForm(*f6);
+		delete f6;
 	}
 	catch (std::exception &e) {
 		std::cerr << e.what() << std::endl;
 	}
-	if (f6)
-		delete f6;
 	return 0;
 }
