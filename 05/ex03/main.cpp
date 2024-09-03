@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 11:53:16 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/02 14:44:52 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/03 12:10:09 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int main()
 	}
 	try {
 		rrf = someRandomIntern.makeForm("something weird", "target");
-		std::cout << *rrf << std::endl;
+		std::cout << *rrf << std::endl; // why doesnt it segfailt? throw exception returns null?
 		delete rrf;
 	}
 	catch (std::exception &e) {

@@ -6,18 +6,18 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 11:54:41 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/02 14:08:28 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/03 11:31:02 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreationForm", 145, 137) {
-	_type = SHRUBBERY;
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreationForm", SHRUBBERY, 145, 137)
+{
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string const &target) : AForm("ShrubberyCreationForm", 145, 137) {
-	_type = SHRUBBERY;
+ShrubberyCreationForm::ShrubberyCreationForm(std::string const &target) : AForm("ShrubberyCreationForm", SHRUBBERY, 145, 137)
+{
 	_target = target;
 }
 
@@ -32,7 +32,6 @@ ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &src) :
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(ShrubberyCreationForm const &src) {
 	this->_target = src._target;
-	this->_type = src._type;
 	return *this;
 }
 

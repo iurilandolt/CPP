@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 11:51:12 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/01 12:39:09 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/03 11:16:32 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ class Bureaucrat {
 	private:
 		std::string const _name;
 		int _grade;
-		
 		class GradeTooHighException : public std::exception {
 			public:
 				const char* what() const throw();

@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 11:53:50 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/02 13:28:39 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/03 11:35:53 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,10 @@ enum FormType
 class AForm {
 	public:
 		AForm();
-		AForm(std::string const &name, int sign_grade, int exec_grade);
+		AForm(std::string const &name, FormType type, int sign_grade, int exec_grade);
 		virtual ~AForm();
 		AForm(AForm const &src);
 		AForm &operator=(AForm const &src);
-
 		std::string const &getName() const;
 		std::string getType() const;
 		int getSignGrade() const;
@@ -42,10 +41,10 @@ class AForm {
 		bool isSigned() const;
 		void beSigned(Bureaucrat const &bureaucrat);
 		void clearForExecution(Bureaucrat const &executor) const;
-		virtual void execute(Bureaucrat const &executor) const;
-		FormType _type; // this should maybe be private and const
+		virtual void execute(Bureaucrat const &executor) const = 0;
 	private:
 		std::string const _name;
+		FormType const _type;
 		int const _req_to_sign;
 		int const _req_to_exec;
 		bool _signed;

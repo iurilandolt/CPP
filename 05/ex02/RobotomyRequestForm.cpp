@@ -6,18 +6,16 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 11:57:20 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/02 14:06:53 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/03 11:32:30 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm() {
-	_type = ROBOTOMY;
+RobotomyRequestForm::RobotomyRequestForm() : AForm("RobotomyRequestForm", ROBOTOMY, 72, 45) {
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string const &target) : AForm("RobotomyRequestForm", 72, 45) {
-	_type = ROBOTOMY;
+RobotomyRequestForm::RobotomyRequestForm(std::string const &target) : AForm("RobotomyRequestForm", ROBOTOMY, 72, 45) {
 	_target = target;
 }
 
@@ -27,7 +25,6 @@ RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const &src) : AForm
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(RobotomyRequestForm const &src) {
 	_target = src._target;
-	_type = src._type;
 	return *this;
 }
 
