@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 14:22:35 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/03 12:01:23 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/03 12:15:21 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
 
-class Intern
-{
+class Intern {
 	public:
 		Intern();
 		Intern(Intern const & src);

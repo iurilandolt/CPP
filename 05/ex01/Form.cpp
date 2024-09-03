@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 14:10:27 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/01 12:45:42 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/03 12:16:36 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ Form::Form() : _name("default"), _req_to_sign(-1), _req_to_exec(-1), _signed(fal
 	std::cout << "Form created" << std::endl;
 }
 
-Form::Form(std::string const &name, int sign_grade, int exec_grade) : _name(name), _req_to_sign(sign_grade), _req_to_exec(exec_grade), _signed(false)
-{
+Form::Form(std::string const &name, int sign_grade, int exec_grade) : 
+	_name(name), _req_to_sign(sign_grade), _req_to_exec(exec_grade), _signed(false) {
 	if (sign_grade < 1 || exec_grade < 1)
 		throw GradeTooHighException();
 	if (sign_grade > 150 || exec_grade > 150)

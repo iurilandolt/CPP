@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 11:53:16 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/02 14:41:55 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/03 12:15:39 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
 
-int main()
-{
+int main() {
 	std::cout << ">> ShrubberyCreationForm <<" << std::endl;
 	AForm *f1; // 145 137
 	try {

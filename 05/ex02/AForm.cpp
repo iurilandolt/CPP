@@ -47,8 +47,7 @@ std::string const &AForm::getName() const {
 }
 
 std::string AForm::getType() const {
-	switch (_type)
-	{
+	switch (_type) {
 		case PRESIDENTIAL:
 			return "Presidential";
 		case SHRUBBERY:
@@ -73,8 +72,7 @@ bool AForm::isSigned() const {
 }
 
 void AForm::beSigned(Bureaucrat const &bureaucrat) {
-	if (bureaucrat.getGrade() > _req_to_sign)
-	{
+	if (bureaucrat.getGrade() > _req_to_sign) {
 		throw GradeTooLowException();
 	}
 	_signed = true;
@@ -91,12 +89,10 @@ void AForm::clearForExecution(Bureaucrat const &executor) const
 }
 
 void AForm::execute(Bureaucrat const &executor) const {
-	if (!_signed)
-	{
+	if (!_signed) {
 		throw FormNotSignedException();
 	}
-	if (executor.getGrade() > _req_to_exec)
-	{
+	if (executor.getGrade() > _req_to_exec) {
 		throw GradeTooLowException();
 	}
 	std::cout << "AForm " << _name << " is a " << getType() << " form and cannot be executed." << std::endl;

@@ -6,23 +6,22 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 11:54:41 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/03 11:31:02 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/03 12:14:56 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreationForm", SHRUBBERY, 145, 137)
-{
+ShrubberyCreationForm::ShrubberyCreationForm() : 
+	AForm("ShrubberyCreationForm", SHRUBBERY, 145, 137) {
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string const &target) : AForm("ShrubberyCreationForm", SHRUBBERY, 145, 137)
-{
+ShrubberyCreationForm::ShrubberyCreationForm(std::string const &target) :
+	AForm("ShrubberyCreationForm", SHRUBBERY, 145, 137) {
 	_target = target;
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {
-	
 }
 
 // Copy constructor and operator= overload cant access private members to copy them

@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 11:53:50 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/03 11:35:53 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/03 12:13:16 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@
 
 class Bureaucrat;
 
-enum FormType
-{
+enum FormType {
 	BASE,
 	PRESIDENTIAL,
 	SHRUBBERY,

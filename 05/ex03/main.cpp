@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 11:53:16 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/03 12:10:09 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/03 12:15:15 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 #include "PresidentialPardonForm.hpp"
 #include "Intern.hpp"
 
-int main()
-{
+int main() {
 	Intern someRandomIntern;
 	AForm *rrf;
 

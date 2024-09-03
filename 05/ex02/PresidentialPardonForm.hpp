@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 11:57:45 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/02 14:01:43 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/03 12:14:03 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 
 #include "AForm.hpp"
 
-class PresidentialPardonForm : public AForm
-{
+class PresidentialPardonForm : public AForm {
 	public:
 		PresidentialPardonForm();
 		PresidentialPardonForm(std::string target);
