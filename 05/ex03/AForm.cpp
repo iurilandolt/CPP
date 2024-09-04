@@ -12,7 +12,7 @@
 
 #include "AForm.hpp"
 
-AForm::AForm() : _name("default"), _type(BASE), _req_to_sign(-1), _req_to_exec(-1), _signed(false) {
+AForm::AForm() : _name("default"), _type(BASE), _req_to_sign(150), _req_to_exec(150), _signed(false) {
 	std::cout << "AForm created" << std::endl;
 }
 

@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:28:54 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/06/19 15:28:56 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:30:50 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //levels must be uppercase
 
-Harl::Harl(){
+Harl::Harl() {
 	std::cout << "Harl constructor called" << std::endl;
 	this->_fptr[0] = &Harl::debug;
 	this->_fptr[1] = &Harl::info;

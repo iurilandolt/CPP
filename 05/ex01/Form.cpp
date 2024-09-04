@@ -6,13 +6,13 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 14:10:27 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/03 12:16:36 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/04 11:10:23 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
-Form::Form() : _name("default"), _req_to_sign(-1), _req_to_exec(-1), _signed(false) {
+Form::Form() : _name("default"), _req_to_sign(150), _req_to_exec(150), _signed(false) {
 	std::cout << "Form created" << std::endl;
 }
 

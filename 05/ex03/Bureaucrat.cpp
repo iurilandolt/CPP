@@ -6,13 +6,13 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 11:49:13 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/02 14:07:46 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/04 11:11:24 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat() : _name("default"), _grade(-1) {
+Bureaucrat::Bureaucrat() : _name("default"), _grade(150) {
 	std::cout << "Bureaucrat " << _name << " created" << std::endl;
 }
 
