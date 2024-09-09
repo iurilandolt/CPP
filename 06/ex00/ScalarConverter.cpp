@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 11:09:33 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/09 19:12:26 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:29:36 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ ScalarConverter::~ScalarConverter() {
 
 std::string ScalarConverter::sanitize(std::string const & src) {
 	std::string tmp = src;
-
 	while (!tmp.empty() && std::isspace(tmp.front()) && tmp.size() > 1)
 			tmp.erase(tmp.begin());
 	if (tmp.size() > 1) {
@@ -32,12 +31,40 @@ std::string ScalarConverter::sanitize(std::string const & src) {
 	return tmp;
 }
 
+bool ScalarConverter::checkPseudoLiteral(std::string const & str) {
+	if (str.compare("nan") == 0) {
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: nanf" << std::endl;
+		std::cout << "double: nan" << std::endl;
+		return true;
+	}
+	else if (str.compare("+inf") == 0 || str.compare("+inff") == 0 
+		|| str.compare("inf") == 0 || str.compare("inff") == 0) {
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: inff" << std::endl;
+		std::cout << "double: inf" << std::endl;
+		return true;
+	}
+	else if (str.compare("-inf") == 0 || str.compare("-inff") == 0) {
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: -inff" << std::endl;
+		std::cout << "double: -inf" << std::endl;
+		return true;
+	}
+	return false;
+}
+
 void ScalarConverter::convert(std::string const & str) {
 	std::string tmp = sanitize(str);
 	if (tmp.empty()) {
 		std::cout << "Error: empty string" << std::endl;
 		return;
 	}
+	if (checkPseudoLiteral(tmp)) 
+		return;
 	
 	std::cout << "Input: " << tmp << std::endl;
 	std::cout << std::endl;
