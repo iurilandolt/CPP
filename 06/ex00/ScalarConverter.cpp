@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 11:09:33 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/09 19:29:36 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/09 22:53:45 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,28 @@ std::string ScalarConverter::sanitize(std::string const & src) {
 			tmp.erase(pos);
 	}
 	return tmp;
+}
+
+void ScalarConverter::parse(std::string const & src) {
+	std::string::const_iterator it = src.begin();
+	if (*it == '+' || *it == '-')
+		++it;
+	while (it != src.end() && isdigit(*it)) {
+		++it;
+		if (*it == '.') {
+			++it;
+			break;
+		}
+	}
+	while (it != src.end() && isdigit(*it))
+		++it;
+	if (!isdigit(*it) && it != src.end()) {
+		if (*it != 'f')
+			throw std::invalid_argument("Invalid argument");
+		++it;
+		if (it != src.end())
+			throw std::invalid_argument("Invalid argument");	
+	}
 }
 
 bool ScalarConverter::checkPseudoLiteral(std::string const & str) {
@@ -65,7 +87,6 @@ void ScalarConverter::convert(std::string const & str) {
 	}
 	if (checkPseudoLiteral(tmp)) 
 		return;
-	
 	std::cout << "Input: " << tmp << std::endl;
 	std::cout << std::endl;
 
@@ -76,6 +97,7 @@ void ScalarConverter::convert(std::string const & str) {
 	else {
 		try {
 			raw = std::stod(tmp);
+			parse(tmp);
 		} catch (std::exception & e) {
 			std::cout << "Error: " << e.what() << std::endl;
 			return;
@@ -84,9 +106,19 @@ void ScalarConverter::convert(std::string const & str) {
 	std::cout << raw << std::endl;
 }
 
-
-/* char ScalarConverter::getChar(std::string const & str) {
-
-} */
+char ScalarConverter::getChar(std::string const & str) {
+	char c = 0;
+	if (str.length() == 1 && !isdigit(str[0]) && isprint(str[0]))
+		c = str[0];
+	else {
+		try {
+			c = static_cast<char>(std::stoi(str));
+		} catch (std::exception & e) {
+			std::cout << "Error: " << e.what() << std::endl;
+			return 0;
+		}
+	}
+	return c;
+}
 
 
