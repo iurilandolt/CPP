@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 11:09:33 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/09 16:23:02 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:12:26 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,33 +18,48 @@ ScalarConverter::ScalarConverter() {
 ScalarConverter::~ScalarConverter() {
 }
 
-void ScalarConverter::convert(std::string const & str) {
-	std::string tmp = str;
 
-	if (tmp.size() > 1) {
-		while (!tmp.empty() && std::isspace(tmp.front()))
+std::string ScalarConverter::sanitize(std::string const & src) {
+	std::string tmp = src;
+
+	while (!tmp.empty() && std::isspace(tmp.front()) && tmp.size() > 1)
 			tmp.erase(tmp.begin());
+	if (tmp.size() > 1) {
+		std::string::size_type pos = tmp.find_first_of(" \t\n\v\f\r");
+		if (pos != std::string::npos)
+			tmp.erase(pos);
 	}
-	if (tmp.empty())
-	{
+	return tmp;
+}
+
+void ScalarConverter::convert(std::string const & str) {
+	std::string tmp = sanitize(str);
+	if (tmp.empty()) {
 		std::cout << "Error: empty string" << std::endl;
 		return;
 	}
+	
+	std::cout << "Input: " << tmp << std::endl;
+	std::cout << std::endl;
 
-	try {
-		std::cout << "char: " << std::to_string(tmp[0]) << std::endl;
-		std::cout << "int: " << static_cast<int>(std::stoi(tmp.c_str())) << std::endl;
-		std::cout << "float: " << static_cast<float>(std::stof(tmp.c_str())) << "f" << std::endl;
-		std::cout << "double: " << static_cast<double>(std::stod(tmp.c_str())) << std::endl;
-	} catch (std::exception & e) {
-		std::cout << "Error: " << e.what() << std::endl;
+
+	double raw = 0;
+	if (tmp.length() == 1 && !isdigit(tmp[0]) && isprint(tmp[0]))
+		raw = static_cast<double>(tmp[0]);
+	else {
+		try {
+			raw = std::stod(tmp);
+		} catch (std::exception & e) {
+			std::cout << "Error: " << e.what() << std::endl;
+			return;
+		}
 	}
-
-
-	//std::cout << "char: " << getChar(str) << std::endl;
-	//std::cout << "int: " << getInt(str) << std::endl;
-	//std::cout << "float: " << getFloat(str) << std::endl;
-	//std::cout << "double: " << getDouble(str) << std::endl;
+	std::cout << raw << std::endl;
 }
 
-/* ß */
+
+/* char ScalarConverter::getChar(std::string const & str) {
+
+} */
+
+
