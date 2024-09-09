@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 11:09:33 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/09 22:53:45 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/09 23:07:37 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,35 +89,26 @@ void ScalarConverter::convert(std::string const & str) {
 		return;
 	std::cout << "Input: " << tmp << std::endl;
 	std::cout << std::endl;
-
-
 	double raw = 0;
-	if (tmp.length() == 1 && !isdigit(tmp[0]) && isprint(tmp[0]))
-		raw = static_cast<double>(tmp[0]);
-	else {
-		try {
-			raw = std::stod(tmp);
+	try {
+		if (tmp.length() == 1 && !isdigit(tmp[0]) && isprint(tmp[0]))
+			raw = static_cast<double>(tmp[0]);
+		else {
 			parse(tmp);
-		} catch (std::exception & e) {
-			std::cout << "Error: " << e.what() << std::endl;
-			return;
+			raw = std::stod(tmp);
 		}
+	} catch (std::exception & e) {
+		std::cout << "Error: " << e.what() << std::endl;
+		return;
 	}
-	std::cout << raw << std::endl;
+	std::cout << "Char: " << getChar(raw) << std::endl;
+	std::cout << "Int: " << static_cast<int>(raw) << std::endl;
+	std::cout << "Float: " << static_cast<float>(raw) << "f" << std::endl;
+	std::cout << "Double: " << raw << std::endl;
 }
 
-char ScalarConverter::getChar(std::string const & str) {
-	char c = 0;
-	if (str.length() == 1 && !isdigit(str[0]) && isprint(str[0]))
-		c = str[0];
-	else {
-		try {
-			c = static_cast<char>(std::stoi(str));
-		} catch (std::exception & e) {
-			std::cout << "Error: " << e.what() << std::endl;
-			return 0;
-		}
-	}
+char ScalarConverter::getChar(double raw) {
+	char c = static_cast<char>(raw);
 	return c;
 }
 
