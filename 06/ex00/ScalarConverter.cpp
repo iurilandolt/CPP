@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 11:09:33 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/09 14:27:09 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/09 16:23:02 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,41 +20,27 @@ ScalarConverter::~ScalarConverter() {
 
 void ScalarConverter::convert(std::string const & str) {
 	std::string tmp = str;
-	std::string::iterator it = tmp.begin();
-	bool fractional = false;
-	
-	if (tmp.length() > 1) {
-		while (it != tmp.end() && *it == ' ') {
-			tmp.erase(it);
-			it++;
-		}
-		it = tmp.begin();
-		if (*it == '+' || *it == '-') {
-			it++;
-		}
-		if (!isdigit(*it)) {
-			std::cout << "Error: invalid input 1" << std::endl;
-			return ;
-		}
-		while (it != tmp.end() && isdigit(*it)) {
 
-			it++;
-			if (*it == '.') {
-				if (fractional) {
-					std::cout << "Error: invalid input 2" << std::endl;
-					return ;
-				}
-				fractional = true;
-				it++;
-			}
-		}
-		if (it == tmp.end() && (*it != 'f' || !isdigit(*it))) {
-			std::cout << "Error: invalid input 3" << std::endl;
-			return ;
-		}
- 
+	if (tmp.size() > 1) {
+		while (!tmp.empty() && std::isspace(tmp.front()))
+			tmp.erase(tmp.begin());
 	}
-	std::cout << "valid input: " << tmp << std::endl;
+	if (tmp.empty())
+	{
+		std::cout << "Error: empty string" << std::endl;
+		return;
+	}
+
+	try {
+		std::cout << "char: " << std::to_string(tmp[0]) << std::endl;
+		std::cout << "int: " << static_cast<int>(std::stoi(tmp.c_str())) << std::endl;
+		std::cout << "float: " << static_cast<float>(std::stof(tmp.c_str())) << "f" << std::endl;
+		std::cout << "double: " << static_cast<double>(std::stod(tmp.c_str())) << std::endl;
+	} catch (std::exception & e) {
+		std::cout << "Error: " << e.what() << std::endl;
+	}
+
+
 	//std::cout << "char: " << getChar(str) << std::endl;
 	//std::cout << "int: " << getInt(str) << std::endl;
 	//std::cout << "float: " << getFloat(str) << std::endl;
