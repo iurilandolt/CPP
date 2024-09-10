@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 18:32:24 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/10 18:37:10 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/10 19:05:40 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define BASE_HPP
 
 #include <iostream>
+#include <exception>
+#include <cstdlib>
+#include <ctime>
 
 class Base
 {

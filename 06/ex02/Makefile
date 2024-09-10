@@ -6,13 +6,13 @@
 #    By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 12:13:32 by rlandolt          #+#    #+#              #
-#    Updated: 2024/09/10 18:30:01 by rlandolt         ###   ########.fr        #
+#    Updated: 2024/09/10 19:08:10 by rlandolt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = identify
 
-SRC = 
+SRC = main.cpp Base.cpp 
 
 CXX = c++
 
