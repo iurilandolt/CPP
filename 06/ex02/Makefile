@@ -6,13 +6,13 @@
 #    By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 12:13:32 by rlandolt          #+#    #+#              #
-#    Updated: 2024/09/10 18:30:04 by rlandolt         ###   ########.fr        #
+#    Updated: 2024/09/10 18:30:01 by rlandolt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = serialize
+NAME = identify
 
-SRC = main.cpp Serializer.cpp
+SRC = 
 
 CXX = c++
 
