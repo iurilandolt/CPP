@@ -94,6 +94,7 @@ bool ScalarConverter::checkPseudoLiteral(std::string const & str) {
 	}
 	return false;
 }
+
 void ScalarConverter::convert(std::string const & str) {
 	std::string tmp = sanitize(str);
 	if (tmp.empty()) {
@@ -110,7 +111,6 @@ void ScalarConverter::convert(std::string const & str) {
 		if (tmp.length() == 1 && !isdigit(tmp[0]) && isprint(tmp[0]))
 			raw = static_cast<double>(tmp[0]);
 		else {
-
 			parse(tmp);
 			//raw = ft_stod(tmp);
 			//raw = std::stod(tmp);
@@ -120,11 +120,12 @@ void ScalarConverter::convert(std::string const & str) {
 		std::cout << "Error: " << e.what() << std::endl;
 		return;
 	}
-
 	std::cout << "Char: " << getChar(raw) << std::endl;
 	std::cout << "Int: " << getInt(raw) << std::endl;
+	std::cout << std::fixed << std::setprecision(1);
 	std::cout << "Float: " << getFloat(raw) << "f" << std::endl;
-	std::cout << "Double: " << getDouble(raw) << std::endl;
+	std::cout << "Double: " << raw << std::endl;
+	std::cout.unsetf(std::ios_base::fixed);
 }
 
 char ScalarConverter::getChar(double raw) {
