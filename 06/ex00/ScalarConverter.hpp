@@ -16,6 +16,8 @@
 #include <iostream>
 #include <sstream>
 #include <climits>
+//#include <cfloat>
+#include <limits>
 #include <cstdlib>
 
 class ScalarConverter
@@ -31,11 +33,11 @@ class ScalarConverter
 		static std::string sanitize(std::string const & src);
 		static bool checkPseudoLiteral(std::string const & str);
 		static void parse(std::string const & str);
-		static double ft_stod(std::string const & str);
+		//static double ft_stod(std::string const & str);
 		static char getChar(double raw);
-		//int getInt(std::string const & str);
-		//float getFloat(std::string const & str);
-		//double getDouble(std::string const & str);
+		static int getInt(double raw);
+		static float getFloat(double raw);
+		static double getDouble(double raw);
 };
 
 #endif
