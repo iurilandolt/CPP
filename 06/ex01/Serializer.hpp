@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:44:47 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/10 15:58:19 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/10 18:21:51 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ class Serializer
         Serializer();
         ~Serializer();
         Serializer(Serializer const & src);
-        Serializer & operator=(Serializer const & rhs);
+        Serializer & operator=(Serializer const & src);
 };
 
 #endif

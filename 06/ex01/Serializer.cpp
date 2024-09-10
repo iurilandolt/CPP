@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:44:44 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/10 15:54:46 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/10 18:21:30 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ Serializer::Serializer(Serializer const & src) {
     *this = src;
 }
 
-Serializer & Serializer::operator=(Serializer const & rhs) {
-    (void)rhs; return *this;
+Serializer & Serializer::operator=(Serializer const & src) {
+    (void)src; return *this;
 }
 
 uintptr_t Serializer::serialize(Data* ptr) {

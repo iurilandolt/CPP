@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 11:09:33 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/09 23:07:37 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/10 18:15:29 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ void ScalarConverter::convert(std::string const & str) {
 		return;
 	std::cout << "Input: " << tmp << std::endl;
 	std::cout << std::endl;
-
 	double raw = 0;
 	try {
 		if (tmp.length() == 1 && !isdigit(tmp[0]) && isprint(tmp[0]))
