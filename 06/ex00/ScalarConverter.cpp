@@ -18,10 +18,26 @@ ScalarConverter::ScalarConverter() {
 ScalarConverter::~ScalarConverter() {
 }
 
+ScalarConverter::ScalarConverter(ScalarConverter const & src) {
+	*this = src;
+}
+
+ScalarConverter & ScalarConverter::operator=(ScalarConverter const & src) {
+	(void)src;
+	return *this;
+}
+
+double ScalarConverter::ft_stod(std::string const & src) {
+	std::istringstream iss(src);
+	double d;
+	iss >> d;
+	return d;
+}
 
 std::string ScalarConverter::sanitize(std::string const & src) {
 	std::string tmp = src;
-	while (!tmp.empty() && std::isspace(tmp.front()) && tmp.size() > 1)
+	//while (!tmp.empty() && std::isspace(tmp.front()) && tmp.size() > 1)
+	while (!tmp.empty() && std::isspace(tmp[0]) && tmp.size() > 1)
 			tmp.erase(tmp.begin());
 	if (tmp.size() > 1) {
 		std::string::size_type pos = tmp.find_first_of(" \t\n\v\f\r");
@@ -78,7 +94,6 @@ bool ScalarConverter::checkPseudoLiteral(std::string const & str) {
 	}
 	return false;
 }
-
 void ScalarConverter::convert(std::string const & str) {
 	std::string tmp = sanitize(str);
 	if (tmp.empty()) {
@@ -89,18 +104,23 @@ void ScalarConverter::convert(std::string const & str) {
 		return;
 	std::cout << "Input: " << tmp << std::endl;
 	std::cout << std::endl;
+
 	double raw = 0;
 	try {
 		if (tmp.length() == 1 && !isdigit(tmp[0]) && isprint(tmp[0]))
 			raw = static_cast<double>(tmp[0]);
 		else {
+
 			parse(tmp);
-			raw = std::stod(tmp);
+			raw = ft_stod(tmp);
+			//raw = std::stod(tmp);
+			//std::strtod(tmp.c_str(), NULL);
 		}
 	} catch (std::exception & e) {
 		std::cout << "Error: " << e.what() << std::endl;
 		return;
 	}
+
 	std::cout << "Char: " << getChar(raw) << std::endl;
 	std::cout << "Int: " << static_cast<int>(raw) << std::endl;
 	std::cout << "Float: " << static_cast<float>(raw) << "f" << std::endl;
@@ -108,8 +128,17 @@ void ScalarConverter::convert(std::string const & str) {
 }
 
 char ScalarConverter::getChar(double raw) {
-	char c = static_cast<char>(raw);
-	return c;
+	try {
+		if (raw < CHAR_MIN || raw > CHAR_MAX)
+			throw std::invalid_argument("Impossible");
+		else if (raw < 32 || raw > 126)
+			throw std::invalid_argument("Non displayable");
+		char c = static_cast<char>(raw);
+		return c;
+	} catch (std::exception & e) {
+		std::cout << e.what() << std::endl;
+	}
+	return 0;
 }
 
 

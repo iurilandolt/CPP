@@ -14,6 +14,9 @@
 # define SCALARCONVERTER_HPP
 
 #include <iostream>
+#include <sstream>
+#include <climits>
+#include <cstdlib>
 
 class ScalarConverter
 {
@@ -22,10 +25,13 @@ class ScalarConverter
 	private:
 		ScalarConverter();
 		~ScalarConverter();
+		ScalarConverter(ScalarConverter const & src);
+		ScalarConverter & operator=(ScalarConverter const & src);
 
 		static std::string sanitize(std::string const & src);
 		static bool checkPseudoLiteral(std::string const & str);
 		static void parse(std::string const & str);
+		static double ft_stod(std::string const & str);
 		static char getChar(double raw);
 		//int getInt(std::string const & str);
 		//float getFloat(std::string const & str);
