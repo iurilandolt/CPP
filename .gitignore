@@ -1,4 +1,7 @@
 .vscode
+.DS_Store
+/*/.vscode
+/*/DS_Store
 *.o
 /*/objects
 /00/ex00/Megaphone
@@ -30,4 +33,7 @@
 /06/*/convert
 /06/*/serialize
 /06/*/identify
+/07/*/whatever
+/07/*/iter
+/07/*/array
 
