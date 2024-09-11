@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 11:09:33 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/10 18:15:29 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/11 13:38:44 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,6 @@ void ScalarConverter::convert(std::string const & str) {
 	}
 	if (checkPseudoLiteral(tmp)) 
 		return;
-	std::cout << "Input: " << tmp << std::endl;
-	std::cout << std::endl;
 	double raw = 0;
 	try {
 		if (tmp.length() == 1 && !isdigit(tmp[0]) && isprint(tmp[0]))
@@ -119,23 +117,27 @@ void ScalarConverter::convert(std::string const & str) {
 		std::cout << "Error: " << e.what() << std::endl;
 		return;
 	}
-	std::cout << "Char: " << getChar(raw) << std::endl;
-	std::cout << "Int: " << getInt(raw) << std::endl;
 	std::cout << std::fixed << std::setprecision(1);
-	std::cout << "Float: " << getFloat(raw) << "f" << std::endl;
-	std::cout << "Double: " << raw << std::endl;
+	getChar(raw);
+	getInt(raw);
+	getFloat(raw);
+	getDouble(raw);
 	std::cout.unsetf(std::ios_base::fixed);
 }
 
 char ScalarConverter::getChar(double raw) {
-	try {
-		//if (raw < CHAR_MIN || raw > CHAR_MAX)
-		if (raw < std::numeric_limits<char>::min() || raw > std::numeric_limits<char>::max()) 
-			throw std::invalid_argument("Impossible");
-		else if (raw < 32 || raw > 126)
-			throw std::invalid_argument("Non displayable");
+	std::cout << "char: ";
+	try {	
+		if (raw < std::numeric_limits<char>::min() || raw > std::numeric_limits<char>::max()) {
+			std::cout << "Impossible" << std::endl;
+			return 0;
+		}
+		else if (raw < 32 || raw > 126) {
+			std::cout << "Non displayable" << std::endl;
+			return 0;
+		}
 		char c = static_cast<char>(raw);
-		return c;
+		std::cout << c << std::endl;
 	} catch (std::exception & e) {
 		std::cout << e.what();
 	}
@@ -143,12 +145,15 @@ char ScalarConverter::getChar(double raw) {
 }
 
 int ScalarConverter::getInt(double raw) {
+	std::cout << "int: ";
 	try {
-		//if (raw < INT_MIN || raw > INT_MAX)
 		if (raw < std::numeric_limits<int>::min() || raw > std::numeric_limits<int>::max())
-			throw std::invalid_argument("Impossible");
-		int i = static_cast<int>(raw);
-		return i;
+			std::cout << "Impossible" << std::endl;
+		else {
+			int i = static_cast<int>(raw);
+			std::cout << i << std::endl;
+			return i;
+		}
 	} catch (std::exception & e) {
 		std::cout << e.what();
 	}
@@ -156,13 +161,16 @@ int ScalarConverter::getInt(double raw) {
 }
 
 float ScalarConverter::getFloat(double raw) {
+	std::cout << "float: ";
 	try {
-		//if (raw <  -FLT_MIN || raw > FLT_MAX)
-		if (raw < std::numeric_limits<float>::min() || raw > std::numeric_limits<float>::max() ||
-			raw == std::numeric_limits<float>::infinity() || raw == -std::numeric_limits<float>::infinity())
-			throw std::invalid_argument("Impossible");
-		float f = static_cast<float>(raw);
-		return f;
+		if (raw < std::numeric_limits<float>::min() || raw > std::numeric_limits<float>::max()
+			|| raw == std::numeric_limits<float>::infinity() || raw == -std::numeric_limits<float>::infinity())
+			std::cout << "Impossible" << std::endl;
+		else {
+			float f = static_cast<float>(raw);
+			std::cout << f << "f" << std::endl;
+			return f;
+		}
 	} catch (std::exception & e) {
 		std::cout << e.what();
 	}
@@ -170,12 +178,16 @@ float ScalarConverter::getFloat(double raw) {
 }
 
 double ScalarConverter::getDouble(double raw) {
+	std::cout << "double: ";
 	try {
-		//if (raw < -DBL_MIN || raw > DBL_MAX)
-		if (raw < std::numeric_limits<double>::min() || raw > std::numeric_limits<double>::max() ||
-			raw == std::numeric_limits<double>::infinity() || raw == -std::numeric_limits<double>::infinity())
-			throw std::invalid_argument("Impossible");
-		return raw;
+		if (raw < std::numeric_limits<double>::min() || raw > std::numeric_limits<double>::max()
+			|| raw == std::numeric_limits<double>::infinity() || raw == -std::numeric_limits<double>::infinity())
+			std::cout << "Impossible" << std::endl;
+		else {
+			double d = static_cast<double>(raw);
+			std::cout << d << std::endl;
+			return d;
+		}
 	} catch (std::exception & e) {
 		std::cout << e.what();
 	}
