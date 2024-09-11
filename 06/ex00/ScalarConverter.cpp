@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 11:09:33 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/11 13:38:44 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/11 13:41:07 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,8 @@ ScalarConverter & ScalarConverter::operator=(ScalarConverter const & src) {
 	return *this;
 }
 
-/* double ScalarConverter::ft_stod(std::string const & src) {
-	std::istringstream iss(src);
-	double d;
-	iss >> d;
-	return d;
-} */
-
 std::string ScalarConverter::sanitize(std::string const & src) {
 	std::string tmp = src;
-	//while (!tmp.empty() && std::isspace(tmp.front()) && tmp.size() > 1)
 	while (!tmp.empty() && std::isspace(tmp[0]) && tmp.size() > 1)
 			tmp.erase(tmp.begin());
 	if (tmp.size() > 1) {
