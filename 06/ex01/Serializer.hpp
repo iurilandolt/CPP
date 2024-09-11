@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:44:47 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/10 18:21:51 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/11 12:47:20 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define SERIALIZER_HPP
 
 #include <iostream>
-#include <cstdint>
+//#include <cstdint>
+#include <stdint.h>
 
 typedef struct Data
 {
