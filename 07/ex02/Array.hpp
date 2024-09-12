@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 20:20:22 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/11 20:45:16 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/12 21:55:18 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 #include <iostream>
 #include <exception>
-#include "Array.tpp"
 
 template <typename T>
 class Array {
@@ -26,9 +25,11 @@ class Array {
 		~Array();
 
 		Array &operator=(Array const &src);
-		T &Array<T>::operator[](unsigned int i) const;
+		T &operator[](unsigned int i);
 		
 		unsigned int size() const;
+		void iter(void (*func)(T&));
+
 	private:
 		T *_array;
 		unsigned int const _size;
@@ -36,7 +37,13 @@ class Array {
 			public:
 				const char *what() const throw();
 		};
-		
 };
+
+template <typename T>
+void print(T &i) {
+	std::cout << i << ", "; 
+}
+
+#include "Array.tpp"
 
 #endif
