@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 20:20:26 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/12 21:49:26 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/13 13:51:35 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ Array<T>::~Array() {
 template <typename T>
 Array<T> &Array<T>::operator=(Array const &src) {
 	if (this != &src) {
-		//delete [] _array;
 		const_cast<unsigned int&>(_size) = src._size;
 		_array = new T[_size];
 		for (unsigned int i = 0; i < _size; i++)
@@ -51,7 +50,7 @@ template <typename T>
 T &Array<T>::operator[](unsigned int i) {
 	if (i >= _size)
 		throw OutOfBoundsException();
-	return (_array[i]); // need tests for subscript operator
+	return (_array[i]);
 }
 
 template <typename T>

@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 19:45:10 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/11 19:50:58 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/13 12:48:14 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ int main() {
 	std::cout << "max(a, b) = " << ::max(a, b) << std::endl;
 	std::cout << "max(ac, bc) = " << ::max(ac, bc) << std::endl;
 	std::cout << "max(as, bs) = " << ::max(as, bs) << std::endl;
-
-
 
 	return 0;
 }

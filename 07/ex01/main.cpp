@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 19:55:48 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/11 20:10:02 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/13 13:46:47 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,12 @@ int main() {
 	char char_arr[] = {'a', 'b', 'c', 'd', 'e'};
 	std::string str_arr[] = {"one", "two", "three", "four", "five"};
 
+	int *null_ptr = NULL;
+
 	::iter(int_arr, 5, print);
 	::iter(char_arr, 5, print);
 	::iter(str_arr, 5, print);
+	::iter(null_ptr, 5, print);
+
 	return 0;
 }

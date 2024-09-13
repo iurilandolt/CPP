@@ -6,13 +6,15 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 20:20:29 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/12 21:54:29 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/13 13:58:05 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Array.hpp"
 
-// need tests for subscript operator
+/* #include <ctime>
+#include <cstdlib> */
+
 
 int main() {
 	Array<int> int_arr(5);
@@ -38,7 +40,22 @@ int main() {
 	std::cout << "Int copy &" << &int_cpy << std::endl;
 	std::cout << "Char copy &" << &char_cpy << std::endl;
 	std::cout << "Str copy &" << &str_cpy << std::endl;
-	std::cout << std::endl; 
+	std::cout << std::endl;
 
+	try  {
+		Array<int> a;
+		std::cout << a[0] << std::endl;
+	} catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
+	std::cout << std::endl;
+	try {
+		Array<char> a(5);
+		a[4] = 'a';
+		std::cout << a[4] << std::endl;
+	} catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
 	return (0);
 }
+
