@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 12:20:40 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/16 12:41:05 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/16 15:44:57 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ Span::Span() : _size(0) {
 }
 
 Span::Span(unsigned int n) : _size(n) {
-	//_array.reserve(n);
+	if (n > std::numeric_limits<unsigned int>::max())
+		throw overSizedException();
+	_array.reserve(n);
 	last_pos = _array.begin();
 }
 
@@ -43,5 +45,34 @@ void Span::addNumber(int n) {
 		last_pos = _array.end();
 	}
 	else
-		throw std::exception();
+		throw OutOfBoundsException();
+}
+
+void Span::populate(unsigned int n) {
+	try {
+		if (n > _size)
+			throw overSizedException();
+		srand(time(NULL));
+		for (unsigned int i = 0; i < n; i++) {
+			addNumber(rand() % 10000);
+		}
+	} catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
+}
+
+void Span::printSpan(void) { // use for each ?
+	std::vector<int>::iterator it = _array.begin();
+	while (it != _array.end()) {
+		std::cout << *it << std::endl;
+		it++;
+	}
+}
+
+const char *Span::OutOfBoundsException::what() const throw() {
+	return "Out of bounds";
+}
+
+const char *Span::overSizedException::what() const throw() {
+	return "Size is too big";
 }

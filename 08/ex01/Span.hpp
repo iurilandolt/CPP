@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 12:21:54 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/16 12:39:03 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/16 15:43:15 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 
 #include <iostream>
 #include <vector>
+#include <limits>
+#include <exception>
+
+#include <ctime>
+#include <cstdlib>
+
+#define MAX_SIZE 500
 
 class Span {
 	public:
@@ -27,10 +34,22 @@ class Span {
 		void addNumber(int n);
 		int shortestSpan(void);
 		int longestSpan(void);
+
+		void populate(unsigned int n);
+		void printSpan(void);
 	private:
 		unsigned int _size;
-		std::vector<int> _array;
+		std::vector<int>_array;
 		std::vector<int>::iterator last_pos;
+		class OutOfBoundsException : public std::exception {
+			public:
+				const char *what() const throw();
+		};
+		class overSizedException : public std::exception {
+			public:
+				const char *what() const throw();
+		};
 };
+
 
 #endif

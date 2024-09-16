@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:06:33 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/16 11:03:49 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/16 14:53:37 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int main() {
 	try {
 		std::cout << "vector: " << *easyfind(vec, 5) << std::endl;
 		std::cout << "vector: " << *easyfind(vec, 9) << std::endl;
+		std::cout << "vector: " << *easyfind(vec, -3) << std::endl;
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
@@ -29,6 +30,7 @@ int main() {
 	try {
 		std::cout << "list: " << *easyfind(lst, 5) << std::endl;
 		std::cout << "list: " << *easyfind(lst, 9) << std::endl;
+		std::cout << "list: " << *easyfind(lst, -3) << std::endl;
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	} 
@@ -39,6 +41,7 @@ int main() {
 	try {
 		std::cout << "deque: " << *easyfind(deq, 5) << std::endl;
 		std::cout << "deque: " << *easyfind(deq, 9) << std::endl;
+		std::cout << "deque: " << *easyfind(deq, 10) << std::endl;
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}

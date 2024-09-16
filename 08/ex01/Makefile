@@ -6,13 +6,13 @@
 #    By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 12:13:32 by rlandolt          #+#    #+#              #
-#    Updated: 2024/09/16 12:20:13 by rlandolt         ###   ########.fr        #
+#    Updated: 2024/09/16 14:54:59 by rlandolt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = span
 
-SRC = main.cpp span.cpp
+SRC = main.cpp Span.cpp
 
 CXX = c++
 
