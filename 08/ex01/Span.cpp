@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 12:20:40 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/16 18:53:08 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/16 19:04:43 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,20 @@ void Span::addNumber(int n) {
 		throw OutOfBoundsException();
 }
 
-void Span::populate(unsigned int n) {
+void Span::populate(unsigned int n)
+{
 	try {
-		if (n > MAX_UINT)
+		if (n > MAX_UINT) 
 			throw overSizedException();
 		srand(time(NULL));
+		std::set<int> seen;
 		for (unsigned int i = 0; i < _size ; i++) {
-			addNumber(rand() % n);
+			int nbr = rand() % n;
+			if (seen.find(nbr) == seen.end()) {
+				addNumber(nbr);
+				seen.insert(nbr);
+			}
 		}
-		removeDuplicates();
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
@@ -70,25 +75,6 @@ void Span::printSpan(void) { // use for each ?
 	}
 }
 
-void Span::removeDuplicates(void) {
-	std::vector<int>::iterator it = _array.begin();
-	//std::set<int> seen;
-	
-	while (it != _array.end()) {
-		std::vector<int>::iterator it2 = it + 1;
-		while (it2 != _array.end()) {
-			if (*it == *it2) {
-				_array.erase(it2);
-				it2 = it;
-			}
-			it2++;
-		}
-		it++;
-	}
-}
-
-
-
 const char *Span::OutOfBoundsException::what() const throw() {
 	return "Out of bounds";
 }
@@ -96,3 +82,30 @@ const char *Span::OutOfBoundsException::what() const throw() {
 const char *Span::overSizedException::what() const throw() {
 	return "Size is too big";
 }
+
+/* void Span::populate(unsigned int n) {
+	try {
+		if (n > MAX_UINT)
+			throw overSizedException();
+		srand(time(NULL));
+		for (unsigned int i = 0; i < _size ; i++) {
+			addNumber(rand() % n);
+		}
+		removeDuplicates();
+	} catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
+}
+
+void Span::removeDuplicates(void) {
+	std::vector<int>::iterator it = _array.begin();
+	std::set<int> seen;
+	while (it != _array.end()) {
+		if (seen.find(*it) != seen.end())
+			it = _array.erase(it);
+		else {
+			seen.insert(*it);
+			it++;
+		}
+	}
+} */
