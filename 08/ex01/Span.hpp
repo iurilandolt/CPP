@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 12:21:54 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/16 15:43:15 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/16 18:52:08 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 
 #include <iostream>
 #include <vector>
+#include <set>
 #include <limits>
 #include <exception>
 
 #include <ctime>
 #include <cstdlib>
 
-#define MAX_SIZE 500
+#define MAX_UINT std::numeric_limits<unsigned int>::max()
 
 class Span {
 	public:
@@ -31,6 +32,7 @@ class Span {
 		~Span(void);
 		Span &operator=(Span const &rhs);
 		Span &operator[](unsigned int n);
+		
 		void addNumber(int n);
 		int shortestSpan(void);
 		int longestSpan(void);
@@ -49,6 +51,7 @@ class Span {
 			public:
 				const char *what() const throw();
 		};
+		void removeDuplicates(void);
 };
 
 

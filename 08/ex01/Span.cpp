@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 12:20:40 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/16 15:44:57 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/16 18:53:08 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Span::Span() : _size(0) {
 }
 
 Span::Span(unsigned int n) : _size(n) {
-	if (n > std::numeric_limits<unsigned int>::max())
+	if (n > 10000)
 		throw overSizedException();
 	_array.reserve(n);
 	last_pos = _array.begin();
@@ -50,12 +50,13 @@ void Span::addNumber(int n) {
 
 void Span::populate(unsigned int n) {
 	try {
-		if (n > _size)
+		if (n > MAX_UINT)
 			throw overSizedException();
 		srand(time(NULL));
-		for (unsigned int i = 0; i < n; i++) {
-			addNumber(rand() % 10000);
+		for (unsigned int i = 0; i < _size ; i++) {
+			addNumber(rand() % n);
 		}
+		removeDuplicates();
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
@@ -68,6 +69,25 @@ void Span::printSpan(void) { // use for each ?
 		it++;
 	}
 }
+
+void Span::removeDuplicates(void) {
+	std::vector<int>::iterator it = _array.begin();
+	//std::set<int> seen;
+	
+	while (it != _array.end()) {
+		std::vector<int>::iterator it2 = it + 1;
+		while (it2 != _array.end()) {
+			if (*it == *it2) {
+				_array.erase(it2);
+				it2 = it;
+			}
+			it2++;
+		}
+		it++;
+	}
+}
+
+
 
 const char *Span::OutOfBoundsException::what() const throw() {
 	return "Out of bounds";
