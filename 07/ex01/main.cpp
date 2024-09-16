@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 19:55:48 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/13 13:46:47 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/16 14:40:31 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ int main() {
 
 	int *null_ptr = NULL;
 
-	::iter(int_arr, 5, print);
-	::iter(char_arr, 5, print);
-	::iter(str_arr, 5, print);
-	::iter(null_ptr, 5, print);
+	::iter(int_arr, 5, print<int>);
+	::iter(char_arr, 5, print<char>);
+	::iter(str_arr, 5, print<std::string>);
+	::iter(null_ptr, 5, print<int>);
 
 	return 0;
 }

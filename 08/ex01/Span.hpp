@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   easyfind.hpp                                       :+:      :+:    :+:   */
+/*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/13 15:06:39 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/16 10:59:25 by rlandolt         ###   ########.fr       */
+/*   Created: 2024/09/16 12:21:54 by rlandolt          #+#    #+#             */
+/*   Updated: 2024/09/16 12:39:03 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#ifndef EASYFIND_HPP
-# define EASYFIND_HPP
-
-#include <algorithm>
-#include <iterator>
-#include <vector>
-#include <list>
-#include <deque>
+#ifndef SPAN_HPP
+#define SPAN_HPP
 
 #include <iostream>
-#include <exception>
+#include <vector>
 
-template <typename T>
-typename T::iterator easyfind(T &container, int target);
-
-class NotFoundException : public std::exception {
+class Span {
 	public:
-		const char *what() const throw();
+		Span();
+		Span(unsigned int n);
+		Span(Span const &src);
+		~Span(void);
+		Span &operator=(Span const &rhs);
+		Span &operator[](unsigned int n);
+		void addNumber(int n);
+		int shortestSpan(void);
+		int longestSpan(void);
+	private:
+		unsigned int _size;
+		std::vector<int> _array;
+		std::vector<int>::iterator last_pos;
 };
-
-#include "easyfind.tpp"
 
 #endif

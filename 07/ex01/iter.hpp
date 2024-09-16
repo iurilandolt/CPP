@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 19:55:40 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/13 13:46:57 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/16 14:41:09 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ For dynamically allocated arrays, you need to rely on the size provided by the u
 You can encapsulate the array and its size in a class or struct to ensure the size information is always available.
 
 */
-template <typename T>
-void iter(T *array, int size, void (*func)(T&)) {
-	if (array == NULL)
+template <typename T1, typename T2>
+void iter(T1 *array, int size, T2 func) {
+	if (array == NULL || size < 0) 
 		return ;
 	for (int i = 0; i < size; i++) {
 		func(array[i]);

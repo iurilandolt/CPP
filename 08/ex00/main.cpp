@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:06:33 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/13 15:45:29 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/16 11:03:49 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,19 @@ int main() {
 		std::cout << "list: " << *easyfind(lst, 9) << std::endl;
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
-	}
+	} 
 
-	std::forward_list<int> flst;
-	for (int i = 0; i < 10; i++)
-		flst.push_front(i);
+	std::deque<int> deq;
+	for (int i = 9; i > 0; i--)
+		deq.push_front(i);
 	try {
-		std::cout << "forward_list: " << *easyfind(flst, 5) << std::endl;
-		std::cout << "forward_list: " << *easyfind(flst, 9) << std::endl;
+		std::cout << "deque: " << *easyfind(deq, 5) << std::endl;
+		std::cout << "deque: " << *easyfind(deq, 9) << std::endl;
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
 	return 0;
 }
-
 /*
 Iterators Overview
 Iterator: An object that allows traversal through the elements of a container.
@@ -68,10 +67,10 @@ Methods: begin(), end(), std::find().
 Iterator Type: Bidirectional Iterator.
 Behavior: Efficient insertion/removal of elements, but slower access compared to std::vector.
 
-std::forward_list
-Data Storage: Singly linked list.
-Access: Sequential access; no direct access via index.
+std::deque
+Data Storage: Double-ended queue with multiple memory blocks.
+Access: Direct access to elements via index.
 Methods: begin(), end(), std::find().
-Iterator Type: Forward Iterator.
-Behavior: Efficient insertion/removal of elements, but only supports forward traversal.
+Iterator Type: Random Access Iterator.
+Behavior: fast insertion and removal at both ends, slower access compared to std::vector.
 */
