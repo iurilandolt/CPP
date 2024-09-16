@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 12:21:54 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/16 18:52:08 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/16 19:13:34 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ class Span {
 		void printSpan(void);
 	private:
 		unsigned int _size;
-		std::vector<int>_array;
+		std::vector<int>_vector;
 		std::vector<int>::iterator last_pos;
 		class OutOfBoundsException : public std::exception {
 			public:

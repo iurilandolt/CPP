@@ -6,21 +6,21 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 12:20:40 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/16 19:04:43 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/16 19:13:19 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
 Span::Span() : _size(0) {
-	last_pos = _array.begin();
+	last_pos = _vector.begin();
 }
 
 Span::Span(unsigned int n) : _size(n) {
 	if (n > 10000)
 		throw overSizedException();
-	_array.reserve(n);
-	last_pos = _array.begin();
+	_vector.reserve(n);
+	last_pos = _vector.begin();
 }
 
 Span::Span(Span const &src) {
@@ -33,16 +33,17 @@ Span::~Span(void) {
 Span &Span::operator=(Span const &rhs) {
 	if (this != &rhs) {
 		_size = rhs._size;
-		_array = rhs._array; // create new vector with same values
+		_vector = rhs._vector; // create new vector with same values
 		last_pos = rhs.last_pos;
 	}
 	return *this;
 }
 
 void Span::addNumber(int n) {
-	if (_array.size() < _size) {
-		_array.push_back(n);
-		last_pos = _array.end();
+	if (_vector.size() < _size)
+	{
+		_vector.push_back(n);
+		last_pos = _vector.end();
 	}
 	else
 		throw OutOfBoundsException();
@@ -68,8 +69,9 @@ void Span::populate(unsigned int n)
 }
 
 void Span::printSpan(void) { // use for each ?
-	std::vector<int>::iterator it = _array.begin();
-	while (it != _array.end()) {
+	std::vector<int>::iterator it = _vector.begin();
+	while (it != _vector.end())
+	{
 		std::cout << *it << std::endl;
 		it++;
 	}
@@ -98,11 +100,11 @@ const char *Span::overSizedException::what() const throw() {
 }
 
 void Span::removeDuplicates(void) {
-	std::vector<int>::iterator it = _array.begin();
+	std::vector<int>::iterator it = _vector.begin();
 	std::set<int> seen;
-	while (it != _array.end()) {
+	while (it != _vector.end()) {
 		if (seen.find(*it) != seen.end())
-			it = _array.erase(it);
+			it = _vector.erase(it);
 		else {
 			seen.insert(*it);
 			it++;
