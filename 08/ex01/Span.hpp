@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 12:21:54 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/16 20:07:25 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/17 13:40:04 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 #include <cstdlib>
 
 #define MAX_UINT std::numeric_limits<unsigned int>::max()
+#define MAX_OBJ 500000
 
 class Span {
 	public:
@@ -43,21 +44,6 @@ class Span {
 	private:
 		unsigned int const _size;
 		std::vector<int>_vector;
-		std::vector<int>::iterator last_pos;
-		class OutOfBoundsException : public std::exception {
-			public:
-				const char *what() const throw();
-		};
-		class overSizedException : public std::exception {
-			public:
-				const char *what() const throw();
-
-		};
-		class spanFullException : public std::exception {
-			public:
-				const char *what() const throw();
-		};
 };
-
 
 #endif
