@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 12:20:40 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/17 13:49:42 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/17 15:05:26 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,11 @@ int &Span::operator[](unsigned int n) {
 }
 
 void Span::addNumber(int n) {
-	if (_vector.size() < _size) {
+	if (_size < 1)
+		throw std::invalid_argument("Invalid size");
+	else if (n > std::numeric_limits<int>::max() || n < std::numeric_limits<int>::min())
+		throw std::overflow_error("Overflow");
+	else if (_vector.size() < _size) {
 		_vector.push_back(n);
 	}
 	else
@@ -97,3 +101,44 @@ static void print(T &i) {
 void Span::printSpan(void) {
 	std::for_each(_vector.begin(), _vector.end(), print<int>);
 }
+
+/*
+void Span::populate(unsigned int n) {
+	if (n > MAX_UINT || _size < 1)
+		throw std::invalid_argument("Invalid size");
+	if (_size == 2 && _vector[0] == _vector[1])
+		throw std::invalid_argument("Both values are the same, span is 0");
+	srand(time(NULL));
+	std::for_each(_vector.begin(), _vector.end(),[&](int nbr) {
+		nbr = (rand() % (2 * n)) - n;
+		addNumber(nbr);
+	});
+	const_cast<unsigned int &>(_size) = _vector.size();
+}*/
+
+/* void Span::populate(unsigned int n) {
+	try {
+		if (n > MAX_UINT)
+			throw overSizedException();
+		srand(time(NULL));
+		for (unsigned int i = 0; i < _size ; i++) {
+			addNumber(rand() % n);
+		}
+		removeDuplicates();
+	} catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
+}
+
+void Span::removeDuplicates(void) {
+	std::vector<int>::iterator it = _vector.begin();
+	std::set<int> seen;
+	while (it != _vector.end()) {
+		if (seen.find(*it) != seen.end())
+			it = _vector.erase(it);
+		else {
+			seen.insert(*it);
+			it++;
+		}
+	}
+} */
