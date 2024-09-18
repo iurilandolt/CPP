@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 11:06:14 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/18 11:57:39 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/18 13:06:57 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,39 @@
 #include <iostream>
 #include <stack>
 #include <deque>
+#include <iterator>
 
 template <typename T>
-class MutantStack {
+class MutantStack : public std::stack<T> {
 	public:
 		MutantStack();
 		MutantStack(unsigned int n);
 		MutantStack(MutantStack const &src);
 		~MutantStack();
 		MutantStack &operator=(MutantStack const &src);
-		std::deque<T> _deq;
+		
+		typedef std::deque<int>::iterator it;
+		typedef std::deque<int>::const_iterator cit;
+		typedef std::deque<int>::reverse_iterator rit;
+		typedef std::deque<int>::const_reverse_iterator crit;
+		
 	private:
+		std::deque<T> _deq;
 		unsigned int _size;
 };
+
+
+/*
+begin
+end
+const begin
+const end
+reverse begin
+reverse end
+const reverse begin
+const reverse end
+*/
+
 
 #include "MutantStack.tpp"
 

@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 11:07:56 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/18 11:56:34 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/18 13:03:41 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,25 +44,3 @@ MutantStack<T> &MutantStack<T>::operator=(MutantStack const &src) {
 	return (*this);
 }
 
-/*
-empty
-size
-back
-push_back
-pop_back
-
-+
-
-begin
-end
-
-+ 
-
-empty
-size
-top
-push
-emplace
-pop
-swap
-*/
