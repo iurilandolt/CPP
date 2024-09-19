@@ -6,12 +6,12 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:06:33 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/16 14:53:37 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/19 22:11:02 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "easyfind.hpp"
-
+// test with chars
 int main() {
 	std::vector<int> vec;
 	for (int i = 0; i < 10; i++)

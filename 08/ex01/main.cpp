@@ -6,11 +6,13 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 12:20:17 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/19 11:54:13 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/19 22:11:51 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
+
+// try to use size() instead of _size since we used reserve in the constructor.
 
 int main(void) {
 	

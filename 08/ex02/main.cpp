@@ -6,12 +6,14 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 11:10:11 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/19 13:43:46 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/19 22:12:30 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MutantStack.hpp"
 #include <list>
+
+// test with chars
 
 int main(void) {
 	{	
