@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 12:20:40 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/17 15:05:26 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/19 11:43:58 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,27 @@ int Span::shortestSpan(void) {
 		throw std::logic_error("Cannot find span with less than 2 numbers");
 	std::vector<int> copy = _vector;
 	std::sort(copy.begin(), copy.end());
-	copy.erase(copy.begin() + 2, copy.end());
-	std::cout << "beetween: " << copy.front() << " and -> " << copy.back() << std::endl;
-	return copy.back() - copy.front();
-}
+	std::set<int> spans;
+	int lowest_l;
+	int lowest_r;
+	for (std::vector<int>::iterator it = copy.begin(); it != copy.end() - 1; ++it) {
+			int curr_span = *(it + 1) - *it;
+			spans.insert(curr_span);
+			if (*spans.begin() == curr_span) {
+				lowest_l = *it;
+				lowest_r = *(it + 1);
+			}
+	}
+	std::cout << "beetween: " << lowest_l << " and -> " << lowest_r << " -> ";
+	return *spans.begin();
+	}
 
 int Span::longestSpan(void) {
 	if (_vector.size() < 2)
 		throw std::logic_error("Cannot find span with less than 2 numbers");
 	int max = *std::max_element(_vector.begin(), _vector.end());
 	int min = *std::min_element(_vector.begin(), _vector.end());
-	std::cout << "beetween: " << min << " and -> " << max << std::endl;
+	std::cout << "beetween: " << min << " and -> " << max << " -> ";
 	return max - min;
 }
 
@@ -99,46 +109,7 @@ static void print(T &i) {
 }
 
 void Span::printSpan(void) {
-	std::for_each(_vector.begin(), _vector.end(), print<int>);
+	std::vector<int> copy = _vector;
+	std::sort(copy.begin(), copy.end());
+	std::for_each(copy.begin(), copy.end(), print<int>);
 }
-
-/*
-void Span::populate(unsigned int n) {
-	if (n > MAX_UINT || _size < 1)
-		throw std::invalid_argument("Invalid size");
-	if (_size == 2 && _vector[0] == _vector[1])
-		throw std::invalid_argument("Both values are the same, span is 0");
-	srand(time(NULL));
-	std::for_each(_vector.begin(), _vector.end(),[&](int nbr) {
-		nbr = (rand() % (2 * n)) - n;
-		addNumber(nbr);
-	});
-	const_cast<unsigned int &>(_size) = _vector.size();
-}*/
-
-/* void Span::populate(unsigned int n) {
-	try {
-		if (n > MAX_UINT)
-			throw overSizedException();
-		srand(time(NULL));
-		for (unsigned int i = 0; i < _size ; i++) {
-			addNumber(rand() % n);
-		}
-		removeDuplicates();
-	} catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
-	}
-}
-
-void Span::removeDuplicates(void) {
-	std::vector<int>::iterator it = _vector.begin();
-	std::set<int> seen;
-	while (it != _vector.end()) {
-		if (seen.find(*it) != seen.end())
-			it = _vector.erase(it);
-		else {
-			seen.insert(*it);
-			it++;
-		}
-	}
-} */
