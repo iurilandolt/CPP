@@ -6,17 +6,16 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 11:10:11 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/19 22:12:30 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/23 12:04:21 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MutantStack.hpp"
 #include <list>
 
-// test with chars
-
 int main(void) {
 	{	
+		std::cout << "MutantStack" << std::endl;
 		MutantStack<int> mstack;
 		mstack.push(5);
 		mstack.push(17);
@@ -38,8 +37,8 @@ int main(void) {
 			++it;
 		}
 		std::cout << std::endl;
-		
-		MutantStack<int> s(mstack);
+		std::cout << "std::stack" << std::endl;
+		std::stack<int> s(mstack);
 		while (!s.empty()) {
 			std::cout << s.top() << std::endl;
 			s.pop();
@@ -47,6 +46,7 @@ int main(void) {
 		std::cout << std::endl;
 	}
 	{	
+		std::cout << "std::list" << std::endl;
 		std::list<int> lst;
 		lst.push_back(5);
 		lst.push_back(17);
