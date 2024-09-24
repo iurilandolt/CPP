@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 19:40:54 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/24 14:27:09 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/24 14:52:16 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,15 @@ bool validate_format(const std::string &date)
 	char dash1, dash2;
 	std::istringstream iss(date);
 	if (!(iss >> year >> dash1 >> month >> dash2 >> day))
-	{
 		return false;
-	}
 	if (dash1 != '-' || dash2 != '-')
 		return false;
+	for (size_t i = 0; i < date.size() ; i++) {
+		if (i != 4 && i != 7 && !isdigit(date[i]))
+			return false;
+		else
+			continue;
+	}
 	if (year < 0 || month < 1 || month > 12 || day < 1 || day > 31)
 		return false;
 	if (!validate_day(year, month, day))
