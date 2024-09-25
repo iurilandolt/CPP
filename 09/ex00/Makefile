@@ -6,7 +6,7 @@
 #    By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 12:13:32 by rlandolt          #+#    #+#              #
-#    Updated: 2024/09/23 20:21:45 by rlandolt         ###   ########.fr        #
+#    Updated: 2024/09/25 12:08:12 by rlandolt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
+	rm -f BitcoinExchange.csv
 
 re: fclean all
 

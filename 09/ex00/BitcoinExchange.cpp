@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 19:40:54 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/24 20:15:41 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/25 12:12:14 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 BitcoinExchange::BitcoinExchange() : _database("data.csv") {}
 
 BitcoinExchange::BitcoinExchange(const std::string &filename) : 
-	_database("data.csv"),  _infile(filename.c_str()), _infile_name(filename) {
+	_database("data.csv"), _infile(filename.c_str()), _infile_name(filename), _outfile("BitcoinExchange.csv") {
 	if (!_infile.is_open() || !_infile.good() || _infile.bad() || _infile.fail())
 		throw std::runtime_error("BitcoinExchange: could not open input file");
 	if (!_database.is_open() || !_database.good() || _database.bad() || _database.fail())
 		throw std::runtime_error("BitcoinExchange: could not open database file");
+	if (!_outfile.is_open() || !_outfile.good() || _outfile.bad() || _outfile.fail())
+		throw std::runtime_error("BitcoinExchange: could not open output file");
 	_parseDB();
 	_parseInput();
 }
@@ -27,6 +29,7 @@ BitcoinExchange::BitcoinExchange(const std::string &filename) :
 BitcoinExchange::~BitcoinExchange() {
 	_database.close();
 	_infile.close();
+	_outfile.close();
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &src) {
@@ -38,12 +41,12 @@ BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange const &src) {
 		_exchange.clear();
 		_exchange = src._exchange;
 		_infile_name = src._infile_name;
-		if (_database.is_open())
-			_database.close();
+		_database.close();
 		_database.open("data.csv");
-		if (_infile.is_open())
-			_infile.close();
+		_infile.close();
 		_infile.open(_infile_name.c_str());
+		_outfile.close();
+		_outfile.open("BitcoinExchange.csv");
 	}
 	return *this;
 }
@@ -122,11 +125,16 @@ static bool input_error(std::string &date, double value) {
 		return true;
 	}
 	if (!validate_format(date) || date.empty()) {
-		std::cout << "Error: invalid date format." << date <<std::endl;
+		std::cout << "Error: invalid date format. " << date <<std::endl;
 		return true;
 	}
 	return false;
 }
+
+// static void write_to_file()
+// {
+
+// }
 
 void BitcoinExchange::_parseInput(void) {
 	std::string line;	
@@ -141,16 +149,19 @@ void BitcoinExchange::_parseInput(void) {
 			if (input_error(date, value))
 				continue;
 			std::map<std::string, double>::iterator it = _exchange.lower_bound(date);
-			if (it == _exchange.end() || it->first != date) {
-				if (it != _exchange.begin())
-					--it;
-			}
-
+			if (it == _exchange.end())
+				it = --_exchange.end();
+			else if (it == _exchange.begin() && it->first != date)
+				it = _exchange.begin();
+			else if (it->first != date)
+				--it;
 			double exchange_rate = it->second;
 			double result = value * exchange_rate;
-			std::cout << date << " => " << value << " = " << result << std::endl;
+			std::cout << std::fixed << std::setprecision(1);
+			std::cout << date << " => " << value << " = " << static_cast<float>(result) << std::endl;
+			std::cout.unsetf(std::ios_base::fixed);
 		}
 		else if (line.size() > 0)
-			std::cout << "Error: invalid line format" << std::endl;
+			std::cout << "Error: invalid line format." << std::endl;
 	}
 }
