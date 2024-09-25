@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 19:41:03 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/25 12:03:56 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/25 12:53:40 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 #include <fstream>
 #include <sstream>
 #include <iterator>
-#include <cstdlib>
-#include <cctype>
+//#include <cstdlib>
+//#include <cctype>
 #include <algorithm>
 #include <map>
 #include <list>
@@ -29,8 +29,10 @@ class BitcoinExchange {
 		BitcoinExchange &operator=(BitcoinExchange const &src);
 	private:
 		BitcoinExchange();
+		void _validateFiles(void);
 		void _parseDB(void);
 		void _parseInput(void);
+		void writeData(std::string &date, double value);
 		std::map<std::string, double> _exchange;
 		std::ifstream _database;
 		std::ifstream _infile;
