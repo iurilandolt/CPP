@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 16:19:58 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/25 17:07:19 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/26 12:52:41 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ class RPN {
 	private:
 		RPN();
 		std::stack<int> _digits;
-		std::stack<char> _operators;
 };
 
 #endif

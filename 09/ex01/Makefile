@@ -6,11 +6,11 @@
 #    By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 12:13:32 by rlandolt          #+#    #+#              #
-#    Updated: 2024/09/25 16:20:39 by rlandolt         ###   ########.fr        #
+#    Updated: 2024/09/26 13:30:35 by rlandolt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = rpn
+NAME = RPN
 
 SRC = main.cpp RPN.cpp
 
