@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 16:19:49 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/26 13:24:17 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/26 15:31:45 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ int apply_operator(int a, int b, char op) {
 	case '*':
 		return a * b;
 	case '/':
-		return a / b; //b is 0 ?
+		if (b == 0)
+			throw std::invalid_argument("Division by zero");
+		return a / b;
 	default:
 		throw std::invalid_argument("Unknown operator");
 	}
@@ -55,14 +57,15 @@ RPN::RPN(std::string const & str) {
 	std::cout << _digits.top() << std::endl;
 }
 
-
 RPN::RPN(RPN const & src) {
 	*this = src;
 }
 
 RPN::~RPN() {}
 
-RPN & RPN::operator=(RPN const & rhs) {
-	(void)rhs;
+RPN & RPN::operator=(RPN const & src) {
+	while (!_digits.empty())
+		_digits.pop();
+	_digits = src._digits;
 	return *this;
 }
