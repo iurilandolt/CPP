@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 16:19:49 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/26 15:31:45 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/26 15:42:53 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,13 @@ RPN::RPN(std::string const & str) {
 		} else if (is_operator(token[0])) {
 			if (_digits.size() < 2)
 				throw std::invalid_argument("Invalid expression");
-			b = _digits.top(); _digits.pop();
-			a = _digits.top(); _digits.pop();
+			b = _digits.top(); 
+			_digits.pop();
+			a = _digits.top(); 
+			_digits.pop();
 			_digits.push(apply_operator(a, b, token[0]));
-		} else {
+		} else 
 			throw std::invalid_argument("Invalid expression");
-		}
 	}
 	if (_digits.size() != 1)
 		throw std::invalid_argument("Invalid expression");
