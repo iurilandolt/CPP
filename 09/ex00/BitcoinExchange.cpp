@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 19:40:54 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/25 12:55:04 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/26 12:31:16 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 BitcoinExchange::BitcoinExchange() : _database("data.csv") {}
 
 BitcoinExchange::BitcoinExchange(const std::string &filename) : 
-	_database("data.csv"), _infile(filename.c_str()), _infile_name(filename), _outfile("BitcoinExchange.csv") {
+	_database("data.csv"), _infile(filename.c_str()), _infile_name(filename) {
 	_validateFiles();
 	_parseDB();
 	_parseInput();
@@ -24,7 +24,6 @@ BitcoinExchange::BitcoinExchange(const std::string &filename) :
 BitcoinExchange::~BitcoinExchange() {
 	_database.close();
 	_infile.close();
-	_outfile.close();
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &src) {
@@ -40,8 +39,6 @@ BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange const &src) {
 		_database.open("data.csv");
 		_infile.close();
 		_infile.open(_infile_name.c_str());
-		_outfile.close();
-		_outfile.open("BitcoinExchange.csv");
 	}
 	return *this;
 }
@@ -68,34 +65,31 @@ void BitcoinExchange::writeData(std::string &date, double value) {
 	std::map<std::string, double>::iterator it = _exchange.lower_bound(date);
 	if (it == _exchange.end())
 		it = --_exchange.end();
-	else if (it == _exchange.begin() && it->first != date)
-		it = _exchange.begin();
+	else if (it == _exchange.begin() && it->first != date) {
+		std::cout << "Error: no data available for this date." << std::endl;
+		return;
+		//it = _exchange.begin();
+	}	
 	else if (it->first != date)
 		--it;
 	double exchange_rate = it->second;
 	double result = value * exchange_rate;
 	std::cout << std::fixed << std::setprecision(1);
-	_outfile << std::fixed << std::setprecision(1);
 	std::cout << date << " => " << value << " = " << static_cast<float>(result) << std::endl;
-	_outfile << date << " => " << value << " = " << static_cast<float>(result) << std::endl;
-	_outfile.unsetf(std::ios_base::fixed);
 	std::cout.unsetf(std::ios_base::fixed);
 }
 
-static bool input_error(std::string &date, double value, std::ofstream &_outfile) {
+static bool input_error(std::string &date, double value) {
 	if (value < 0) {
 		std::cout << "Error: negative value." << std::endl;
-		_outfile << "Error: negative value." << std::endl;
 		return true;
 	}
 	else if (value > 1000) {
 		std::cout << "Error: value too high." << std::endl;
-		_outfile << "Error: value too high." << std::endl;
 		return true;
 	}
 	if (!validate_format(date) || date.empty()) {
 		std::cout << "Error: invalid date format. " << date << std::endl;
-		_outfile << "Error: invalid date format. " << date << std::endl;
 		return true;
 	}
 	return false;
@@ -111,13 +105,12 @@ void BitcoinExchange::_parseInput(void) {
 		std::string date;
 		double value;
 		if (std::getline(iss, date, '|') && iss >> value ) {
-			if (input_error(date, value, _outfile))
+			if (input_error(date, value))
 				continue;
 			writeData(date, value);
 		}
 		else if (line.size() > 0) {
 			std::cout << "Error: invalid line format." << std::endl;
-			_outfile << "Error: invalid line format." << std::endl;
 		}
 	}
 }
@@ -127,10 +120,9 @@ void BitcoinExchange::_validateFiles(void) {
 		throw std::runtime_error("BitcoinExchange: could not open input file");
 	if (!_database.is_open() || !_database.good() || _database.bad() || _database.fail())
 		throw std::runtime_error("BitcoinExchange: could not open database file");
-	if (!_outfile.is_open() || !_outfile.good() || _outfile.bad() || _outfile.fail())
-		throw std::runtime_error("BitcoinExchange: could not open output file");
 }
 
+// swap list with array... 
 bool validate_day(int year, int month, int day) {
 	std::list<int> days_per_month;
 	bool leap = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);

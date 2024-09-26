@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 19:41:03 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/25 12:53:40 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/26 12:30:54 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,10 @@
 #include <fstream>
 #include <sstream>
 #include <iterator>
-//#include <cstdlib>
-//#include <cctype>
 #include <algorithm>
 #include <map>
 #include <list>
+
 
 class BitcoinExchange {
 	public:
@@ -37,7 +36,7 @@ class BitcoinExchange {
 		std::ifstream _database;
 		std::ifstream _infile;
 		std::string _infile_name;
-		std::ofstream _outfile;
+		//std::ofstream _outfile;
 };
 
 bool validate_format(const std::string &date);
