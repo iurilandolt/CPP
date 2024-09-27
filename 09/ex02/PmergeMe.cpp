@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 16:39:57 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/27 18:36:38 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/27 18:40:49 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ PmergeMe::PmergeMe(std::vector<std::string> &args) {
 	}
 
 	std::clock_t end = std::clock();
-	// Calculate elapsed time in microseconds
 	double duration_in_seconds = static_cast<double>(end - c_start) / CLOCKS_PER_SEC;
 	double duration_in_microseconds = duration_in_seconds * 1000000;
 	std::cout << std::fixed << std::setprecision(1);
