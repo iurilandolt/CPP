@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 16:39:57 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/27 18:09:57 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/27 18:36:38 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 PmergeMe::PmergeMe() {}
 
 PmergeMe::PmergeMe(std::vector<std::string> &args) {
+	std::clock_t c_start = std::clock();
 	std::set<int> seen;
 	for (std::vector<std::string>::iterator it = args.begin(); it != args.end(); ++it) {
 		int value;
@@ -30,6 +31,16 @@ PmergeMe::PmergeMe(std::vector<std::string> &args) {
 		// else
 		// 	std::cout << "Duplicate value: " << value << std::endl;
 	}
+
+	std::clock_t end = std::clock();
+	// Calculate elapsed time in microseconds
+	double duration_in_seconds = static_cast<double>(end - c_start) / CLOCKS_PER_SEC;
+	double duration_in_microseconds = duration_in_seconds * 1000000;
+	std::cout << std::fixed << std::setprecision(1);
+	std::cout << "Time to insert elements: " << duration_in_microseconds << " microseconds" << std::endl;
+	std::cout.unsetf(std::ios_base::fixed);
+	
+	
 	std::vector<int>::iterator vit = _vector.begin();
 	std::deque<int>::iterator dit = _deque.begin();
 	std::cout << std::setw(10) << "Vector     | Deque" << std::endl;
@@ -54,3 +65,14 @@ PmergeMe &PmergeMe::operator=(PmergeMe const &src) {
 	}
 	return *this;
 }
+
+
+/*
+to add:
+insert to vector, print nbr of elements time to finish
+insert to deque, print nbr of elements time to finish
+removed duplicates from vector, print time to finish // use vectir instead of set?
+removed duplicates from deque, print time to finish // use deque instead of set?
+sort vector, print time to finish
+sort deque, print time to finish
+*/
