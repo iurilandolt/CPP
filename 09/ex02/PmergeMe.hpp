@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RPN.hpp                                            :+:      :+:    :+:   */
+/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/25 16:19:58 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/27 18:11:16 by rlandolt         ###   ########.fr       */
+/*   Created: 2024/09/27 16:39:48 by rlandolt          #+#    #+#             */
+/*   Updated: 2024/09/27 18:05:36 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RPN_HPP
-# define RPN_HPP
+#ifndef PMERGEME_HPP
+# define PMERGEME_HPP
 
 #include <iostream>
-#include <iomanip>
 #include <sstream>
-#include <stack>
-#include <cstdlib>
+#include <limits>
+#include <iomanip>
+#include <vector>
+#include <deque>
+#include <set>
 
-class RPN {
+class PmergeMe {
 	public:
-		RPN(std::string const & str);
-		RPN(RPN const & src);
-		~RPN();
-		RPN & operator=(RPN const & rhs);
+		PmergeMe(std::vector<std::string> &args);
+		PmergeMe(PmergeMe const &src);
+		~PmergeMe();
+		PmergeMe & operator=(PmergeMe const &src);
 	private:
-		RPN();
-		std::stack<int> _digits; // stack should use a list
+		PmergeMe();
+		std::vector<int> _vector;
+		std::deque<int> _deque;
 };
 
 #endif

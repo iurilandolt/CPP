@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RPN.hpp                                            :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/25 16:19:58 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/27 18:11:16 by rlandolt         ###   ########.fr       */
+/*   Created: 2024/09/27 16:39:37 by rlandolt          #+#    #+#             */
+/*   Updated: 2024/09/27 17:50:17 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RPN_HPP
-# define RPN_HPP
+#include "PmergeMe.hpp"
 
-#include <iostream>
-#include <iomanip>
-#include <sstream>
-#include <stack>
-#include <cstdlib>
-
-class RPN {
-	public:
-		RPN(std::string const & str);
-		RPN(RPN const & src);
-		~RPN();
-		RPN & operator=(RPN const & rhs);
-	private:
-		RPN();
-		std::stack<int> _digits; // stack should use a list
-};
-
-#endif
+int main(int argc, char **argv) {
+	if (argc < 3) {
+		std::cerr << "Usage: " << argv[0] << " 5 4 3 2 1" << std::endl;
+		return 1;
+	}
+	try {
+		
+		std::vector<std::string> args(argv + 1, argv + argc);
+		PmergeMe p(args);
+	} catch (std::exception &e) {
+		std::cerr << e.what() << std::endl;
+	}
+	return 0;
+}

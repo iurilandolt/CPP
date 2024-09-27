@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 19:40:54 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/26 12:31:16 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/27 16:32:09 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,9 +122,8 @@ void BitcoinExchange::_validateFiles(void) {
 		throw std::runtime_error("BitcoinExchange: could not open database file");
 }
 
-// swap list with array... 
 bool validate_day(int year, int month, int day) {
-	std::list<int> days_per_month;
+	std::list<int> days_per_month; // must be an array
 	bool leap = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
 	for (int i = 1; i <= 12; i++) {
 		if (i == 2) {

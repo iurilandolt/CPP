@@ -6,19 +6,18 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 16:19:49 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/26 15:42:53 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/27 16:31:40 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 
-RPN::RPN() {}
 
 static bool is_operator(char c) {
 	return (c == '+' || c == '-' || c == '*' || c == '/');
 }
 
-int apply_operator(int a, int b, char op) {
+static int apply_operator(int a, int b, char op) {
 	switch (op) {
 	case '+':
 		return a + b;
@@ -35,13 +34,17 @@ int apply_operator(int a, int b, char op) {
 	}
 }
 
+RPN::RPN() {}
+
 RPN::RPN(std::string const & str) {
 	std::istringstream iss(str);
 	std::string token;
 	int a, b;
 	while (iss >> token) {
+		// if (token.size() > 1)
+		// handle only single digit numbers
 		if (std::isdigit(token[0])) {
-			_digits.push(std::atoi(token.c_str()));
+			_digits.push(std::atoi(token.c_str())); // use iss >> to int var instead
 		} else if (is_operator(token[0])) {
 			if (_digits.size() < 2)
 				throw std::invalid_argument("Invalid expression");
