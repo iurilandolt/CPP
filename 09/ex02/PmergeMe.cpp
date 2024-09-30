@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 16:39:57 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/28 21:24:44 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/30 14:38:23 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,18 +65,30 @@ void PmergeMe::insertTimer(T1 func, T2 &container, std::vector<std::string> &arg
 	std::cout.unsetf(std::ios_base::fixed);
 }
 
+// template <typename T>
+// static void insertionSort(T &container) {
+// 	typename T::iterator it, jt;
+// 	typename std::iterator_traits<typename T::iterator>::value_type key;
+// 	for (it = container.begin(); it != container.end(); ++it) {
+// 		key = *it;
+// 		jt = it;
+// 		while (jt != container.begin() && *(jt - 1) > key) {
+// 			*jt = *(jt - 1); // Shift the element right
+// 			--jt;
+// 		}
+// 		*jt = key; // Insert key at correct position
+// 	}
+// }
+
 template <typename T>
 static void insertionSort(T &container) {
-	typename T::iterator it, jt;
+	typename T::iterator it;
 	typename std::iterator_traits<typename T::iterator>::value_type key;
-	for (it = container.begin(); it != container.end(); ++it) {
+	for (it = container.begin() + 1; it != container.end(); ++it) {
 		key = *it;
-		jt = it;
-		while (jt != container.begin() && *(jt - 1) > key) {
-			*jt = *(jt - 1); // Shift the element right
-			--jt;
-		}
-		*jt = key; // Insert key at correct position
+		typename T::iterator pos = std::lower_bound(container.begin(), it, key);
+		std::copy_backward(pos, it, it + 1);
+		*pos = key;
 	}
 }
 
@@ -94,25 +106,33 @@ static void mergeSort(T &container) {
 
 template <typename T>
 static void fordJohnson(T &container) {
-	int runSize = 16; // Threshold for run size for insertion sort
 	int n = container.size();
-	// Step 1: Sort runs using insertion sort
-	for (int i = 0; i < n; i += runSize) {
-		int right = std::min(i + runSize, n);
-		T temp(container.begin() + i, container.begin() + right);	// Create a local container for the run
-		insertionSort(temp);										// Sort the run
-		std::copy(temp.begin(), temp.end(), container.begin() + i); // Copy sorted elements back
-	}
-	// Step 2: Merge the sorted runs
-	for (int size = runSize; size < n; size *= 2) {
-		for (int left = 0; left < n; left += 2 * size) {
-			int mid = std::min(left + size, n);
-			int right = std::min(left + 2 * size, n);
-			std::merge(container.begin() + left, container.begin() + mid,
-					   container.begin() + mid, container.begin() + right,
-					   container.begin() + left);
+	if (n <= 1)
+		return;
+	T larger;
+	T smaller;
+	typename T::iterator it = container.begin();
+	while (it != container.end()) {
+		if (std::distance(it, container.end()) > 1) {
+			if (*it < *(it + 1)) {
+				smaller.push_back(*it);
+				larger.push_back(*(it + 1));
+			}
+			else {
+				smaller.push_back(*(it + 1));
+				larger.push_back(*it);
+			}
+			std::advance(it, 2);
+		} // there is an odd number of elements
+		else {
+			smaller.push_back(*it);
+			++it;
 		}
 	}
+	fordJohnson(larger);
+	insertionSort(smaller);
+	T merged(smaller.begin(), smaller.end());
+	std::merge(smaller.begin(), smaller.end(), larger.begin(), larger.end(), container.begin());
 }
 
 template <typename T>
