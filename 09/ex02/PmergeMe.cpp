@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 16:39:57 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/30 15:00:29 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/30 16:01:50 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ PmergeMe::PmergeMe(std::vector<std::string> &args) {
 		throw std::invalid_argument("Not enough arguments");
 	insertTimer(&PmergeMe::insertElements<std::vector<int> >, _vector, args, "Vector");
 	insertTimer(&PmergeMe::insertElements<std::deque<int> >, _deque, args, "Deque");
-	sortTimer(&PmergeMe::sort<std::vector<int> >, _vector, "Vector");
-	sortTimer(&PmergeMe::sort<std::deque<int> >, _deque, "Deque");
+	sortTimer(&PmergeMe::sortVec, _vector, "Vector");
+	sortTimer(&PmergeMe::sortDeq, _deque, "Deque");
 	printContainer(_vector, _deque);
 }
 
@@ -111,14 +111,13 @@ static void mergeSort(T &container) {
 	std::merge(left.begin(), left.end(), right.begin(), right.end(), container.begin());
 }
 
-template <typename T>
-static void fordJohnson(T &container) {
+void fordJohnsonVector(std::vector<int> &container) {
 	int n = container.size();
 	if (n <= 1)
 		return;
-	T larger;
-	T smaller;
-	typename T::iterator it = container.begin();
+	std::vector<int> larger;
+	std::vector<int> smaller;
+	std::vector<int> ::iterator it = container.begin();
 	while (it != container.end()) {
 		if (std::distance(it, container.end()) > 1) {
 			if (*it < *(it + 1)) {
@@ -136,17 +135,53 @@ static void fordJohnson(T &container) {
 			++it;
 		}
 	}
-	fordJohnson(larger);
+	fordJohnsonVector(larger);
 	insertionSort(smaller);
-	T merged(smaller.begin(), smaller.end());
+	std::vector<int>  merged(smaller.begin(), smaller.end());
 	std::merge(smaller.begin(), smaller.end(), larger.begin(), larger.end(), container.begin());
 }
 
-template <typename T>
-void PmergeMe::sort(T &container) {
+void fordJohnsonDeque(std::deque<int> &container) {
+	int n = container.size();
+	if (n <= 1)
+		return;
+	std::deque<int> larger;
+	std::deque<int> smaller;
+	std::deque<int> ::iterator it = container.begin();
+	while (it != container.end()) {
+		if (std::distance(it, container.end()) > 1) {
+			if (*it < *(it + 1)) {
+				smaller.push_back(*it);
+				larger.push_back(*(it + 1));
+			}
+			else {
+				smaller.push_back(*(it + 1));
+				larger.push_back(*it);
+			}
+			std::advance(it, 2);
+		} // there is an odd number of elements
+		else {
+			smaller.push_back(*it);
+			++it;
+		}
+	}
+	fordJohnsonDeque(larger);
+	insertionSort(smaller);
+	container.clear();
+	container.insert(container.end(), smaller.begin(), smaller.end());
+	container.insert(container.end(), larger.begin(), larger.end());
+}
+
+void PmergeMe::sortVec(std::vector<int> &container) {
 	//insertionSort(container);
 	//mergeSort(container);
-	fordJohnson(container);
+	fordJohnsonVector(container);
+}
+
+void PmergeMe::sortDeq(std::deque<int> &container) {
+	//insertionSort(container);
+	//mergeSort(container);
+	fordJohnsonDeque(container);
 }
 
 template <typename T1, typename T2>
@@ -173,6 +208,36 @@ void printContainer(std::vector<int> &v, std::deque<int> &d) {
 	}
 }
 
+// template <typename T>
+// static void fordJohnson(T &container) {
+// 	int n = container.size();
+// 	if (n <= 1)
+// 		return;
+// 	T larger;
+// 	T smaller;
+// 	typename T::iterator it = container.begin();
+// 	while (it != container.end()) {
+// 		if (std::distance(it, container.end()) > 1) {
+// 			if (*it < *(it + 1)) {
+// 				smaller.push_back(*it);
+// 				larger.push_back(*(it + 1));
+// 			}
+// 			else {
+// 				smaller.push_back(*(it + 1));
+// 				larger.push_back(*it);
+// 			}
+// 			std::advance(it, 2);
+// 		} // there is an odd number of elements
+// 		else {
+// 			smaller.push_back(*it);
+// 			++it;
+// 		}
+// 	}
+// 	fordJohnson(larger);
+// 	insertionSort(smaller);
+// 	T merged(smaller.begin(), smaller.end());
+// 	std::merge(smaller.begin(), smaller.end(), larger.begin(), larger.end(), container.begin());
+// }
 
 // template <typename T>
 // static void insertionSort(T &container) {
