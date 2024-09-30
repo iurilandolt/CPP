@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 16:39:57 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/30 14:38:23 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/30 15:00:29 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,30 +65,37 @@ void PmergeMe::insertTimer(T1 func, T2 &container, std::vector<std::string> &arg
 	std::cout.unsetf(std::ios_base::fixed);
 }
 
-// template <typename T>
-// static void insertionSort(T &container) {
-// 	typename T::iterator it, jt;
-// 	typename std::iterator_traits<typename T::iterator>::value_type key;
-// 	for (it = container.begin(); it != container.end(); ++it) {
-// 		key = *it;
-// 		jt = it;
-// 		while (jt != container.begin() && *(jt - 1) > key) {
-// 			*jt = *(jt - 1); // Shift the element right
-// 			--jt;
-// 		}
-// 		*jt = key; // Insert key at correct position
-// 	}
-// }
+template <typename T>
+static T genJacob(T container, int nbr) {
+	T temp;
+	temp.push_back(0);
+	temp.push_back(1);
+	for (int i = 2; i < nbr; ++i) {
+		int next = temp[i - 1] * 2 + temp[i - 2];
+		temp.push_back(next);
+	}
+	(void)container;
+	return temp;
+}
 
 template <typename T>
 static void insertionSort(T &container) {
-	typename T::iterator it;
+	typename T::iterator it, jt;
 	typename std::iterator_traits<typename T::iterator>::value_type key;
-	for (it = container.begin() + 1; it != container.end(); ++it) {
+	T temp = genJacob(container, container.size());
+	for (it = container.begin(); it != container.end(); ++it) {
 		key = *it;
-		typename T::iterator pos = std::lower_bound(container.begin(), it, key);
-		std::copy_backward(pos, it, it + 1);
-		*pos = key;
+		jt = it;
+		for (int j = temp.size() - 1; j >= 0; --j) {
+			if (temp[j] < std::distance(container.begin(), it)) {
+				while (jt != container.begin() && *(jt - 1) > key) {
+					*jt = *(jt - 1); // Shift the element right
+					--jt;
+				}
+				*jt = key; // Insert key at correct position
+				break;
+			}
+		}
 	}
 }
 
@@ -165,6 +172,34 @@ void printContainer(std::vector<int> &v, std::deque<int> &d) {
 		++dit;
 	}
 }
+
+
+// template <typename T>
+// static void insertionSort(T &container) {
+// 	typename T::iterator it, jt;
+// 	typename std::iterator_traits<typename T::iterator>::value_type key;
+// 	for (it = container.begin(); it != container.end(); ++it) {
+// 		key = *it;
+// 		jt = it;
+// 		while (jt != container.begin() && *(jt - 1) > key) {
+// 			*jt = *(jt - 1); // Shift the element right
+// 			--jt;
+// 		}
+// 		*jt = key; // Insert key at correct position
+// 	}
+// }
+
+// template <typename T>
+// static void insertionSort(T &container) {
+// 	typename T::iterator it;
+// 	typename std::iterator_traits<typename T::iterator>::value_type key;
+// 	for (it = container.begin() + 1; it != container.end(); ++it) {
+// 		key = *it;
+// 		typename T::iterator pos = std::lower_bound(container.begin(), it, key);
+// 		std::copy_backward(pos, it, it + 1);
+// 		*pos = key;
+// 	}
+// }
 
 // template <typename T>
 // static void ft_merge(T &container, typename T::iterator left, typename T::iterator mid, typename T::iterator right) {
