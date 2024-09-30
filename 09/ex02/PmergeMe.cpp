@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 16:39:57 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/30 16:01:50 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/30 23:21:05 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ static T genJacob(T container, int nbr) {
 	temp.push_back(0);
 	temp.push_back(1);
 	for (int i = 2; i < nbr; ++i) {
-		int next = temp[i - 1] * 2 + temp[i - 2];
-		temp.push_back(next);
+		int next = temp[i - 1] * 2 + temp[i - 2]; // recheck this formula?
+		temp.push_back(next); // what is the max value of the jacobshtal sequence?
 	}
 	(void)container;
 	return temp;
@@ -90,7 +90,7 @@ static void insertionSort(T &container) {
 			if (temp[j] < std::distance(container.begin(), it)) {
 				while (jt != container.begin() && *(jt - 1) > key) {
 					*jt = *(jt - 1); // Shift the element right
-					--jt;
+					std::advance(jt, -1);
 				}
 				*jt = key; // Insert key at correct position
 				break;
@@ -100,7 +100,8 @@ static void insertionSort(T &container) {
 }
 
 template <typename T>
-static void mergeSort(T &container) {
+static void mergeSort(T &container)
+{
 	if (container.size() <= 1)
 		return;
 	typename T::iterator mid = container.begin() + container.size() / 2;
@@ -115,61 +116,58 @@ void fordJohnsonVector(std::vector<int> &container) {
 	int n = container.size();
 	if (n <= 1)
 		return;
-	std::vector<int> larger;
-	std::vector<int> smaller;
+	std::vector<int> left;
+	std::vector<int> right;
 	std::vector<int> ::iterator it = container.begin();
 	while (it != container.end()) {
 		if (std::distance(it, container.end()) > 1) {
 			if (*it < *(it + 1)) {
-				smaller.push_back(*it);
-				larger.push_back(*(it + 1));
+				right.push_back(*it);
+				left.push_back(*(it + 1));
 			}
 			else {
-				smaller.push_back(*(it + 1));
-				larger.push_back(*it);
+				right.push_back(*(it + 1));
+				left.push_back(*it);
 			}
 			std::advance(it, 2);
 		} // there is an odd number of elements
 		else {
-			smaller.push_back(*it);
+			right.push_back(*it);
 			++it;
 		}
 	}
-	fordJohnsonVector(larger);
-	insertionSort(smaller);
-	std::vector<int>  merged(smaller.begin(), smaller.end());
-	std::merge(smaller.begin(), smaller.end(), larger.begin(), larger.end(), container.begin());
+	fordJohnsonVector(left);
+	insertionSort(right);
+	std::merge(right.begin(), right.end(), left.begin(), left.end(), container.begin());
 }
 
 void fordJohnsonDeque(std::deque<int> &container) {
 	int n = container.size();
 	if (n <= 1)
 		return;
-	std::deque<int> larger;
-	std::deque<int> smaller;
+	std::deque<int> left;
+	std::deque<int> right;
 	std::deque<int> ::iterator it = container.begin();
 	while (it != container.end()) {
 		if (std::distance(it, container.end()) > 1) {
 			if (*it < *(it + 1)) {
-				smaller.push_back(*it);
-				larger.push_back(*(it + 1));
+				right.push_back(*it);
+				left.push_back(*(it + 1));
 			}
 			else {
-				smaller.push_back(*(it + 1));
-				larger.push_back(*it);
+				right.push_back(*(it + 1));
+				left.push_back(*it);
 			}
 			std::advance(it, 2);
 		} // there is an odd number of elements
 		else {
-			smaller.push_back(*it);
+			right.push_back(*it);
 			++it;
 		}
 	}
-	fordJohnsonDeque(larger);
-	insertionSort(smaller);
-	container.clear();
-	container.insert(container.end(), smaller.begin(), smaller.end());
-	container.insert(container.end(), larger.begin(), larger.end());
+	fordJohnsonDeque(left);
+	insertionSort(right);
+	std::merge(right.begin(), right.end(), left.begin(), left.end(), container.begin());
 }
 
 void PmergeMe::sortVec(std::vector<int> &container) {
@@ -203,8 +201,8 @@ void printContainer(std::vector<int> &v, std::deque<int> &d) {
 	while (vit != v.end() && dit != d.end()) {
 		std::cout << std::left << std::setw(10) << *vit
 				  << " | " << std::right << std::setw(10) << *dit << std::endl;
-		++vit;
-		++dit;
+		std::advance(vit, 1);
+		std::advance(dit, 1);
 	}
 }
 
@@ -248,7 +246,7 @@ void printContainer(std::vector<int> &v, std::deque<int> &d) {
 // 		jt = it;
 // 		while (jt != container.begin() && *(jt - 1) > key) {
 // 			*jt = *(jt - 1); // Shift the element right
-// 			--jt;
+// 			std::advance(jt, -1);
 // 		}
 // 		*jt = key; // Insert key at correct position
 // 	}
@@ -274,11 +272,11 @@ void printContainer(std::vector<int> &v, std::deque<int> &d) {
 // 	while (i != mid && j != right) {
 // 		if (*i <= *j) {
 // 			temp.push_back(*i);
-// 			++i;
+//			std::advance(i, 1);
 // 		}
 // 		else {
 // 			temp.push_back(*j);
-// 			++j;
+// 			std::advance(j, 1);
 // 		}
 // 	}
 // 	temp.insert(temp.end(), i, mid);
