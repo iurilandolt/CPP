@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 16:39:57 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/30 23:21:05 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/09/30 23:44:39 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,11 @@ static T genJacob(T container, int nbr) {
 	temp.push_back(0);
 	temp.push_back(1);
 	for (int i = 2; i < nbr; ++i) {
-		int next = temp[i - 1] * 2 + temp[i - 2]; // recheck this formula?
-		temp.push_back(next); // what is the max value of the jacobshtal sequence?
+		//int next = temp[i - 1] * 2 + temp[i - 2];
+		int next = temp[i - 1] + 2 * temp[i - 2];
+		if (next < 0 || next > std::numeric_limits<int>::max())
+			break;
+		temp.push_back(next);
 	}
 	(void)container;
 	return temp;

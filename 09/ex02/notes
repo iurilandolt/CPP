@@ -1,0 +1,75 @@
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <iterator>
+#include <limits>
+
+// Generate Jacobsthal sequence
+template <typename T>
+static std::vector<int> genJacob(int nbr) {
+    std::vector<int> temp;
+    temp.push_back(0);
+    temp.push_back(1);
+    for (int i = 2; i < nbr; ++i) {
+        int next = temp[i - 1] + 2 * temp[i - 2];
+        if (next > std::numeric_limits<int>::max()) {
+            std::cerr << "Warning: Jacobsthal sequence value overflow at index " << i << std::endl;
+            break;
+        }
+        temp.push_back(next);
+    }
+    return temp;
+}
+
+// Binary search to find the correct insertion point
+template <typename T>
+typename T::iterator binarySearch(T &container, typename T::iterator begin, typename T::iterator end, const typename T::value_type &key) {
+    typename T::iterator low = begin;
+    typename T::iterator high = end;
+
+    while (low < high) {
+        typename T::iterator mid = low + std::distance(low, high) / 2;
+        if (key < *mid) {
+            high = mid;
+        } else {
+            low = mid + 1;
+        }
+    }
+    return low;
+}
+
+// Insertion sort using Jacobsthal sequence and binary search
+template <typename T>
+static void insertionSort(T &container) {
+    typename T::iterator it, jt;
+    typename std::iterator_traits<typename T::iterator>::value_type key;
+    std::vector<int> temp = genJacob(container.size()); // Use Jacobsthal sequence
+
+    for (it = container.begin(); it != container.end(); ++it) {
+        key = *it;
+        jt = it;
+
+        for (int j = temp.size() - 1; j >= 0; --j) {
+            if (temp[j] < std::distance(container.begin(), it)) {
+                typename T::iterator pos = binarySearch(container, container.begin(), jt, key);
+                while (jt != pos) {
+                    *jt = *(jt - 1); // Shift the element right
+                    std::advance(jt, -1);
+                }
+                *jt = key; // Insert key at correct position
+                break;
+            }
+        }
+    }
+}
+
+int main() {
+    std::vector<int> container = {5, 2, 9, 1, 5, 6};
+    insertionSort(container);
+
+    for (int num : container) {
+        std::cout << num << " ";
+    }
+
+    return 0;
+}
