@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 16:39:57 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/10/01 12:16:54 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/10/01 13:37:42 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,14 @@ static void insertionSort(T &container) {
 	typename T::iterator it, jt;
 	typename std::iterator_traits<typename T::iterator>::value_type key;
 	T temp = genJacob(container, container.size());
+	// iter every element in container
 	for (it = container.begin(); it != container.end(); ++it) {
-		key = *it;
-		jt = it;
-		for (int j = temp.size() - 1; j >= 0; --j) {
-			if (temp[j] < std::distance(container.begin(), it)) {
-				while (jt != container.begin() && *(jt - 1) > key) {
-					*jt = *(jt - 1); // Shift the element right
+		key = *it; // set key to current element
+		jt = it; // initialize jt to element to be shifted
+		for (int j = temp.size() - 1; j >= 0; --j) { // reverse iter jacobsthal sequence
+			if (temp[j] < std::distance(container.begin(), it)) { // if jacobsthal number is less than distance from begin to it
+				while (jt != container.begin() && *(jt - 1) > key) { // while jt is not at begin and previous element is greater than key decrement jt 
+					*jt = *(jt - 1); // jt is equal to previous element (shift right)
 					std::advance(jt, -1);
 				}
 				*jt = key; // Insert key at correct position
@@ -110,14 +111,14 @@ void PmergeMe::fordJohnson(T &container) {
 	T right;
 	typename T::iterator it = container.begin();
 	while (it != container.end()) {
-		if (std::distance(it, container.end()) > 1) {
-			if (*it < *(it + 1)) {
-				right.push_back(*it);
-				left.push_back(*(it + 1));
+		if (std::distance(it, container.end()) > 1) { // if there are at least 2 elements left
+			if (*it < *(it + 1)) { // if lhs is less than rhs
+				right.push_back(*it); // push lhs to right
+				left.push_back(*(it + 1)); // push rhs to left
 			}
-			else {
-				right.push_back(*(it + 1));
-				left.push_back(*it);
+			else { // if lhs is greater than rhs
+				right.push_back(*(it + 1)); // push rhs to right
+				left.push_back(*it);  // push lhs to left
 			}
 			std::advance(it, 2);
 		} // there is an odd number of elements
@@ -126,8 +127,8 @@ void PmergeMe::fordJohnson(T &container) {
 			++it;
 		}
 	}
-	fordJohnson(left);
-	insertionSort(right);
+	fordJohnson(left); // recurse on left
+	insertionSort(right); // sort right
 	T merged(right.begin(), right.end());
 	std::merge(right.begin(), right.end(), left.begin(), left.end(), container.begin());
 }
