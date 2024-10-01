@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 16:39:57 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/10/01 13:37:42 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/10/01 14:17:44 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,44 +64,6 @@ void PmergeMe::insertTimer(T1 func, T2 &container, std::vector<std::string> &arg
 	printTime(c_start, c_end, type, "insert", container.size());
 }
 
-// recurrence relation: [ J(n) = J(n-1) + 2 \cdot J(n-2) ] with initial conditions : [J(0) = 0][J(1) = 1]
-template <typename T>
-static T genJacob(T container, int nbr) {
-	T temp;
-	temp.push_back(0);
-	temp.push_back(1);
-	for (int i = 2; i < nbr; ++i) {
-		int next = temp[i - 1] + 2 * temp[i - 2];
-		if (next < 0 || next > std::numeric_limits<int>::max())
-			break;
-		temp.push_back(next);
-	}
-	(void)container;
-	return temp;
-}
-
-template <typename T>
-static void insertionSort(T &container) {
-	typename T::iterator it, jt;
-	typename std::iterator_traits<typename T::iterator>::value_type key;
-	T temp = genJacob(container, container.size());
-	// iter every element in container
-	for (it = container.begin(); it != container.end(); ++it) {
-		key = *it; // set key to current element
-		jt = it; // initialize jt to element to be shifted
-		for (int j = temp.size() - 1; j >= 0; --j) { // reverse iter jacobsthal sequence
-			if (temp[j] < std::distance(container.begin(), it)) { // if jacobsthal number is less than distance from begin to it
-				while (jt != container.begin() && *(jt - 1) > key) { // while jt is not at begin and previous element is greater than key decrement jt 
-					*jt = *(jt - 1); // jt is equal to previous element (shift right)
-					std::advance(jt, -1);
-				}
-				*jt = key; // Insert key at correct position
-				break;
-			}
-		}
-	}
-}
-
 template <typename T>
 void PmergeMe::fordJohnson(T &container) {
 	int n = container.size();
@@ -111,26 +73,28 @@ void PmergeMe::fordJohnson(T &container) {
 	T right;
 	typename T::iterator it = container.begin();
 	while (it != container.end()) {
-		if (std::distance(it, container.end()) > 1) { // if there are at least 2 elements left
-			if (*it < *(it + 1)) { // if lhs is less than rhs
-				right.push_back(*it); // push lhs to right
-				left.push_back(*(it + 1)); // push rhs to left
+		if (std::distance(it, container.end()) > 1) {
+			if (*it < *(it + 1)) {
+				right.push_back(*it);
+				left.push_back(*(it + 1));
 			}
-			else { // if lhs is greater than rhs
-				right.push_back(*(it + 1)); // push rhs to right
-				left.push_back(*it);  // push lhs to left
+			else {
+				right.push_back(*(it + 1));
+				left.push_back(*it);
 			}
 			std::advance(it, 2);
-		} // there is an odd number of elements
-		else {
+		}
+		else { 
 			right.push_back(*it);
 			++it;
 		}
 	}
-	fordJohnson(left); // recurse on left
-	insertionSort(right); // sort right
-	T merged(right.begin(), right.end());
-	std::merge(right.begin(), right.end(), left.begin(), left.end(), container.begin());
+	fordJohnson(left);
+	for (typename T::iterator jit = right.begin(); jit != right.end(); ++jit) {
+		typename T::iterator pos = std::lower_bound(left.begin(), left.end(), *jit);
+		left.insert(pos, *jit);
+	}
+	std::copy(left.begin(), left.end(), container.begin());
 }
 
 template <typename T1, typename T2>
@@ -162,144 +126,61 @@ void printTime(std::clock_t c_start, std::clock_t c_end, std::string type, std::
 	std::cout.unsetf(std::ios_base::fixed);
 }
 
-// template <typename T>
-// static void mergeSort(T &container) {
-// 	if (container.size() <= 1)
-// 		return;
-// 	typename T::iterator mid = container.begin() + container.size() / 2;
-// 	T left(container.begin(), mid);
-// 	T right(mid, container.end());
-// 	mergeSort(left);
-// 	mergeSort(right);
-// 	std::merge(left.begin(), left.end(), right.begin(), right.end(), container.begin());
-// }
+/* */
 
-// template <typename T>
-// static void insertionSort(T &container) {
-// 	typename T::iterator it, jt;
-// 	typename std::iterator_traits<typename T::iterator>::value_type key;
-// 	for (it = container.begin(); it != container.end(); ++it) {
-// 		key = *it;
-// 		jt = it;
-// 		while (jt != container.begin() && *(jt - 1) > key) {
-// 			*jt = *(jt - 1); // Shift the element right
-// 			std::advance(jt, -1);
-// 		}
-// 		*jt = key; // Insert key at correct position
-// 	}
-// }
+template <typename T>
+static void mergeSort(T &container) {
+	if (container.size() <= 1)
+		return;
+	typename T::iterator mid = container.begin() + container.size() / 2;
+	T left(container.begin(), mid);
+	T right(mid, container.end());
+	mergeSort(left);
+	mergeSort(right);
+	std::merge(left.begin(), left.end(), right.begin(), right.end(), container.begin());
+}
 
-// template <typename T>
-// static void insertionSort(T &container) {
-// 	typename T::iterator it;
-// 	typename std::iterator_traits<typename T::iterator>::value_type key;
-// 	for (it = container.begin() + 1; it != container.end(); ++it) {
-// 		key = *it;
-// 		typename T::iterator pos = std::lower_bound(container.begin(), it, key);
-// 		std::copy_backward(pos, it, it + 1);
-// 		*pos = key;
-// 	}
-// }
+// recurrence relation: [ J(n) = J(n-1) + 2 \cdot J(n-2) ] with initial conditions : [J(0) = 0][J(1) = 1]
+template <typename T>
+static T genJacob(T container, int nbr)
+{
+	T temp;
+	temp.push_back(0);
+	temp.push_back(1);
+	for (int i = 2; i < nbr; ++i)
+	{
+		int next = temp[i - 1] + 2 * temp[i - 2];
+		if (next < 0 || next > std::numeric_limits<int>::max())
+			break;
+		temp.push_back(next);
+	}
+	(void)container;
+	return temp;
+}
 
-// template <typename T>
-// static void ft_merge(T &container, typename T::iterator left, typename T::iterator mid, typename T::iterator right) {
-// 	T temp;
-// 	typename T::iterator i = left;
-// 	typename T::iterator j = mid;
-// 	while (i != mid && j != right) {
-// 		if (*i <= *j) {
-// 			temp.push_back(*i);
-//			std::advance(i, 1);
-// 		}
-// 		else {
-// 			temp.push_back(*j);
-// 			std::advance(j, 1);
-// 		}
-// 	}
-// 	temp.insert(temp.end(), i, mid);
-// 	temp.insert(temp.end(), j, right);
-// 	std::copy(temp.begin(), temp.end(), left);
-// 	(void)container;
-// }
-
-// template <typename T>
-// void mergeSort(T &container, typename T::iterator left, typename T::iterator right) {
-// 	if (std::distance(left, right) > 1) {
-// 		typename T::iterator mid = left;
-// 		std::advance(mid, std::distance(left, right) / 2);
-// 		mergeSort(container, left, mid);
-// 		mergeSort(container, mid, right);
-// 		ft_merge(container, left, mid, right);
-// 		//std::merge(left, mid, mid, right, left);
-// 	}
-// }
-
-// void PmergeMe::fordJohnsonVector(std::vector<int> &container)
-// {
-// 	int n = container.size();
-// 	if (n <= 1)
-// 		return;
-// 	std::vector<int> left;
-// 	std::vector<int> right;
-// 	std::vector<int>::iterator it = container.begin();
-// 	while (it != container.end())
-// 	{
-// 		if (std::distance(it, container.end()) > 1)
-// 		{
-// 			if (*it < *(it + 1))
-// 			{
-// 				right.push_back(*it);
-// 				left.push_back(*(it + 1));
-// 			}
-// 			else
-// 			{
-// 				right.push_back(*(it + 1));
-// 				left.push_back(*it);
-// 			}
-// 			std::advance(it, 2);
-// 		} // there is an odd number of elements
-// 		else
-// 		{
-// 			right.push_back(*it);
-// 			++it;
-// 		}
-// 	}
-// 	fordJohnsonVector(left);
-// 	insertionSort(right);
-// 	std::merge(right.begin(), right.end(), left.begin(), left.end(), container.begin());
-// }
-
-// void PmergeMe::fordJohnsonDeque(std::deque<int> &container)
-// {
-// 	int n = container.size();
-// 	if (n <= 1)
-// 		return;
-// 	std::deque<int> left;
-// 	std::deque<int> right;
-// 	std::deque<int>::iterator it = container.begin();
-// 	while (it != container.end())
-// 	{
-// 		if (std::distance(it, container.end()) > 1)
-// 		{
-// 			if (*it < *(it + 1))
-// 			{
-// 				right.push_back(*it);
-// 				left.push_back(*(it + 1));
-// 			}
-// 			else
-// 			{
-// 				right.push_back(*(it + 1));
-// 				left.push_back(*it);
-// 			}
-// 			std::advance(it, 2);
-// 		} // there is an odd number of elements
-// 		else
-// 		{
-// 			right.push_back(*it);
-// 			++it;
-// 		}
-// 	}
-// 	fordJohnsonDeque(left);
-// 	insertionSort(right);
-// 	std::merge(right.begin(), right.end(), left.begin(), left.end(), container.begin());
-// }
+template <typename T>
+static void insertionSort(T &container)
+{
+	typename T::iterator it, jt;
+	typename std::iterator_traits<typename T::iterator>::value_type key;
+	T temp = genJacob(container, container.size());
+	// iter every element in container
+	for (it = container.begin(); it != container.end(); ++it)
+	{
+		key = *it; // set key to current element
+		jt = it;   // initialize jt to element to be shifted
+		for (int j = temp.size() - 1; j >= 0; --j)
+		{ // reverse iter jacobsthal sequence
+			if (temp[j] < std::distance(container.begin(), it))
+			{ // if jacobsthal number is less than distance from begin to it
+				while (jt != container.begin() && *(jt - 1) > key)
+				{					 // while jt is not at begin and previous element is greater than key decrement jt
+					*jt = *(jt - 1); // jt is equal to previous element (shift right)
+					std::advance(jt, -1);
+				}
+				*jt = key; // Insert key at correct position
+				break;
+			}
+		}
+	}
+}
