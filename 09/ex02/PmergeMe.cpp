@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 16:39:57 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/10/01 14:17:44 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/10/01 14:24:06 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,27 +74,27 @@ void PmergeMe::fordJohnson(T &container) {
 	typename T::iterator it = container.begin();
 	while (it != container.end()) {
 		if (std::distance(it, container.end()) > 1) {
-			if (*it < *(it + 1)) {
-				right.push_back(*it);
-				left.push_back(*(it + 1));
+			if (*it < *(it + 1)) { // if first element is less than second
+				right.push_back(*it); // push smaller element to right
+				left.push_back(*(it + 1)); // push larger element to left
 			}
-			else {
-				right.push_back(*(it + 1));
-				left.push_back(*it);
+			else { // if first element is greater than second
+				right.push_back(*(it + 1)); // push smaller element to right
+				left.push_back(*it); // push larger element to left
 			}
 			std::advance(it, 2);
 		}
-		else { 
-			right.push_back(*it);
+		else {  // if only one element left push it to right
+			right.push_back(*it); 
 			++it;
 		}
 	}
-	fordJohnson(left);
-	for (typename T::iterator jit = right.begin(); jit != right.end(); ++jit) {
-		typename T::iterator pos = std::lower_bound(left.begin(), left.end(), *jit);
-		left.insert(pos, *jit);
+	fordJohnson(left); // recursivelly keep dividing left into smaller until we only have pairs
+	for (typename T::iterator jit = right.begin(); jit != right.end(); ++jit) { // for each element in right
+		typename T::iterator pos = std::lower_bound(left.begin(), left.end(), *jit); // find position in left where element should be inserted using binary search
+		left.insert(pos, *jit); // insert element in left at position
 	}
-	std::copy(left.begin(), left.end(), container.begin());
+	std::copy(left.begin(), left.end(), container.begin()); // copy left to container
 }
 
 template <typename T1, typename T2>
