@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 16:39:57 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/10/01 14:24:06 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/10/01 14:41:39 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void PmergeMe::fordJohnson(T &container) {
 	for (typename T::iterator jit = right.begin(); jit != right.end(); ++jit) { // for each element in right
 		typename T::iterator pos = std::lower_bound(left.begin(), left.end(), *jit); // find position in left where element should be inserted using binary search
 		left.insert(pos, *jit); // insert element in left at position
+		//for a custom implenetation in deque we could use std::higher_bound in combinnation with std::lower_bound and use push_back and push_front instead of insert
 	}
 	std::copy(left.begin(), left.end(), container.begin()); // copy left to container
 }
@@ -142,13 +143,11 @@ static void mergeSort(T &container) {
 
 // recurrence relation: [ J(n) = J(n-1) + 2 \cdot J(n-2) ] with initial conditions : [J(0) = 0][J(1) = 1]
 template <typename T>
-static T genJacob(T container, int nbr)
-{
+static T genJacob(T container, int nbr) {
 	T temp;
 	temp.push_back(0);
 	temp.push_back(1);
-	for (int i = 2; i < nbr; ++i)
-	{
+	for (int i = 2; i < nbr; ++i) {
 		int next = temp[i - 1] + 2 * temp[i - 2];
 		if (next < 0 || next > std::numeric_limits<int>::max())
 			break;
@@ -159,22 +158,17 @@ static T genJacob(T container, int nbr)
 }
 
 template <typename T>
-static void insertionSort(T &container)
-{
+static void insertionSort(T &container) {
 	typename T::iterator it, jt;
 	typename std::iterator_traits<typename T::iterator>::value_type key;
 	T temp = genJacob(container, container.size());
 	// iter every element in container
-	for (it = container.begin(); it != container.end(); ++it)
-	{
+	for (it = container.begin(); it != container.end(); ++it) {
 		key = *it; // set key to current element
 		jt = it;   // initialize jt to element to be shifted
-		for (int j = temp.size() - 1; j >= 0; --j)
-		{ // reverse iter jacobsthal sequence
-			if (temp[j] < std::distance(container.begin(), it))
-			{ // if jacobsthal number is less than distance from begin to it
-				while (jt != container.begin() && *(jt - 1) > key)
-				{					 // while jt is not at begin and previous element is greater than key decrement jt
+		for (int j = temp.size() - 1; j >= 0; --j) { // reverse iter jacobsthal sequence
+			if (temp[j] < std::distance(container.begin(), it)) { // if jacobsthal number is less than distance from begin to it
+				while (jt != container.begin() && *(jt - 1) > key) {					 // while jt is not at begin and previous element is greater than key decrement jt
 					*jt = *(jt - 1); // jt is equal to previous element (shift right)
 					std::advance(jt, -1);
 				}
