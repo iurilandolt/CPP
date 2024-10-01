@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 16:39:57 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/30 23:44:39 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/10/01 12:16:54 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@ PmergeMe::PmergeMe(std::vector<std::string> &args) {
 		throw std::invalid_argument("Not enough arguments");
 	insertTimer(&PmergeMe::insertElements<std::vector<int> >, _vector, args, "Vector");
 	insertTimer(&PmergeMe::insertElements<std::deque<int> >, _deque, args, "Deque");
-	sortTimer(&PmergeMe::sortVec, _vector, "Vector");
-	sortTimer(&PmergeMe::sortDeq, _deque, "Deque");
+	std::cout << "Unsorted: " << std::endl;
+	printContainer(_vector, _deque);
+	sortTimer(&PmergeMe::fordJohnson<std::vector<int> >, _vector, "Vector");
+	sortTimer(&PmergeMe::fordJohnson<std::deque<int> >, _deque, "Deque");
+	std::cout << "Sorted: " << std::endl;
 	printContainer(_vector, _deque);
 }
 
@@ -58,20 +61,16 @@ void PmergeMe::insertTimer(T1 func, T2 &container, std::vector<std::string> &arg
 	std::clock_t c_start = std::clock();
 	(*func)(container, args);
 	std::clock_t c_end = std::clock();
-	double duration_in_seconds = static_cast<double>(c_end - c_start) / CLOCKS_PER_SEC;
-	double duration_in_microseconds = duration_in_seconds * 1e6;
-	std::cout << std::fixed << std::setprecision(1);
-	std::cout << "Time to insert " << container.size() << " elements for " << type << " : " << duration_in_microseconds << " us" << std::endl;
-	std::cout.unsetf(std::ios_base::fixed);
+	printTime(c_start, c_end, type, "insert", container.size());
 }
 
+// recurrence relation: [ J(n) = J(n-1) + 2 \cdot J(n-2) ] with initial conditions : [J(0) = 0][J(1) = 1]
 template <typename T>
 static T genJacob(T container, int nbr) {
 	T temp;
 	temp.push_back(0);
 	temp.push_back(1);
 	for (int i = 2; i < nbr; ++i) {
-		//int next = temp[i - 1] * 2 + temp[i - 2];
 		int next = temp[i - 1] + 2 * temp[i - 2];
 		if (next < 0 || next > std::numeric_limits<int>::max())
 			break;
@@ -103,25 +102,13 @@ static void insertionSort(T &container) {
 }
 
 template <typename T>
-static void mergeSort(T &container)
-{
-	if (container.size() <= 1)
-		return;
-	typename T::iterator mid = container.begin() + container.size() / 2;
-	T left(container.begin(), mid);
-	T right(mid, container.end());
-	mergeSort(left);
-	mergeSort(right);
-	std::merge(left.begin(), left.end(), right.begin(), right.end(), container.begin());
-}
-
-void fordJohnsonVector(std::vector<int> &container) {
+void PmergeMe::fordJohnson(T &container) {
 	int n = container.size();
 	if (n <= 1)
 		return;
-	std::vector<int> left;
-	std::vector<int> right;
-	std::vector<int> ::iterator it = container.begin();
+	T left;
+	T right;
+	typename T::iterator it = container.begin();
 	while (it != container.end()) {
 		if (std::distance(it, container.end()) > 1) {
 			if (*it < *(it + 1)) {
@@ -139,50 +126,10 @@ void fordJohnsonVector(std::vector<int> &container) {
 			++it;
 		}
 	}
-	fordJohnsonVector(left);
+	fordJohnson(left);
 	insertionSort(right);
+	T merged(right.begin(), right.end());
 	std::merge(right.begin(), right.end(), left.begin(), left.end(), container.begin());
-}
-
-void fordJohnsonDeque(std::deque<int> &container) {
-	int n = container.size();
-	if (n <= 1)
-		return;
-	std::deque<int> left;
-	std::deque<int> right;
-	std::deque<int> ::iterator it = container.begin();
-	while (it != container.end()) {
-		if (std::distance(it, container.end()) > 1) {
-			if (*it < *(it + 1)) {
-				right.push_back(*it);
-				left.push_back(*(it + 1));
-			}
-			else {
-				right.push_back(*(it + 1));
-				left.push_back(*it);
-			}
-			std::advance(it, 2);
-		} // there is an odd number of elements
-		else {
-			right.push_back(*it);
-			++it;
-		}
-	}
-	fordJohnsonDeque(left);
-	insertionSort(right);
-	std::merge(right.begin(), right.end(), left.begin(), left.end(), container.begin());
-}
-
-void PmergeMe::sortVec(std::vector<int> &container) {
-	//insertionSort(container);
-	//mergeSort(container);
-	fordJohnsonVector(container);
-}
-
-void PmergeMe::sortDeq(std::deque<int> &container) {
-	//insertionSort(container);
-	//mergeSort(container);
-	fordJohnsonDeque(container);
 }
 
 template <typename T1, typename T2>
@@ -190,11 +137,7 @@ void PmergeMe::sortTimer(T1 func, T2 &container, std::string type) {
 	std::clock_t c_start = std::clock();
 	(*func)(container);
 	std::clock_t c_end = std::clock();
-	double duration_in_seconds = static_cast<double>(c_end - c_start) / CLOCKS_PER_SEC;
-	double duration_in_microseconds = duration_in_seconds * 1e6;
-	std::cout << std::fixed << std::setprecision(1);
-	std::cout << "Time to sort " << container.size() << " elements for " << type << " : " << duration_in_microseconds << " us" << std::endl;
-	std::cout.unsetf(std::ios_base::fixed);
+	printTime(c_start, c_end, type, "sort", container.size());
 }
 
 void printContainer(std::vector<int> &v, std::deque<int> &d) {
@@ -207,37 +150,27 @@ void printContainer(std::vector<int> &v, std::deque<int> &d) {
 		std::advance(vit, 1);
 		std::advance(dit, 1);
 	}
+	std::cout << std::endl;
+}
+
+void printTime(std::clock_t c_start, std::clock_t c_end, std::string type, std::string action, int size) {
+	double duration_in_seconds = static_cast<double>(c_end - c_start) / CLOCKS_PER_SEC;
+	double duration_in_microseconds = duration_in_seconds * 1e6;
+	std::cout << std::fixed << std::setprecision(1);
+	std::cout << "Time to " << action << " " << size << " elements for " << type << " : " << duration_in_microseconds << " us" << std::endl;
+	std::cout.unsetf(std::ios_base::fixed);
 }
 
 // template <typename T>
-// static void fordJohnson(T &container) {
-// 	int n = container.size();
-// 	if (n <= 1)
+// static void mergeSort(T &container) {
+// 	if (container.size() <= 1)
 // 		return;
-// 	T larger;
-// 	T smaller;
-// 	typename T::iterator it = container.begin();
-// 	while (it != container.end()) {
-// 		if (std::distance(it, container.end()) > 1) {
-// 			if (*it < *(it + 1)) {
-// 				smaller.push_back(*it);
-// 				larger.push_back(*(it + 1));
-// 			}
-// 			else {
-// 				smaller.push_back(*(it + 1));
-// 				larger.push_back(*it);
-// 			}
-// 			std::advance(it, 2);
-// 		} // there is an odd number of elements
-// 		else {
-// 			smaller.push_back(*it);
-// 			++it;
-// 		}
-// 	}
-// 	fordJohnson(larger);
-// 	insertionSort(smaller);
-// 	T merged(smaller.begin(), smaller.end());
-// 	std::merge(smaller.begin(), smaller.end(), larger.begin(), larger.end(), container.begin());
+// 	typename T::iterator mid = container.begin() + container.size() / 2;
+// 	T left(container.begin(), mid);
+// 	T right(mid, container.end());
+// 	mergeSort(left);
+// 	mergeSort(right);
+// 	std::merge(left.begin(), left.end(), right.begin(), right.end(), container.begin());
 // }
 
 // template <typename T>
@@ -298,4 +231,74 @@ void printContainer(std::vector<int> &v, std::deque<int> &d) {
 // 		ft_merge(container, left, mid, right);
 // 		//std::merge(left, mid, mid, right, left);
 // 	}
+// }
+
+// void PmergeMe::fordJohnsonVector(std::vector<int> &container)
+// {
+// 	int n = container.size();
+// 	if (n <= 1)
+// 		return;
+// 	std::vector<int> left;
+// 	std::vector<int> right;
+// 	std::vector<int>::iterator it = container.begin();
+// 	while (it != container.end())
+// 	{
+// 		if (std::distance(it, container.end()) > 1)
+// 		{
+// 			if (*it < *(it + 1))
+// 			{
+// 				right.push_back(*it);
+// 				left.push_back(*(it + 1));
+// 			}
+// 			else
+// 			{
+// 				right.push_back(*(it + 1));
+// 				left.push_back(*it);
+// 			}
+// 			std::advance(it, 2);
+// 		} // there is an odd number of elements
+// 		else
+// 		{
+// 			right.push_back(*it);
+// 			++it;
+// 		}
+// 	}
+// 	fordJohnsonVector(left);
+// 	insertionSort(right);
+// 	std::merge(right.begin(), right.end(), left.begin(), left.end(), container.begin());
+// }
+
+// void PmergeMe::fordJohnsonDeque(std::deque<int> &container)
+// {
+// 	int n = container.size();
+// 	if (n <= 1)
+// 		return;
+// 	std::deque<int> left;
+// 	std::deque<int> right;
+// 	std::deque<int>::iterator it = container.begin();
+// 	while (it != container.end())
+// 	{
+// 		if (std::distance(it, container.end()) > 1)
+// 		{
+// 			if (*it < *(it + 1))
+// 			{
+// 				right.push_back(*it);
+// 				left.push_back(*(it + 1));
+// 			}
+// 			else
+// 			{
+// 				right.push_back(*(it + 1));
+// 				left.push_back(*it);
+// 			}
+// 			std::advance(it, 2);
+// 		} // there is an odd number of elements
+// 		else
+// 		{
+// 			right.push_back(*it);
+// 			++it;
+// 		}
+// 	}
+// 	fordJohnsonDeque(left);
+// 	insertionSort(right);
+// 	std::merge(right.begin(), right.end(), left.begin(), left.end(), container.begin());
 // }
