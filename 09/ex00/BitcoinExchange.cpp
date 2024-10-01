@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 19:40:54 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/27 16:32:09 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/10/01 10:50:48 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,23 +123,21 @@ void BitcoinExchange::_validateFiles(void) {
 }
 
 bool validate_day(int year, int month, int day) {
-	std::list<int> days_per_month; // must be an array
+	int days_per_month[12];
 	bool leap = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
-	for (int i = 1; i <= 12; i++) {
-		if (i == 2) {
+	for (int i = 0; i < 12; i++) {
+		if (i == 1) {
 			if (leap)
-				days_per_month.push_back(29);
+				days_per_month[i] = 29;
 			else
-				days_per_month.push_back(28);
+				days_per_month[i] = 28;
 		}
-		else if (i == 4 || i == 6 || i == 9 || i == 11)
-			days_per_month.push_back(30);
+		else if (i == 3 || i == 5 || i == 8 || i == 10)
+			days_per_month[i] = 30;
 		else
-			days_per_month.push_back(31);
+			days_per_month[i] = 31;
 	}
-	std::list<int>::iterator it = days_per_month.begin();
-	std::advance(it, month - 1);
-	if (day < 1 || day > *it)
+	if (day < 1 || day > days_per_month[month - 1])
 		return false;
 	return true;
 }
@@ -164,3 +162,27 @@ bool validate_format(const std::string &date) {
 		return false;
 	return true;
 }
+
+/*
+bool validate_day(int year, int month, int day) {
+// 	std::list<int> days_per_month; // must be an array
+// 	bool leap = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+// 	for (int i = 1; i <= 12; i++) {
+// 		if (i == 2) {
+// 			if (leap)
+// 				days_per_month.push_back(29);
+// 			else
+// 				days_per_month.push_back(28);
+// 		}
+// 		else if (i == 4 || i == 6 || i == 9 || i == 11)
+// 			days_per_month.push_back(30);
+// 		else
+// 			days_per_month.push_back(31);
+// 	}
+// 	std::list<int>::iterator it = days_per_month.begin();
+// 	std::advance(it, month - 1);
+// 	if (day < 1 || day > *it)
+// 		return false;
+// 	return true;
+// }
+*/

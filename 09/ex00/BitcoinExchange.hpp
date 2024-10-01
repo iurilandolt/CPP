@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 19:41:03 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/09/27 18:10:57 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/10/01 11:02:58 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 #include <iterator>
 #include <algorithm>
 #include <map>
-#include <list>
 
 class BitcoinExchange {
 	public:
