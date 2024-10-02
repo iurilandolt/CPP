@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 16:39:57 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/10/02 10:39:54 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/10/02 10:44:55 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ PmergeMe::PmergeMe(std::vector<std::string> &args) {
 	time_to_insert = insertTimer(&PmergeMe::insertElements<std::vector<int> >, _vector, args);
 	std::cout << "Unsorted: ";	
 	printContainer(_vector);
-	time_to_sort = sortTimer(&PmergeMe::fordJohnson<std::vector<int> >, _vector);
+	time_to_sort = sortTimer(&PmergeMe::fordJohnsonVector, _vector);
 	std::cout << "Sorted: ";
 	printContainer(_vector);
 	std::cout << "Time to insert elements in vector: " << std::fixed << std::setprecision(2) << time_to_insert << " microseconds" << std::endl;
@@ -37,9 +37,11 @@ PmergeMe::PmergeMe(std::vector<std::string> &args) {
 	time_to_insert = insertTimer(&PmergeMe::insertElements<std::deque<int> >, _deque, args);
 	std::cout << "Unsorted: ";
 	printContainer(_deque);
-	time_to_sort = sortTimer(&PmergeMe::fordJohnson<std::deque<int> >, _deque);
+	time_to_sort = sortTimer(&PmergeMe::fordJohnsonDeque, _deque);
 	std::cout << "Sorted: ";
 	printContainer(_deque);
+	std::cout << "Time to insert elements in deque: " << std::fixed << std::setprecision(2) << time_to_insert << " microseconds" << std::endl;
+	std::cout << "Time to sort deque: " << std::fixed << std::setprecision(2) << time_to_sort << " microseconds" << std::endl;
 }
 
 PmergeMe::PmergeMe(PmergeMe const &src) {
@@ -81,38 +83,68 @@ double PmergeMe::insertTimer(T1 func, T2 &container, std::vector<std::string> &a
 	return duration_in_microseconds;
 }
 
-template <typename T>
-void PmergeMe::fordJohnson(T &container) {
+void PmergeMe::fordJohnsonVector(std::vector<int> &container) {
 	int n = container.size();
 	if (n <= 1)
 		return;
-	T left;
-	T right;
-	typename T::iterator it = container.begin();
+	std::vector<int> left;
+	std::vector<int> right;
+	std::vector<int>::iterator it = container.begin();
 	while (it != container.end()) {
 		if (std::distance(it, container.end()) > 1) {
-			if (*it < *(it + 1)) { // if first element is less than second
-				right.push_back(*it); // push smaller element to right
-				left.push_back(*(it + 1)); // push larger element to left
+			if (*it < *(it + 1)) {
+				right.push_back(*it);
+				left.push_back(*(it + 1));
 			}
-			else { // if first element is greater than second
-				right.push_back(*(it + 1)); // push smaller element to right
-				left.push_back(*it); // push larger element to left
+			else {
+				right.push_back(*(it + 1));
+				left.push_back(*it);
 			}
 			std::advance(it, 2);
 		}
-		else {  // if only one element left push it to right
-			right.push_back(*it); 
+		else {
+			right.push_back(*it);
 			++it;
 		}
 	}
-	fordJohnson(left); // recursivelly keep dividing left into smaller until we only have pairs
-	for (typename T::iterator jit = right.begin(); jit != right.end(); ++jit) { // for each element in right
-		typename T::iterator pos = std::lower_bound(left.begin(), left.end(), *jit); // find position in left where element should be inserted using binary search
-		left.insert(pos, *jit); // insert element in left at position
-		//for a custom implenetation in deque we could use std::higher_bound in combinnation with std::lower_bound and use push_back and push_front instead of insert
+	fordJohnsonVector(left);
+	for (std::vector<int>::iterator jit = right.begin(); jit != right.end(); ++jit) {
+		std::vector<int>::iterator pos = std::lower_bound(left.begin(), left.end(), *jit);
+		left.insert(pos, *jit);
 	}
-	std::copy(left.begin(), left.end(), container.begin()); // copy left to container
+	std::copy(left.begin(), left.end(), container.begin());
+}
+
+void PmergeMe::fordJohnsonDeque(std::deque<int> &container) {
+	int n = container.size();
+	if (n <= 1)
+		return;
+	std::deque<int> left;
+	std::deque<int> right;
+	std::deque<int>::iterator it = container.begin();
+	while (it != container.end()) {
+		if (std::distance(it, container.end()) > 1) {
+			if (*it < *(it + 1)) {
+				right.push_back(*it);
+				left.push_back(*(it + 1));
+			}
+			else {
+				right.push_back(*(it + 1));
+				left.push_back(*it);
+			}
+			std::advance(it, 2);
+		}
+		else {
+			right.push_back(*it);
+			++it;
+		}
+	}
+	fordJohnsonDeque(left);
+	for (std::deque<int>::iterator jit = right.begin(); jit != right.end(); ++jit) {
+		std::deque<int>::iterator pos = std::lower_bound(left.begin(), left.end(), *jit);
+		left.insert(pos, *jit);
+	}
+	std::copy(left.begin(), left.end(), container.begin());
 }
 
 template <typename T1, typename T2>
