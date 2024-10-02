@@ -6,20 +6,13 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 16:39:57 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/10/02 10:44:55 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/10/02 10:47:12 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
 PmergeMe::PmergeMe() {}
-
-template <typename T>
-void printContainer(T &container) {
-	for (typename T::iterator it = container.begin(); it != container.end(); ++it)
-		std::cout << *it << " ";
-	std::cout << std::endl;
-}
 
 PmergeMe::PmergeMe(std::vector<std::string> &args) {
 	if (args.size() < 2)
