@@ -6,7 +6,7 @@
 /*   By: rlandolt <rlandolt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 16:39:57 by rlandolt          #+#    #+#             */
-/*   Updated: 2024/10/01 14:41:39 by rlandolt         ###   ########.fr       */
+/*   Updated: 2024/10/02 10:39:54 by rlandolt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,32 @@
 
 PmergeMe::PmergeMe() {}
 
+template <typename T>
+void printContainer(T &container) {
+	for (typename T::iterator it = container.begin(); it != container.end(); ++it)
+		std::cout << *it << " ";
+	std::cout << std::endl;
+}
+
 PmergeMe::PmergeMe(std::vector<std::string> &args) {
 	if (args.size() < 2)
 		throw std::invalid_argument("Not enough arguments");
-	insertTimer(&PmergeMe::insertElements<std::vector<int> >, _vector, args, "Vector");
-	insertTimer(&PmergeMe::insertElements<std::deque<int> >, _deque, args, "Deque");
-	std::cout << "Unsorted: " << std::endl;
-	printContainer(_vector, _deque);
-	sortTimer(&PmergeMe::fordJohnson<std::vector<int> >, _vector, "Vector");
-	sortTimer(&PmergeMe::fordJohnson<std::deque<int> >, _deque, "Deque");
-	std::cout << "Sorted: " << std::endl;
-	printContainer(_vector, _deque);
+	double time_to_insert;
+	double time_to_sort;
+	time_to_insert = insertTimer(&PmergeMe::insertElements<std::vector<int> >, _vector, args);
+	std::cout << "Unsorted: ";	
+	printContainer(_vector);
+	time_to_sort = sortTimer(&PmergeMe::fordJohnson<std::vector<int> >, _vector);
+	std::cout << "Sorted: ";
+	printContainer(_vector);
+	std::cout << "Time to insert elements in vector: " << std::fixed << std::setprecision(2) << time_to_insert << " microseconds" << std::endl;
+	std::cout << "Time to sort vector: " << std::fixed << std::setprecision(2) << time_to_sort << " microseconds" << std::endl;
+	time_to_insert = insertTimer(&PmergeMe::insertElements<std::deque<int> >, _deque, args);
+	std::cout << "Unsorted: ";
+	printContainer(_deque);
+	time_to_sort = sortTimer(&PmergeMe::fordJohnson<std::deque<int> >, _deque);
+	std::cout << "Sorted: ";
+	printContainer(_deque);
 }
 
 PmergeMe::PmergeMe(PmergeMe const &src) {
@@ -57,11 +72,13 @@ void PmergeMe::insertElements(T &container, std::vector<std::string> &args) {
 }
 
 template <typename T1, typename T2>
-void PmergeMe::insertTimer(T1 func, T2 &container, std::vector<std::string> &args, std::string type) {
+double PmergeMe::insertTimer(T1 func, T2 &container, std::vector<std::string> &args) {
 	std::clock_t c_start = std::clock();
 	(*func)(container, args);
 	std::clock_t c_end = std::clock();
-	printTime(c_start, c_end, type, "insert", container.size());
+	double duration_in_seconds = static_cast<double>(c_end - c_start) / CLOCKS_PER_SEC;
+	double duration_in_microseconds = duration_in_seconds * 1e6;
+	return duration_in_microseconds;
 }
 
 template <typename T>
@@ -99,32 +116,13 @@ void PmergeMe::fordJohnson(T &container) {
 }
 
 template <typename T1, typename T2>
-void PmergeMe::sortTimer(T1 func, T2 &container, std::string type) {
+double PmergeMe::sortTimer(T1 func, T2 &container) {
 	std::clock_t c_start = std::clock();
 	(*func)(container);
 	std::clock_t c_end = std::clock();
-	printTime(c_start, c_end, type, "sort", container.size());
-}
-
-void printContainer(std::vector<int> &v, std::deque<int> &d) {
-	std::vector<int>::iterator vit = v.begin();
-	std::deque<int>::iterator dit = d.begin();
-	std::cout << std::setw(10) << "Vector     | Deque" << std::endl;
-	while (vit != v.end() && dit != d.end()) {
-		std::cout << std::left << std::setw(10) << *vit
-				  << " | " << std::right << std::setw(10) << *dit << std::endl;
-		std::advance(vit, 1);
-		std::advance(dit, 1);
-	}
-	std::cout << std::endl;
-}
-
-void printTime(std::clock_t c_start, std::clock_t c_end, std::string type, std::string action, int size) {
 	double duration_in_seconds = static_cast<double>(c_end - c_start) / CLOCKS_PER_SEC;
 	double duration_in_microseconds = duration_in_seconds * 1e6;
-	std::cout << std::fixed << std::setprecision(1);
-	std::cout << "Time to " << action << " " << size << " elements for " << type << " : " << duration_in_microseconds << " us" << std::endl;
-	std::cout.unsetf(std::ios_base::fixed);
+	return duration_in_microseconds;
 }
 
 /* */
