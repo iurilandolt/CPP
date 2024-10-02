@@ -1,4 +1,7 @@
 .vscode
+.DS_Store
+/*/.vscode
+/*/DS_Store
 *.o
 /*/objects
 /00/ex00/Megaphone
@@ -30,4 +33,16 @@
 /06/*/convert
 /06/*/serialize
 /06/*/identify
-
+/07/*/whatever
+/07/*/iter
+/07/*/array
+/08/*/easyfind
+/08/*/span
+/08/*/mutantstack
+/09/*/btc
+/09/*/data.csv
+/09/*/input.txt
+/09/*/BitcoinExchange.csv
+/09/*/RPN
+/09/*/PmergeMe
+notes
